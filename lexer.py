@@ -77,12 +77,17 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
 def t_VARIABLE(t):
     r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
 
+
+# Define una regla para inicializar Hashes
+def t_HASH(t):
+    r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
+    #validacion
+    return t
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
