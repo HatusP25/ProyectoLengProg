@@ -51,7 +51,8 @@ tokens = (
              'DARROBA',
              'GUIONBAJO',
              'VARIABLE',
-             'HASH'
+             'HASH',
+             'ARREGLO'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -83,6 +84,10 @@ def t_VARIABLE(t):
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
 
+def t_ARREGLO(t):
+    r'^\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
+    return t
+
 
 # Define una regla para inicializar Hashes
 def t_HASH(t):
@@ -111,6 +116,8 @@ if __name__ == '__main__':
      $var
      var2
      {:name => "Joe",:age=>35}
+     [9]
+     [8,'nose',4]
      '''
 
     # Give the lexer some input
