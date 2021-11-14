@@ -38,3 +38,6 @@ reserved = {
     'while': 'WHILE',
     'yield': 'YIELD'
 }
+
+if __name__ == '__main__':
+    print("Hola Mundo")
