@@ -50,7 +50,8 @@ tokens = (
              'ARROBA',
              'DARROBA',
              'GUIONBAJO',
-             'VARIABLE'
+             'VARIABLE',
+             'HASH'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -109,6 +110,7 @@ if __name__ == '__main__':
      @var
      $var
      var2
+     {:name => "Joe",:age=>35}
      '''
 
     # Give the lexer some input
