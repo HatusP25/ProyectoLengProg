@@ -47,6 +47,10 @@ tokens = (
     'DIVIDE',
     'LPAREN',
     'RPAREN',
+    'DOLAR',
+    'ARROBA',
+    'DARROBA',
+    'GUIONBAJO',
 )
 
 t_PLUS = r'\+'
@@ -55,6 +59,10 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_DOLAR = r'\$'
+t_ARROBA = r'@'
+t_DARROBA = r'@@'
+t_GUIONBAJO = r'_'
 
 
 # A regular expression rule with some action code
