@@ -11,7 +11,6 @@ reserved = {
     'case': 'CASE',
     'class': 'CLASS',
     'def': 'DEF',
-    'defined?': 'DEFINED?',
     'do': 'DO',
     'else': 'ELSE',
     'elsif': 'ELSIF',
@@ -40,18 +39,19 @@ reserved = {
 }
 
 tokens = (
-    'NUMBER',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LPAREN',
-    'RPAREN',
-    'DOLAR',
-    'ARROBA',
-    'DARROBA',
-    'GUIONBAJO',
-)
+             'NUMBER',
+             'PLUS',
+             'MINUS',
+             'TIMES',
+             'DIVIDE',
+             'LPAREN',
+             'RPAREN',
+             'DOLAR',
+             'ARROBA',
+             'DARROBA',
+             'GUIONBAJO',
+             'VARIABLE'
+         ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -78,6 +78,12 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 
+def t_VARIABLE(t):
+    r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
+    t.type = reserved.get(t.value, 'VARIABLE')
+    return t
+
+
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -87,12 +93,17 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+
 if __name__ == '__main__':
     lexer = lex.lex()
     # Test it out
     data = '''
-     3 + 4 * 10
-       + -20 *2
+     alias @ if then
+     _var
+     @@VAR
+     @var
+     $var
+     var2
      '''
 
     # Give the lexer some input
@@ -104,4 +115,3 @@ if __name__ == '__main__':
         if not tok:
             break  # No more input
         print(tok)
-
