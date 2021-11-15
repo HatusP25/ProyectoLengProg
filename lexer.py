@@ -103,7 +103,7 @@ def t_HASH(t):
     return t
 # Define una regla para operadores de comparación
 def t_COMPARACION(t):
-    r'^([!<>]=?)|=='
+    r'([\!\<\>]=?)|=='
     return t
 
 # A string containing ignored characters (spaces and tabs)
@@ -129,6 +129,10 @@ if __name__ == '__main__':
      {:name => "Joe",:age=>35}
      [9]
      [8,'nose',4]
+     ==
+     <
+     >=
+     !=
      '''
 
     # Give the lexer some input
