@@ -6,11 +6,11 @@ reserved = {
     'and': 'AND',
     'alias': 'ALIAS',
     'for': 'FOR',
+    'def': 'DEF',
     'begin': 'BEGIN',
     'break': 'BREAK',
     'case': 'CASE',
     'class': 'CLASS',
-    'def': 'DEF',
     'do': 'DO',
     'else': 'ELSE',
     'elsif': 'ELSIF',
@@ -92,10 +92,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-def t_VARIABLE(t):
-    r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
-    t.type = reserved.get(t.value, 'VARIABLE')
-    return t
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
@@ -107,7 +103,7 @@ def t_FICHERO(t):
     return t
 
 def t_FUNCION(t):
-    r'def [a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
+    r'def\s[a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
     return t
 
 # Aporte Moises Atupaña
@@ -125,7 +121,10 @@ t_ignore = ' \t'
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
-
+def t_VARIABLE(t):
+    r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
+    t.type = reserved.get(t.value, 'VARIABLE')
+    return t
 
 if __name__ == '__main__':
     lexer = lex.lex()
@@ -136,6 +135,8 @@ if __name__ == '__main__':
      ==
      <
      File.new('test.txt','r')
+     HASH.new
+     def area_circulo(radio,perimetro)
      '''
 
 
