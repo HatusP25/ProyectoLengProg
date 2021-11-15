@@ -59,7 +59,8 @@ tokens = (
              'FICHERO',
              'COMPARACION',
              'COMILLASIMPLE',
-             "PUNTO"
+             "PUNTO",
+             'FUNCION'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -91,23 +92,23 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
 def t_VARIABLE(t):
     r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
-
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
     #r"^\[(((\d)|('.*')),)+(\d|'.*')\]$"
     return t
 
-
 def t_FICHERO(t):
     r"File\.(open|new)\('[\w]+\.txt','(r|w|a)'\)"
     return t
 
+def t_FUNCION(t):
+    r'def [a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
+    return t
 
 # Aporte Moises Atupaña
 # Define una regla para inicializar Hashes
@@ -115,8 +116,6 @@ def t_HASH(t):
     r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
 
     return t
-
-
 # Define una regla para operadores de comparación
 def t_COMPARACION(t):
     r'([\!\<\>]=?)|=='
@@ -138,6 +137,9 @@ if __name__ == '__main__':
      <
      File.new('test.txt','r')
      '''
+
+
+    # Give the lexer some input
     lexer.input(data)
     # Tokenize
     while True:
