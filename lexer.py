@@ -52,7 +52,8 @@ tokens = (
              'GUIONBAJO',
              'VARIABLE',
              'HASH',
-             'ARREGLO'
+             'ARREGLO',
+             'FICHERO'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -87,6 +88,11 @@ def t_VARIABLE(t):
 def t_ARREGLO(t):
     r'^\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
     return t
+
+def t_FICHERO(t):
+    r'^ File.(open | new |)\(\'[a-z0-9]+.txt\',\s\'(r|w|a)\'\)\s(do\s\|[a-z0-9]+\|)?'
+    return t
+
 
 
 # Define una regla para inicializar Hashes
