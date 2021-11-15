@@ -46,6 +46,9 @@ tokens = (
              'DIVIDE',
              'LPAREN',
              'RPAREN',
+             'LBRACKET',
+             'RBRACKET',
+             'COMA',
              'DOLAR',
              'ARROBA',
              'DARROBA',
@@ -54,7 +57,8 @@ tokens = (
              'HASH',
              'ARREGLO',
              'FICHERO',
-             'COMPARACION'
+             'COMPARACION',
+            'COMILLASIMPLE'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -67,6 +71,10 @@ t_DOLAR = r'\$'
 t_ARROBA = r'@'
 t_DARROBA = r'@@'
 t_GUIONBAJO = r'_'
+t_LBRACKET = r'\['
+t_RBRACKET = r'\]'
+t_COMA = r','
+t_COMILLASIMPLE = r"'"
 
 
 # A regular expression rule with some action code
@@ -87,7 +95,8 @@ def t_VARIABLE(t):
     return t
 
 def t_ARREGLO(t):
-    r'^\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
+    r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
+    #r"^\[(((\d)|('.*')),)+(\d|'.*')\]$"
     return t
 
 def t_FICHERO(t):
@@ -122,10 +131,6 @@ if __name__ == '__main__':
     data = '''
      alias @ if then
      _var
-     @@VAR
-     @var
-     $var
-     var2
      {:name => "Joe",:age=>35}
      [9]
      [8,'nose',4]
@@ -134,10 +139,8 @@ if __name__ == '__main__':
      >=
      !=
      '''
-
     # Give the lexer some input
     lexer.input(data)
-
     # Tokenize
     while True:
         tok = lexer.token()
