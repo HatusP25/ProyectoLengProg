@@ -53,7 +53,8 @@ tokens = (
              'VARIABLE',
              'HASH',
              'ARREGLO',
-             'FICHERO'
+             'FICHERO',
+             'COMPARACION'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -94,11 +95,15 @@ def t_FICHERO(t):
     return t
 
 
-
+# Aporte Moises Atupaña
 # Define una regla para inicializar Hashes
 def t_HASH(t):
     r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
-    #validacion
+
+    return t
+# Define una regla para operadores de comparación
+def t_COMPARACION(t):
+    r'^([!<>]=?)|=='
     return t
 
 # A string containing ignored characters (spaces and tabs)
