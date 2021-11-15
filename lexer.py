@@ -58,7 +58,8 @@ tokens = (
              'ARREGLO',
              'FICHERO',
              'COMPARACION',
-            'COMILLASIMPLE'
+             'COMILLASIMPLE',
+             'FUNCION'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -103,6 +104,9 @@ def t_FICHERO(t):
     r'^ File.(open | new |)\(\'[a-z0-9]+.txt\',\s\'(r|w|a)\'\)\s(do\s\|[a-z0-9]+\|)?'
     return t
 
+def t_FUNCION(t):
+    r'def [a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
+    return t
 
 # Aporte Moises Atupaña
 # Define una regla para inicializar Hashes
@@ -139,6 +143,8 @@ if __name__ == '__main__':
      >=
      !=
      '''
+
+
     # Give the lexer some input
     lexer.input(data)
     # Tokenize
