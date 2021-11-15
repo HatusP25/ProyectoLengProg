@@ -58,7 +58,8 @@ tokens = (
              'ARREGLO',
              'FICHERO',
              'COMPARACION',
-            'COMILLASIMPLE'
+             'COMILLASIMPLE',
+             "PUNTO"
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -75,6 +76,7 @@ t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_COMA = r','
 t_COMILLASIMPLE = r"'"
+t_PUNTO = r'\.'
 
 
 # A regular expression rule with some action code
@@ -89,18 +91,21 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+
 def t_VARIABLE(t):
     r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
+
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
     #r"^\[(((\d)|('.*')),)+(\d|'.*')\]$"
     return t
 
+
 def t_FICHERO(t):
-    r'^ File.(open | new |)\(\'[a-z0-9]+.txt\',\s\'(r|w|a)\'\)\s(do\s\|[a-z0-9]+\|)?'
+    r"File\.(open|new)\('[\w]+\.txt','(r|w|a)'\)"
     return t
 
 
@@ -110,16 +115,14 @@ def t_HASH(t):
     r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
 
     return t
+
+
 # Define una regla para operadores de comparación
 def t_COMPARACION(t):
     r'([\!\<\>]=?)|=='
     return t
 
-# A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
-
-
-# Error handling rule
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -127,23 +130,18 @@ def t_error(t):
 
 if __name__ == '__main__':
     lexer = lex.lex()
-    # Test it out
     data = '''
-     alias @ if then
      _var
      {:name => "Joe",:age=>35}
-     [9]
      [8,'nose',4]
      ==
      <
-     >=
-     !=
+     File.new('test.txt','r')
      '''
-    # Give the lexer some input
     lexer.input(data)
     # Tokenize
     while True:
         tok = lexer.token()
         if not tok:
-            break  # No more input
+            break
         print(tok)
