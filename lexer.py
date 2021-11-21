@@ -95,16 +95,19 @@ def t_newline(t):
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
-    #r"^\[(((\d)|('.*')),)+(\d|'.*')\]$"
+    # r"^\[(((\d)|('.*')),)+(\d|'.*')\]$"
     return t
+
 
 def t_FICHERO(t):
     r"File\.(open|new)\('[\w]+\.txt','(r|w|a)'\)"
     return t
 
+
 def t_FUNCION(t):
     r'def\s[a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
     return t
+
 
 # Aporte Moises Atupaña
 # Define una regla para inicializar Hashes
@@ -112,25 +115,32 @@ def t_HASH(t):
     r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
 
     return t
+
+
 # Define una regla para operadores de comparación
 def t_COMPARACION(t):
     r'([\!\<\>]=?)|=='
     return t
 
+
 t_ignore = ' \t'
+
+
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
+
+
 def t_VARIABLE(t):
     r'(^(@|@@|\$)[a-zA-z_]{1,14})|\w{1,15}'
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
 
+
+lexer = lex.lex()
 if __name__ == '__main__':
     lexer = lex.lex()
     data = input('analizador > ')
-
-
 
     # Give the lexer some input
     lexer.input(data)
