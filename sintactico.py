@@ -9,11 +9,48 @@ def p_declaracion(p):
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
 
+
 def p_asignacion_hash(p):
     'asignacion : HASH'
 
+
+def p_asignacion_expresion(p):
+    'asignacion : expresion'
+
+
+def p_expresion_suma(p):
+    'expresion : NUMBER PLUS NUMBER'
+
+
+def p_expresion_resta(p):
+    'expresion : NUMBER MINUS NUMBER'
+
+
+def p_expresion_term(p):
+    'expresion : termino'
+
+
+def p_termino_multi(p):
+    'termino : termino TIMES factor'
+
+
+def p_termino_div(p):
+    'termino : termino DIVIDE factor'
+
+
+def p_termino_factor(p):
+    'termino : factor'
+
+def p_factor_number(p):
+    'factor : NUMBER'
+
+def p_factor_expresion(p):
+    'factor : LPAREN expresion RPAREN'
+
+
 def p_primitivo_flotante(p):
     'primitivo : NUMBER PUNTO NUMBER'
+
 
 def p_primitivo_number(p):
     'primitivo : NUMBER'
@@ -22,8 +59,10 @@ def p_primitivo_number(p):
 def p_primitivo_booleanotrue(p):
     'primitivo : TRUE'
 
+
 def p_primitivo_booleanofalse(p):
     'primitivo : FALSE'
+
 
 def p_error(p):
     print("Error sintactico")
