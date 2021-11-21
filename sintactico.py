@@ -9,9 +9,14 @@ def p_declaracion(p):
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
 
-
 def p_asignacion_hash(p):
     'asignacion : HASH'
+
+def p_asignacion_arreglo(p):
+    'asignacion : ARREGLO'
+
+def p_asignacion_fichero(p):
+    'asignacion : FICHERO'
 
 
 def p_asignacion_expresion(p):
@@ -51,7 +56,6 @@ def p_factor_expresion(p):
 def p_primitivo_flotante(p):
     'primitivo : NUMBER PUNTO NUMBER'
 
-
 def p_primitivo_number(p):
     'primitivo : NUMBER'
 
@@ -59,10 +63,8 @@ def p_primitivo_number(p):
 def p_primitivo_booleanotrue(p):
     'primitivo : TRUE'
 
-
 def p_primitivo_booleanofalse(p):
     'primitivo : FALSE'
-
 
 def p_error(p):
     print("Error sintactico")
