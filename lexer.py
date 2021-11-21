@@ -46,6 +46,8 @@ tokens = (
              'DIVIDE',
              'LPAREN',
              'RPAREN',
+             'LLLAVE',
+             'RLLAVE',
              'LBRACKET',
              'RBRACKET',
              'COMA',
@@ -78,6 +80,8 @@ t_RBRACKET = r'\]'
 t_COMA = r','
 t_COMILLASIMPLE = r"'"
 t_PUNTO = r'\.'
+t_LLLAVE = r'{'
+t_RLLAVE = r'}'
 
 
 # A regular expression rule with some action code
