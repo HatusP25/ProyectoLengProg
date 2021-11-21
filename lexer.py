@@ -128,16 +128,8 @@ def t_VARIABLE(t):
 
 if __name__ == '__main__':
     lexer = lex.lex()
-    data = '''
-     _var
-     {:name => "Joe",:age=>35}
-     [8,'nose',4]
-     ==
-     <
-     File.new('test.txt','r')
-     HASH.new
-     def area_circulo(radio,perimetro)
-     '''
+    data = input('analizador > ')
+
 
 
     # Give the lexer some input
