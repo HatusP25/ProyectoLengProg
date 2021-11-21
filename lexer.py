@@ -62,7 +62,9 @@ tokens = (
              'COMPARACION',
              'COMILLASIMPLE',
              "PUNTO",
-             'FUNCION'
+             'FUNCION',
+             'IGUAL',
+    'BOOLEANO'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -82,6 +84,8 @@ t_COMILLASIMPLE = r"'"
 t_PUNTO = r'\.'
 t_LLLAVE = r'{'
 t_RLLAVE = r'}'
+t_IGUAL = r'='
+t_BOOLEANO = r'TRUE|FALSE'
 
 
 # A regular expression rule with some action code
@@ -89,8 +93,6 @@ def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
-
-
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
