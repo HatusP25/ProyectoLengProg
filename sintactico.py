@@ -12,6 +12,12 @@ def p_asignacion_primitivo(p):
 def p_asignacion_hash(p):
     'asignacion : HASH'
 
+def p_asignacion_arreglo(p):
+    'asignacion : ARREGLO'
+
+def p_asignacion_fichero(p):
+    'asignacion : FICHERO'
+
 def p_primitivo_flotante(p):
     'primitivo : NUMBER PUNTO NUMBER'
 
