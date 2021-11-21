@@ -9,6 +9,9 @@ def p_declaracion(p):
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
 
+def p_asignacion_hash(p):
+    'asignacion : HASH'
+
 def p_primitivo_flotante(p):
     'primitivo : NUMBER PUNTO NUMBER'
 
