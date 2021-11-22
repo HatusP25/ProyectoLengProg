@@ -3,8 +3,8 @@ from lexer import tokens
 
 def p_sentecias(p):
     '''sentencias : estructurasControl
-                    | declaracion
-                    '''
+                | declaracion
+                '''
 
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
@@ -137,7 +137,7 @@ def p_primitivo_booleano(p):
 def p_boolean(p):
     '''boolean : TRUE
              | FALSE
-             '''
+        '''
 
 def p_error(p):
     print("Error sintactico")
