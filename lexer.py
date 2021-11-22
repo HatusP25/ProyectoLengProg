@@ -61,8 +61,9 @@ tokens = (
              'FICHERO',
              'COMPARACION',
              'COMILLASIMPLE',
+             'COMILLASDOBLE',
              "PUNTO",
-
+             'STRING',
              'IGUAL',
              'ID',
     'BOOLEANO'
@@ -82,6 +83,7 @@ t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_COMA = r','
 t_COMILLASIMPLE = r"'"
+t_COMILLASDOBLE = r"\""
 t_PUNTO = r'\.'
 t_LLLAVE = r'{'
 t_RLLAVE = r'}'
@@ -99,6 +101,9 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+def t_STRING(t):
+    r'(("[^"]*")|(\'[^\']*\'))'
+    return t
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'

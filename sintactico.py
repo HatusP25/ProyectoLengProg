@@ -36,6 +36,8 @@ def p_asignacion_fichero(p):
 def p_asignacion_expresion(p):
     'asignacion : expresion'
 
+def p_asignacion_string(p):
+    'asignacion : STRING'
 
 def p_expresion_suma(p):
     'expresion : NUMBER PLUS NUMBER'
