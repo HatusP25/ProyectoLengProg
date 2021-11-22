@@ -244,7 +244,7 @@ data='''
 while True:
     try:
 
-        s = input('Presione Enter')
+        s = input('Presione Enter>>')
     except EOFError:
         break
     if not data: continue
