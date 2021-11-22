@@ -1,27 +1,29 @@
 import ply.yacc as yacc
 from lexer import tokens
-
+# aporte de Josue Montoya Ortiz
 def p_sentecias(p):
     '''sentencias : estructurasControl
                 | declaracion
                 '''
-
+# aporte de Josue Montoya Ortiz
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
                             | estrucElse
                             | estrucWhile
                             '''
+# aporte de Josue Montoya Ortiz
 def p_operadorMat(p):
     '''operadorMat : IGUAL
                 | PLUS
                 | MINUS
                 | TIMES
                 '''
+# aporte de Josue Montoya Ortiz
 def p_operadorLog(p):
     '''operadorLog : AND
                  | OR
                 '''
-
+# aporte de Josue Montoya Ortiz
 def p_estrucIf(p):
     '''estrucIf : IF logica cuerpo END
                 | IF logica cuerpo estrucElse
@@ -41,22 +43,25 @@ def p_comparador(p):
                     | primitivo
                     '''
 
+# aporte de Josue Montoya Ortiz
 def p_estrucElse(p):
     '''estrucElse : ELSE cuerpo END
                     | ELSE logica cuerpo END
                     '''
 
+# aporte de Josue Montoya Ortiz
 def p_estrucWhile(p):
     ''' estrucWhile : WHILE logica cuerpo END
                     '''
 
-
+# aporte de Josue Montoya Ortiz
 def p_cuerpo(p):
     '''cuerpo : declaracion
                 | declaracion cuerpo
                 | cuerpo RETURN retornos
                 '''
 
+# aporte de Josue Montoya Ortiz
 def p_retornos(p):
     '''retornos : VARIABLE
                 | primitivo
