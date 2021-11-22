@@ -68,9 +68,11 @@ def p_retornos(p):
                 | expresion
                 | asignacion
                 '''
-
+#aporte de Josue Montoya Ortiz
 def p_declaracion(p):
-    'declaracion : VARIABLE IGUAL asignacion'
+    '''declaracion : VARIABLE IGUAL asignacion
+                    | VARIABLE IGUAL asignacion declaracion
+                    '''
 
 def p_declaracion_funcion(p):
     'declaracion : DEF VARIABLE LPAREN params RPAREN cuerpo END'
