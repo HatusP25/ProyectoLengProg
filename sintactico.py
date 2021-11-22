@@ -2,7 +2,9 @@ import ply.yacc as yacc
 from lexer import tokens
 
 def p_sentecias(p):
-    'sentencias : estructurasControl'
+    '''sentencias : estructurasControl
+                | declaracion
+                '''
 
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
@@ -31,8 +33,8 @@ def p_estrucElse(p):
                     '''
 
 def p_estrucWhile(p):
-    ''' estrucWhile : While declaracion cuerpo END
-                    | While declaracion operadorLog declaracion cuerpo END
+    ''' estrucWhile : WHILE declaracion cuerpo END
+                    | WHILE declaracion operadorLog declaracion cuerpo END
                     '''
 
 
@@ -44,7 +46,7 @@ def p_declaracion(p):
     'declaracion : VARIABLE IGUAL asignacion'
 
 def p_declaracion_funcion(p):
-    'declaracion : DEF ID LPAREN params RPAREN'
+    'declaracion : DEF ID LPAREN params RPAREN cuerpo END'
 
 
 def p_params(p):
