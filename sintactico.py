@@ -47,13 +47,22 @@ def p_estrucElse(p):
                     '''
 
 def p_estrucWhile(p):
-    ''' estrucWhile : WHILE declaracion cuerpo END
-                    | WHILE declaracion operadorLog declaracion cuerpo END
+    ''' estrucWhile : WHILE logica cuerpo END
                     '''
 
 
 def p_cuerpo(p):
-    'cuerpo : declaracion'
+    '''cuerpo : declaracion
+                | declaracion cuerpo
+                | cuerpo RETURN retornos
+                '''
+
+def p_retornos(p):
+    '''retornos : VARIABLE
+                | primitivo
+                | expresion
+                | asignacion
+                '''
 
 def p_declaracion(p):
     'declaracion : VARIABLE IGUAL asignacion'

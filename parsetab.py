@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ALIAS AND ARREGLO ARROBA BEGIN BOOLEANO BREAK CASE CLASS COMA COMILLASDOBLE COMILLASIMPLE COMPARACION DARROBA DEF DIVIDE DO DOLAR ELSE ELSIF END ENSURE FALSE FICHERO FOR GUIONBAJO HASH ID IF IGUAL LBRACKET LLLAVE LPAREN MINUS MODULE NEXT NIL NOT NUMBER OR PLUS PUNTO RBRACKET REDO RESCUE RETRY RETURN RLLAVE RPAREN SELF STRING SUPER THEN TIMES TRUE UNDEF UNLES UNTIL VARIABLE WHEN WHILE YIELDsentencias : estructurasControl\n                    | declaracion\n                    estructurasControl : estrucIf\n                            | estrucElse\n                            | estrucWhile\n                            operadorMat : IGUAL\n                | PLUS\n                | MINUS\n                | TIMES\n                operadorLog : AND\n                 | OR\n                estrucIf : IF logica cuerpo END\n                | IF logica cuerpo estrucElse\n                logica : condicion\n                | condicion operadorLog  logica\n                condicion : comparador COMPARACION comparador\n                    | boolean\n                    comparador : VARIABLE\n                    | primitivo\n                    estrucElse : ELSE cuerpo END\n                    | ELSE logica cuerpo END\n                     estrucWhile : WHILE declaracion cuerpo END\n                    | WHILE declaracion operadorLog declaracion cuerpo END\n                    cuerpo : declaraciondeclaracion : VARIABLE IGUAL asignaciondeclaracion : DEF VARIABLE LPAREN params RPAREN cuerpo ENDparams : rubyParams\n               | rubyParams COMA params\n                  rubyParams : VARIABLE\n                    | boolean\n                    | NUMBERasignacion : primitivoasignacion : HASHasignacion : ARREGLOasignacion : FICHEROasignacion : expresionasignacion : STRINGexpresion : NUMBER PLUS NUMBERexpresion : NUMBER MINUS NUMBERexpresion : terminotermino : termino TIMES factortermino : termino DIVIDE factortermino : factorfactor : NUMBERfactor : LPAREN expresion RPARENprimitivo : NUMBER PUNTO NUMBERprimitivo : NUMBERprimitivo : booleanboolean : TRUE\n             | FALSE\n             '
+_lr_signature = 'ALIAS AND ARREGLO ARROBA BEGIN BOOLEANO BREAK CASE CLASS COMA COMILLASDOBLE COMILLASIMPLE COMPARACION DARROBA DEF DIVIDE DO DOLAR ELSE ELSIF END ENSURE FALSE FICHERO FOR GUIONBAJO HASH ID IF IGUAL LBRACKET LLLAVE LPAREN MINUS MODULE NEXT NIL NOT NUMBER OR PLUS PUNTO RBRACKET REDO RESCUE RETRY RETURN RLLAVE RPAREN SELF STRING SUPER THEN TIMES TRUE UNDEF UNLES UNTIL VARIABLE WHEN WHILE YIELDsentencias : estructurasControl\n                | declaracion\n                estructurasControl : estrucIf\n                            | estrucElse\n                            | estrucWhile\n                            operadorMat : IGUAL\n                | PLUS\n                | MINUS\n                | TIMES\n                operadorLog : AND\n                 | OR\n                estrucIf : IF logica cuerpo END\n                | IF logica cuerpo estrucElse\n                logica : condicion\n                | condicion operadorLog  logica\n                condicion : comparador COMPARACION comparador\n                    | boolean\n                    comparador : VARIABLE\n                    | primitivo\n                    estrucElse : ELSE cuerpo END\n                    | ELSE logica cuerpo END\n                     estrucWhile : WHILE logica cuerpo END\n                    cuerpo : declaracion\n                | declaracion cuerpo\n                | cuerpo RETURN retornos\n                retornos : VARIABLE\n                | primitivo\n                | expresion\n                | asignacion\n                declaracion : VARIABLE IGUAL asignaciondeclaracion : DEF VARIABLE LPAREN params RPAREN cuerpo ENDparams : rubyParams\n               | rubyParams COMA params\n                  rubyParams : VARIABLE\n                    | boolean\n                    | NUMBERasignacion : primitivoasignacion : HASHasignacion : ARREGLOasignacion : FICHEROasignacion : expresionasignacion : STRINGexpresion : NUMBER PLUS NUMBERexpresion : NUMBER MINUS NUMBERexpresion : terminotermino : termino TIMES factortermino : termino DIVIDE factortermino : factorfactor : NUMBERfactor : LPAREN expresion RPARENprimitivo : NUMBER PUNTO NUMBERprimitivo : NUMBERprimitivo : booleanboolean : TRUE\n             | FALSE\n        '
     
-_lr_action_items = {'VARIABLE':([0,8,9,10,11,14,15,17,18,19,20,21,22,24,27,28,29,30,31,32,33,34,35,36,37,38,40,42,43,44,45,50,64,65,66,69,70,71,72,73,74,75,76,77,82,],[7,13,18,26,7,7,-14,-17,-18,-19,-49,-50,-47,7,7,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,57,18,-10,-11,18,7,-15,-16,-46,7,-38,-39,-41,-44,-42,-45,7,57,-26,]),'DEF':([0,10,11,14,15,17,18,19,20,21,22,24,27,28,29,30,31,32,33,34,35,36,37,38,43,44,50,64,65,66,69,70,71,72,73,74,75,76,82,],[8,8,8,8,-14,-17,-18,-19,-49,-50,-47,8,8,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,-10,-11,8,-15,-16,-46,8,-38,-39,-41,-44,-42,-45,8,-26,]),'IF':([0,],[9,]),'ELSE':([0,20,21,25,28,29,30,31,32,33,34,35,36,37,38,41,66,70,71,72,73,74,75,82,],[10,-49,-50,-24,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,10,-46,-38,-39,-41,-44,-42,-45,-26,]),'WHILE':([0,],[11,]),'$end':([1,2,3,4,5,6,20,21,28,29,30,31,32,33,34,35,36,37,38,47,62,63,66,67,68,70,71,72,73,74,75,81,82,],[0,-1,-2,-3,-4,-5,-49,-50,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,-20,-12,-13,-46,-21,-22,-38,-39,-41,-44,-42,-45,-23,-26,]),'IGUAL':([7,26,],[12,12,]),'TRUE':([9,10,12,40,42,43,44,45,77,],[20,20,20,20,20,-10,-11,20,20,]),'FALSE':([9,10,12,40,42,43,44,45,77,],[21,21,21,21,21,-10,-11,21,21,]),'NUMBER':([9,10,12,39,40,42,43,44,45,46,51,52,53,54,77,],[22,22,35,56,61,22,-10,-11,22,66,70,71,73,73,61,]),'HASH':([12,],[30,]),'ARREGLO':([12,],[31,]),'FICHERO':([12,],[32,]),'STRING':([12,],[34,]),'LPAREN':([12,13,39,53,54,],[39,40,39,39,39,]),'AND':([15,17,18,19,20,21,22,27,28,29,30,31,32,33,34,35,36,37,38,65,66,70,71,72,73,74,75,82,],[43,-17,-18,-19,-49,-50,-47,43,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,-16,-46,-38,-39,-41,-44,-42,-45,-26,]),'OR':([15,17,18,19,20,21,22,27,28,29,30,31,32,33,34,35,36,37,38,65,66,70,71,72,73,74,75,82,],[44,-17,-18,-19,-49,-50,-47,44,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,-16,-46,-38,-39,-41,-44,-42,-45,-26,]),'COMPARACION':([16,17,18,19,20,21,22,26,66,],[45,-48,-18,-19,-49,-50,-47,-18,-46,]),'END':([20,21,23,25,28,29,30,31,32,33,34,35,36,37,38,41,48,49,66,70,71,72,73,74,75,78,79,82,],[-49,-50,47,-24,-25,-32,-33,-34,-35,-36,-37,-44,-48,-40,-43,62,67,68,-46,-38,-39,-41,-44,-42,-45,81,82,-26,]),'COMA':([20,21,57,59,60,61,],[-49,-50,-29,77,-30,-31,]),'RPAREN':([20,21,37,38,55,56,57,58,59,60,61,70,71,72,73,74,75,80,],[-49,-50,-40,-43,75,-44,-29,76,-27,-30,-31,-38,-39,-41,-44,-42,-45,-28,]),'PUNTO':([22,35,],[46,46,]),'PLUS':([35,56,],[51,51,]),'MINUS':([35,56,],[52,52,]),'TIMES':([35,37,38,56,72,73,74,75,],[-44,53,-43,-44,-41,-44,-42,-45,]),'DIVIDE':([35,37,38,56,72,73,74,75,],[-44,54,-43,-44,-41,-44,-42,-45,]),}
+_lr_action_items = {'VARIABLE':([0,8,9,10,11,14,15,17,18,19,20,21,22,24,25,27,28,29,30,31,32,33,34,35,36,37,38,40,42,43,44,45,48,65,66,67,75,76,77,78,79,80,81,82,85,],[7,13,18,26,18,7,-14,-17,-18,-19,-54,-55,-52,7,7,7,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,58,18,-10,-11,18,69,-15,-16,-51,-43,-44,-46,-49,-47,-50,7,58,-31,]),'DEF':([0,10,14,15,17,18,19,20,21,22,24,25,27,28,29,30,31,32,33,34,35,36,37,38,65,66,67,75,76,77,78,79,80,81,85,],[8,8,8,-14,-17,-18,-19,-54,-55,-52,8,8,8,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,-15,-16,-51,-43,-44,-46,-49,-47,-50,8,-31,]),'IF':([0,],[9,]),'ELSE':([0,20,21,25,28,29,30,31,32,33,34,35,36,37,38,41,50,67,68,69,70,71,72,75,76,77,78,79,80,85,],[10,-54,-55,-23,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,10,-24,-51,-25,-26,-27,-28,-29,-43,-44,-46,-49,-47,-50,-31,]),'WHILE':([0,],[11,]),'$end':([1,2,3,4,5,6,20,21,28,29,30,31,32,33,34,35,36,37,38,47,63,64,67,73,74,75,76,77,78,79,80,85,],[0,-1,-2,-3,-4,-5,-54,-55,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,-20,-12,-13,-51,-21,-22,-43,-44,-46,-49,-47,-50,-31,]),'IGUAL':([7,26,],[12,12,]),'TRUE':([9,10,11,12,40,42,43,44,45,48,82,],[20,20,20,20,20,20,-10,-11,20,20,20,]),'FALSE':([9,10,11,12,40,42,43,44,45,48,82,],[21,21,21,21,21,21,-10,-11,21,21,21,]),'NUMBER':([9,10,11,12,39,40,42,43,44,45,46,48,52,53,54,55,82,],[22,22,22,35,57,62,22,-10,-11,22,67,35,75,76,78,78,62,]),'HASH':([12,48,],[30,30,]),'ARREGLO':([12,48,],[31,31,]),'FICHERO':([12,48,],[32,32,]),'STRING':([12,48,],[34,34,]),'LPAREN':([12,13,39,48,54,55,],[39,40,39,39,39,39,]),'AND':([15,17,18,19,20,21,22,36,66,67,],[43,-17,-18,-19,-54,-55,-52,-53,-16,-51,]),'OR':([15,17,18,19,20,21,22,36,66,67,],[44,-17,-18,-19,-54,-55,-52,-53,-16,-51,]),'COMPARACION':([16,17,18,19,20,21,22,26,67,],[45,-53,-18,-19,-54,-55,-52,-18,-51,]),'END':([20,21,23,25,28,29,30,31,32,33,34,35,36,37,38,41,49,50,51,67,68,69,70,71,72,75,76,77,78,79,80,83,85,],[-54,-55,47,-23,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,63,73,-24,74,-51,-25,-26,-27,-28,-29,-43,-44,-46,-49,-47,-50,85,-31,]),'RETURN':([20,21,23,25,28,29,30,31,32,33,34,35,36,37,38,41,49,50,51,67,68,69,70,71,72,75,76,77,78,79,80,83,85,],[-54,-55,48,-23,-30,-37,-38,-39,-40,-41,-42,-49,-53,-45,-48,48,48,48,48,-51,-25,-26,-27,-28,-29,-43,-44,-46,-49,-47,-50,48,-31,]),'COMA':([20,21,58,60,61,62,],[-54,-55,-34,82,-35,-36,]),'RPAREN':([20,21,37,38,56,57,58,59,60,61,62,75,76,77,78,79,80,84,],[-54,-55,-45,-48,80,-49,-34,81,-32,-35,-36,-43,-44,-46,-49,-47,-50,-33,]),'PUNTO':([22,35,],[46,46,]),'PLUS':([35,57,],[52,52,]),'MINUS':([35,57,],[53,53,]),'TIMES':([35,37,38,57,77,78,79,80,],[-49,54,-48,-49,-46,-49,-47,-50,]),'DIVIDE':([35,37,38,57,77,78,79,80,],[-49,55,-48,-49,-46,-49,-47,-50,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentencias':([0,],[1,]),'estructurasControl':([0,],[2,]),'declaracion':([0,10,11,14,24,27,50,69,76,],[3,25,27,25,25,25,69,25,25,]),'estrucIf':([0,],[4,]),'estrucElse':([0,41,],[5,63,]),'estrucWhile':([0,],[6,]),'logica':([9,10,42,],[14,24,64,]),'condicion':([9,10,42,],[15,15,15,]),'comparador':([9,10,42,45,],[16,16,16,65,]),'boolean':([9,10,12,40,42,45,77,],[17,17,36,60,17,36,60,]),'primitivo':([9,10,12,42,45,],[19,19,29,19,19,]),'cuerpo':([10,14,24,27,69,76,],[23,41,48,49,78,79,]),'asignacion':([12,],[28,]),'expresion':([12,39,],[33,55,]),'termino':([12,39,],[37,37,]),'factor':([12,39,53,54,],[38,38,72,74,]),'operadorLog':([15,27,],[42,50,]),'params':([40,77,],[58,80,]),'rubyParams':([40,77,],[59,59,]),}
+_lr_goto_items = {'sentencias':([0,],[1,]),'estructurasControl':([0,],[2,]),'declaracion':([0,10,14,24,25,27,81,],[3,25,25,25,25,25,25,]),'estrucIf':([0,],[4,]),'estrucElse':([0,41,],[5,64,]),'estrucWhile':([0,],[6,]),'logica':([9,10,11,42,],[14,24,27,65,]),'condicion':([9,10,11,42,],[15,15,15,15,]),'comparador':([9,10,11,42,45,],[16,16,16,16,66,]),'boolean':([9,10,11,12,40,42,45,48,82,],[17,17,17,36,61,17,36,36,61,]),'primitivo':([9,10,11,12,42,45,48,],[19,19,19,29,19,19,70,]),'cuerpo':([10,14,24,25,27,81,],[23,41,49,50,51,83,]),'asignacion':([12,48,],[28,72,]),'expresion':([12,39,48,],[33,56,71,]),'termino':([12,39,48,],[37,37,37,]),'factor':([12,39,48,54,55,],[38,38,38,77,79,]),'operadorLog':([15,],[42,]),'params':([40,82,],[59,84,]),'rubyParams':([40,82,],[60,60,]),'retornos':([48,],[68,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -48,33 +48,38 @@ _lr_productions = [
   ('comparador -> primitivo','comparador',1,'p_comparador','sintactico.py',41),
   ('estrucElse -> ELSE cuerpo END','estrucElse',3,'p_estrucElse','sintactico.py',45),
   ('estrucElse -> ELSE logica cuerpo END','estrucElse',4,'p_estrucElse','sintactico.py',46),
-  ('estrucWhile -> WHILE declaracion cuerpo END','estrucWhile',4,'p_estrucWhile','sintactico.py',50),
-  ('estrucWhile -> WHILE declaracion operadorLog declaracion cuerpo END','estrucWhile',6,'p_estrucWhile','sintactico.py',51),
-  ('cuerpo -> declaracion','cuerpo',1,'p_cuerpo','sintactico.py',56),
-  ('declaracion -> VARIABLE IGUAL asignacion','declaracion',3,'p_declaracion','sintactico.py',59),
-  ('declaracion -> DEF VARIABLE LPAREN params RPAREN cuerpo END','declaracion',7,'p_declaracion_funcion','sintactico.py',62),
-  ('params -> rubyParams','params',1,'p_params','sintactico.py',66),
-  ('params -> rubyParams COMA params','params',3,'p_params','sintactico.py',67),
-  ('rubyParams -> VARIABLE','rubyParams',1,'p_rubyParams','sintactico.py',72),
-  ('rubyParams -> boolean','rubyParams',1,'p_rubyParams','sintactico.py',73),
-  ('rubyParams -> NUMBER','rubyParams',1,'p_rubyParams','sintactico.py',74),
-  ('asignacion -> primitivo','asignacion',1,'p_asignacion_primitivo','sintactico.py',77),
-  ('asignacion -> HASH','asignacion',1,'p_asignacion_hash','sintactico.py',80),
-  ('asignacion -> ARREGLO','asignacion',1,'p_asignacion_arreglo','sintactico.py',83),
-  ('asignacion -> FICHERO','asignacion',1,'p_asignacion_fichero','sintactico.py',86),
-  ('asignacion -> expresion','asignacion',1,'p_asignacion_expresion','sintactico.py',90),
-  ('asignacion -> STRING','asignacion',1,'p_asignacion_string','sintactico.py',93),
-  ('expresion -> NUMBER PLUS NUMBER','expresion',3,'p_expresion_suma','sintactico.py',96),
-  ('expresion -> NUMBER MINUS NUMBER','expresion',3,'p_expresion_resta','sintactico.py',100),
-  ('expresion -> termino','expresion',1,'p_expresion_term','sintactico.py',104),
-  ('termino -> termino TIMES factor','termino',3,'p_termino_multi','sintactico.py',108),
-  ('termino -> termino DIVIDE factor','termino',3,'p_termino_div','sintactico.py',112),
-  ('termino -> factor','termino',1,'p_termino_factor','sintactico.py',116),
-  ('factor -> NUMBER','factor',1,'p_factor_number','sintactico.py',119),
-  ('factor -> LPAREN expresion RPAREN','factor',3,'p_factor_expresion','sintactico.py',122),
-  ('primitivo -> NUMBER PUNTO NUMBER','primitivo',3,'p_primitivo_flotante','sintactico.py',126),
-  ('primitivo -> NUMBER','primitivo',1,'p_primitivo_number','sintactico.py',129),
-  ('primitivo -> boolean','primitivo',1,'p_primitivo_booleano','sintactico.py',133),
-  ('boolean -> TRUE','boolean',1,'p_boolean','sintactico.py',138),
-  ('boolean -> FALSE','boolean',1,'p_boolean','sintactico.py',139),
+  ('estrucWhile -> WHILE logica cuerpo END','estrucWhile',4,'p_estrucWhile','sintactico.py',50),
+  ('cuerpo -> declaracion','cuerpo',1,'p_cuerpo','sintactico.py',55),
+  ('cuerpo -> declaracion cuerpo','cuerpo',2,'p_cuerpo','sintactico.py',56),
+  ('cuerpo -> cuerpo RETURN retornos','cuerpo',3,'p_cuerpo','sintactico.py',57),
+  ('retornos -> VARIABLE','retornos',1,'p_retornos','sintactico.py',61),
+  ('retornos -> primitivo','retornos',1,'p_retornos','sintactico.py',62),
+  ('retornos -> expresion','retornos',1,'p_retornos','sintactico.py',63),
+  ('retornos -> asignacion','retornos',1,'p_retornos','sintactico.py',64),
+  ('declaracion -> VARIABLE IGUAL asignacion','declaracion',3,'p_declaracion','sintactico.py',68),
+  ('declaracion -> DEF VARIABLE LPAREN params RPAREN cuerpo END','declaracion',7,'p_declaracion_funcion','sintactico.py',71),
+  ('params -> rubyParams','params',1,'p_params','sintactico.py',75),
+  ('params -> rubyParams COMA params','params',3,'p_params','sintactico.py',76),
+  ('rubyParams -> VARIABLE','rubyParams',1,'p_rubyParams','sintactico.py',81),
+  ('rubyParams -> boolean','rubyParams',1,'p_rubyParams','sintactico.py',82),
+  ('rubyParams -> NUMBER','rubyParams',1,'p_rubyParams','sintactico.py',83),
+  ('asignacion -> primitivo','asignacion',1,'p_asignacion_primitivo','sintactico.py',86),
+  ('asignacion -> HASH','asignacion',1,'p_asignacion_hash','sintactico.py',89),
+  ('asignacion -> ARREGLO','asignacion',1,'p_asignacion_arreglo','sintactico.py',92),
+  ('asignacion -> FICHERO','asignacion',1,'p_asignacion_fichero','sintactico.py',95),
+  ('asignacion -> expresion','asignacion',1,'p_asignacion_expresion','sintactico.py',99),
+  ('asignacion -> STRING','asignacion',1,'p_asignacion_string','sintactico.py',102),
+  ('expresion -> NUMBER PLUS NUMBER','expresion',3,'p_expresion_suma','sintactico.py',105),
+  ('expresion -> NUMBER MINUS NUMBER','expresion',3,'p_expresion_resta','sintactico.py',109),
+  ('expresion -> termino','expresion',1,'p_expresion_term','sintactico.py',113),
+  ('termino -> termino TIMES factor','termino',3,'p_termino_multi','sintactico.py',117),
+  ('termino -> termino DIVIDE factor','termino',3,'p_termino_div','sintactico.py',121),
+  ('termino -> factor','termino',1,'p_termino_factor','sintactico.py',125),
+  ('factor -> NUMBER','factor',1,'p_factor_number','sintactico.py',128),
+  ('factor -> LPAREN expresion RPAREN','factor',3,'p_factor_expresion','sintactico.py',131),
+  ('primitivo -> NUMBER PUNTO NUMBER','primitivo',3,'p_primitivo_flotante','sintactico.py',135),
+  ('primitivo -> NUMBER','primitivo',1,'p_primitivo_number','sintactico.py',138),
+  ('primitivo -> boolean','primitivo',1,'p_primitivo_booleano','sintactico.py',142),
+  ('boolean -> TRUE','boolean',1,'p_boolean','sintactico.py',147),
+  ('boolean -> FALSE','boolean',1,'p_boolean','sintactico.py',148),
 ]
