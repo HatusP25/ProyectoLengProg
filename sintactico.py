@@ -148,6 +148,8 @@ def p_boolean(p):
              | FALSE
         '''
 
+#falta interpoalcion
+
 def p_error(p):
     print("Error sintactico")
     print(p)
@@ -157,7 +159,7 @@ parser = yacc.yacc()
 
 while True:
     try:
-        s = input('calc>')
+        s = input('GRUPO_10>>')
     except EOFError:
         break
     if not s: continue
