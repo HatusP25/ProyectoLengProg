@@ -62,8 +62,9 @@ tokens = (
              'COMPARACION',
              'COMILLASIMPLE',
              "PUNTO",
-             'FUNCION',
+
              'IGUAL',
+             'ID',
     'BOOLEANO'
          ) + tuple(reserved.values())
 
@@ -110,8 +111,11 @@ def t_FICHERO(t):
     return t
 
 
-def t_FUNCION(t):
-    r'def\s[a-zA-Z_]+(([a-zA-Z1-9_]+))\((((\w+,)*\w+)+)\)'
+
+
+def t_ID(t):
+    r'[a-zA-Z_\$_]+[A-Za-z_0-9]*'
+    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 
 

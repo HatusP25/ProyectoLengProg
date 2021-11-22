@@ -5,6 +5,20 @@ from lexer import tokens
 def p_declaracion(p):
     'declaracion : VARIABLE IGUAL asignacion'
 
+def p_declaracion_funcion(p):
+    'declaracion : DEF ID LPAREN params RPAREN'
+
+
+def p_params(p):
+    '''params : rubyParams
+               | rubyParams COMA params
+                  '''
+    pass
+
+def p_rubyParams(p):
+    '''rubyParams : ID
+                    | boolean
+                    | NUMBER'''
 
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
@@ -60,11 +74,15 @@ def p_primitivo_number(p):
     'primitivo : NUMBER'
 
 
-def p_primitivo_booleanotrue(p):
-    'primitivo : TRUE'
+def p_primitivo_booleano(p):
+    'primitivo : boolean'
 
-def p_primitivo_booleanofalse(p):
-    'primitivo : FALSE'
+
+
+def p_boolean(p):
+    '''boolean : TRUE
+             | FALSE
+        '''
 
 def p_error(p):
     print("Error sintactico")
