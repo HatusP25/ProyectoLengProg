@@ -11,13 +11,7 @@ def p_estructurasControl(p):
                             | estrucElse
                             | estrucWhile
                             '''
-# aporte de Josue Montoya Ortiz
-def p_operadorMat(p):
-    '''operadorMat : IGUAL
-                | PLUS
-                | MINUS
-                | TIMES
-                '''
+
 # aporte de Josue Montoya Ortiz
 def p_operadorLog(p):
     '''operadorLog : AND
@@ -29,21 +23,23 @@ def p_estrucIf(p):
                 | IF logica cuerpo estrucElse
                 '''
 
+# aporte de Moisés Atupaña
 def p_logica(p):
     '''logica : condicion
                 | condicion operadorLog  logica
                 '''
+# aporte de Moisés Atupaña
 def p_condicion(p):
     '''condicion : comparador COMPARACION comparador
                     | boolean
                     '''
-
+# aporte de Moisés Atupaña
 def p_comparador(p):
     '''comparador : VARIABLE
                     | primitivo
                     '''
 
-# aporte de Josue Montoya Ortiz
+# aporte de Josue Montoya Ortiz y Moisés Atupaña
 def p_estrucElse(p):
     '''estrucElse : ELSE cuerpo END
                     | ELSE logica cuerpo END
@@ -68,11 +64,27 @@ def p_retornos(p):
                 | expresion
                 | asignacion
                 '''
+
+# aporte de Josue Montoya Ortiz
+def p_operadorMat(p):
+    '''operadorMat : PLUS
+                | MINUS
+                | TIMES
+                | DIVIDE
+                '''
+
 #aporte de Josue Montoya Ortiz
 def p_declaracion(p):
     '''declaracion : VARIABLE IGUAL asignacion
                     | VARIABLE IGUAL asignacion declaracion
+                    | VARIABLE operadorMat IGUAL opcion
+                    | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
+
+def p_opcion(p):
+    '''opcion : VARIABLE
+                | NUMBER
+                '''
 
 def p_declaracion_funcion(p):
     'declaracion : DEF VARIABLE LPAREN params RPAREN cuerpo END'
@@ -92,12 +104,15 @@ def p_rubyParams(p):
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
 
+# aporte de Moisés Atupaña
 def p_asignacion_hash(p):
     'asignacion : HASH'
 
+# aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
     'asignacion : ARREGLO'
 
+# aporte de Moisés Atupaña
 def p_asignacion_fichero(p):
     'asignacion : FICHERO'
 
@@ -105,6 +120,7 @@ def p_asignacion_fichero(p):
 def p_asignacion_expresion(p):
     'asignacion : expresion'
 
+# aporte de Moisés Atupaña
 def p_asignacion_string(p):
     'asignacion : STRING'
 
@@ -155,12 +171,11 @@ def p_boolean(p):
              | FALSE
         '''
 
-#falta interpoalcion
+#falta interpolacion
 
 def p_error(p):
     print("Error sintactico")
     print(p)
-
 
 parser = yacc.yacc()
 
