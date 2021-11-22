@@ -8,24 +8,24 @@ def p_sentecias(p):
 
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
-                            |estrucElse
-                            |estrucwhile
-                            '''
+                        | estrucElse
+                        | estrucwhile
+                        '''
 def p_operadorMat(p):
     '''operador : IGUAL
-                        |PLUS
-                        |MINUS
-                        |TIMES
-                        '''
+                | PLUS
+                | MINUS
+                | TIMES
+                 '''
 def p_operadorLog(p):
     ''' operadorLog : AND
-                 | OR
+                    | OR
     '''
 
 def p_estrucIf(p):
     '''estrucIF : IF VARIABLE operadorMat VARIABLE cuerpo END
-                | IF declaracion AND declaracion cuerpo END
-                | IF declaracion OR delaracion cuerpo END
+                | IF declaracion operadorLog declaracion cuerpo END
+                | IF declaracion operadorLog delaracion cuerpo END
                 '''
 
 def p_estrucElse(p):
