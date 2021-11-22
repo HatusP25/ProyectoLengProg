@@ -6,6 +6,8 @@ from lexer import tokens
 def p_sentecias(p):
     '''sentencias : estructurasControl
                 | declaracion
+                | estructurasControl sentencias
+                | declaracion sentencias
                 '''
 
 
@@ -217,12 +219,34 @@ def p_error(p):
     print(p)
 
 parser = yacc.yacc()
-
+#Aporte de Moisés Atupaña
+data='''
+     var1=20
+     var2=30
+     var3=40
+     var+=var2
+     hash2= {:name => "Joe",:age=>35} 
+     arreglo1=[8,'nose',4]
+     def suma(var1,var2)
+        var=5
+        var=6
+     end
+     if var1<20
+        var1=100
+     else 
+        var1=0
+     end
+     while var1<20 or var2!=100 or var3==40
+      var1=0
+     end
+     '''
+#al darle enter se lee la data anterior
 while True:
     try:
-        s = input('GRUPO_10>>')
+
+        s = input('Presione Enter')
     except EOFError:
         break
-    if not s: continue
-    result = parser.parse(s)
+    if not data: continue
+    result = parser.parse(data)
     print(result)
