@@ -3,33 +3,47 @@ from lexer import tokens
 
 def p_sentecias(p):
     '''sentencias : estructurasControl
-                | declaracion
-                '''
+                    | declaracion
+                    '''
 
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
-                            |estrucElse
-                            |estrucwhile
+                            | estrucElse
+                            | estrucWhile
                             '''
 def p_operadorMat(p):
-    '''operador : IGUAL
-                        |PLUS
-                        |MINUS
-                        |TIMES
-                        '''
+    '''operadorMat : IGUAL
+                | PLUS
+                | MINUS
+                | TIMES
+                '''
 def p_operadorLog(p):
-    ''' operadorLog : AND
+    '''operadorLog : AND
                  | OR
-    '''
-
-def p_estrucIf(p):
-    '''estrucIF : IF VARIABLE operadorMat VARIABLE cuerpo END
-                | IF declaracion AND declaracion cuerpo END
-                | IF declaracion OR delaracion cuerpo END
                 '''
 
+def p_estrucIf(p):
+    '''estrucIf : IF logica cuerpo END
+                | IF logica cuerpo estrucElse
+                '''
+
+def p_logica(p):
+    '''logica : condicion
+                | condicion operadorLog  logica
+                '''
+def p_condicion(p):
+    '''condicion : comparador COMPARACION comparador
+                    | boolean
+                    '''
+
+def p_comparador(p):
+    '''comparador : VARIABLE
+                    | primitivo
+                    '''
+
 def p_estrucElse(p):
-    '''estrucElse : ELSE declaracion END
+    '''estrucElse : ELSE cuerpo END
+                    | ELSE logica cuerpo END
                     '''
 
 def p_estrucWhile(p):
@@ -39,14 +53,13 @@ def p_estrucWhile(p):
 
 
 def p_cuerpo(p):
-    ''' cuerpo : declaracion
-    '''
+    'cuerpo : declaracion'
 
 def p_declaracion(p):
     'declaracion : VARIABLE IGUAL asignacion'
 
 def p_declaracion_funcion(p):
-    'declaracion : DEF ID LPAREN params RPAREN cuerpo END'
+    'declaracion : DEF VARIABLE LPAREN params RPAREN cuerpo END'
 
 
 def p_params(p):
@@ -56,7 +69,7 @@ def p_params(p):
     pass
 
 def p_rubyParams(p):
-    '''rubyParams : ID
+    '''rubyParams : VARIABLE
                     | boolean
                     | NUMBER'''
 
@@ -124,7 +137,7 @@ def p_primitivo_booleano(p):
 def p_boolean(p):
     '''boolean : TRUE
              | FALSE
-        '''
+             '''
 
 def p_error(p):
     print("Error sintactico")

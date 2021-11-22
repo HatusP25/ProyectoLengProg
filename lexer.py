@@ -118,12 +118,6 @@ def t_FICHERO(t):
 
 
 
-def t_ID(t):
-    r'[a-zA-Z_\$_]+[A-Za-z_0-9]*'
-    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
-    return t
-
-
 # Aporte Moises Atupaña
 # Define una regla para inicializar Hashes
 def t_HASH(t):
