@@ -8,14 +8,16 @@ def p_sentecias(p):
                 | declaracion
                 | estructurasControl sentencias
                 | declaracion sentencias
+                | declaracion_funcion
+                | declaracion_funcion sentencias
                 '''
 
 
 # aporte de Josue Montoya Ortiz
 def p_estructurasControl(p):
     '''estructurasControl : estrucIf
-                            | estrucElse
                             | estrucWhile
+                            | sentenciafor
                             '''
 
 
@@ -80,6 +82,10 @@ def p_estrucWhile(p):
 def p_cuerpo(p):
     '''cuerpo : declaracion
                 | declaracion cuerpo
+                | imprimir
+                | imprimir cuerpo
+                | estructurasControl
+                | estructurasControl cuerpo
                 | cuerpo RETURN retornos
                 '''
 
@@ -110,7 +116,7 @@ def p_opcion(p):
 
 # aporte Hatus Pellegrini
 def p_declaracion_funcion(p):
-    'declaracion : DEF VARIABLE LPAREN params RPAREN cuerpo END'
+    'declaracion_funcion : DEF VARIABLE LPAREN params RPAREN cuerpo END'
 
 
 # aporte Hatus Pellegrini
@@ -120,6 +126,14 @@ def p_params(p):
                   '''
     pass
 
+#aporte sentencia for
+def p_sentenciafor(p):
+    'sentenciafor : FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END'
+
+def p_imprimir(p):
+    '''imprimir : PUTS STRING
+                    | PUTS VARIABLE
+    '''
 
 # aporte Hatus Pellegrini
 def p_rubyParams(p):
@@ -208,6 +222,7 @@ def p_primitivo_number(p):
     'primitivo : NUMBER'
 
 
+
 # aporte Hatus Pellegrini
 def p_primitivo_booleano(p):
     'primitivo : boolean'
@@ -245,9 +260,10 @@ data = '''
      else 
         var1=0
      end
-     while var1<20 or var2!=100 or var3==40
-      var1=0
+     for i in(1..9)
+        puts "hola mundo"
      end
+     
      '''
 # al darle enter se lee la data anterior
 while True:
