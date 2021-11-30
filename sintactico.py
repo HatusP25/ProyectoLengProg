@@ -242,7 +242,7 @@ def p_error(p):
     print(p)
 
 
-parser = yacc.yacc()
+
 # Aporte de Moisés Atupaña
 data = '''
      var1=20
@@ -265,13 +265,18 @@ data = '''
      end
      
      '''
-# al darle enter se lee la data anterior
-while True:
-    try:
 
-        s = input('Presione Enter>>')
-    except EOFError:
+def getSintactico(data):
+    parser = yacc.yacc()
+    resultado = ''
+    while True:
+        try:
+            st = data
+        except EOFError:
+            break
+        if not st : continue
+        res = parser.parse()
         break
-    if not data: continue
-    result = parser.parse(data)
-    print(result)
+    print(resultado)
+    return resultado
+

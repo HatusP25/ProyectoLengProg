@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import *
 import sys
-
 from PyQt5 import QtCore
 from PyQt5 import QtGui
+from lexer import getTokenizado
+from sintactico import getSintactico
 
 
 class Window(QWidget):
@@ -79,10 +80,19 @@ class Window(QWidget):
 
     def lexico(self):
         print("se aplasto lexico")
-        pass
+        self.textLex.clear()
+        self.textLex.insertPlainText(getTokenizado(self.editor.toPlainText()))
 
     def sintactico(self):
         print("se aplasto sintactico")
+        self.textSint.clear()
+        res = getSintactico(self.editor.toPlainText())
+        if  len(res) > 0:
+            print("Entro al if del res")
+            self.textSint.insertPlainText(res)
+        else:
+            print("no entro al if del res")
+            self.textSint.insertPlainText("Todo Semanticamente Correcto!")
         pass
 
 app = QApplication(sys.argv)

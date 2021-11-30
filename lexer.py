@@ -150,16 +150,16 @@ def t_VARIABLE(t):
     return t
 
 
-lexer = lex.lex()
-if __name__ == '__main__':
-    lexer = lex.lex()
-    data = input('analizador > ')
 
-    # Give the lexer some input
+
+def getTokenizado(data):
+    resultado = ''
+    lexer = lex.lex()
     lexer.input(data)
-    # Tokenize
+
     while True:
-        tok = lexer.token()
-        if not tok:
+        token = lexer.token()
+        if not token:
             break
-        print(tok)
+        resultado += '\n' + str(token)
+    return resultado
