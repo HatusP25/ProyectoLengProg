@@ -17,6 +17,8 @@ def p_estructurasControl(p):
                             | estrucElse
                             | estrucWhile
                             '''
+
+
 # aporte de Josue Montoya Ortiz
 def p_operadorMat(p):
     '''operadorMat : IGUAL
@@ -24,6 +26,8 @@ def p_operadorMat(p):
                 | MINUS
                 | TIMES
                 '''
+
+
 # aporte de Josue Montoya Ortiz
 def p_operadorLog(p):
     '''operadorLog : AND
@@ -57,7 +61,6 @@ def p_comparador(p):
     '''comparador : VARIABLE
                     | primitivo
                     '''
-
 
 
 # aporte de Josue Montoya Ortiz y Moisés Atupaña
@@ -98,6 +101,7 @@ def p_declaracion(p):
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
 
+
 def p_opcion(p):
     '''opcion : VARIABLE
                 | NUMBER
@@ -128,13 +132,16 @@ def p_rubyParams(p):
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
 
+
 # aporte de Moisés Atupaña
 def p_asignacion_hash(p):
     'asignacion : HASH'
 
+
 # aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
     'asignacion : ARREGLO'
+
 
 # aporte de Moisés Atupaña
 def p_asignacion_fichero(p):
@@ -144,6 +151,7 @@ def p_asignacion_fichero(p):
 # aporte Hatus Pellegrini
 def p_asignacion_expresion(p):
     'asignacion : expresion'
+
 
 # aporte de Moisés Atupaña
 def p_asignacion_string(p):
@@ -218,9 +226,10 @@ def p_error(p):
     print("Error sintactico")
     print(p)
 
+
 parser = yacc.yacc()
-#Aporte de Moisés Atupaña
-data='''
+# Aporte de Moisés Atupaña
+data = '''
      var1=20
      var2=30
      var3=40
@@ -240,7 +249,7 @@ data='''
       var1=0
      end
      '''
-#al darle enter se lee la data anterior
+# al darle enter se lee la data anterior
 while True:
     try:
 

@@ -66,7 +66,7 @@ tokens = (
              'STRING',
              'IGUAL',
              'ID',
-    'BOOLEANO'
+             'BOOLEANO'
          ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -96,14 +96,18 @@ def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
+
+
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+
 def t_STRING(t):
     r'(("[^"]*")|(\'[^\']*\'))'
     return t
+
 
 def t_ARREGLO(t):
     r'\[((((\"|\')[a-zA-Z]+(\"|\'),)|([0-9],))*(((\"|\')[a-zA-Z]+(\"|\'))|([0-9])))?\]'
@@ -114,8 +118,6 @@ def t_ARREGLO(t):
 def t_FICHERO(t):
     r"File\.(open|new)\('[\w]+\.txt','(r|w|a)'\)"
     return t
-
-
 
 
 # Aporte Moises Atupaña
