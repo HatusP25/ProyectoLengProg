@@ -347,40 +347,8 @@ def p_value(p):
              | NUMBER PUNTO NUMBER'''
     p[0]=p[1]
 # Aporte de Moisés Atupaña
-data = '''
-     var1=20
-     var2=30
-     var3=40
-     var+=var2
-     hash2= {name => "Joe",age=>35}
-     {name => "Joe",age=>35}.length()
-     {name => "Joe",age=>35}.keys
-     {name => "Joe",age=>35}.values
 
-     arreglo1=[8,'nose',4]
-     def suma(var1,var2)
-        var=5
-        var=6
-     end
-     if var1<20
-        var1=100
-     else 
-        var1=0
-     end
-     for i in(1..9)
-        puts "hola mundo"
-        for j in(1..9)
-            puts "Adios mundo"
-        end
-     end
-     while 12>10 and 2<3
-        puts "hola mundo"
-    end
-     
-     '''
 parser = yacc.yacc()
-
-
 def getSintactico(data):
     global resultado
     resultado += ""
