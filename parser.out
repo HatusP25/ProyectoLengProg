@@ -93,31 +93,32 @@ Rule 49    imprimir -> PUTS VARIABLE
 Rule 50    rubyParams -> VARIABLE
 Rule 51    rubyParams -> boolean
 Rule 52    rubyParams -> NUMBER
-Rule 53    asignacion -> primitivo
-Rule 54    asignacion -> HASH
-Rule 55    asignacion -> ARREGLO
-Rule 56    asignacion -> FICHERO
-Rule 57    asignacion -> expresion
-Rule 58    asignacion -> STRING
-Rule 59    expresion -> NUMBER PLUS NUMBER
-Rule 60    expresion -> NUMBER MINUS NUMBER
-Rule 61    expresion -> termino
-Rule 62    termino -> termino TIMES factor
-Rule 63    termino -> termino DIVIDE factor
-Rule 64    termino -> factor
-Rule 65    factor -> NUMBER
-Rule 66    factor -> LPAREN expresion RPAREN
-Rule 67    primitivo -> NUMBER PUNTO NUMBER
-Rule 68    primitivo -> NUMBER
-Rule 69    primitivo -> boolean
-Rule 70    boolean -> TRUE
-Rule 71    boolean -> FALSE
+Rule 53    asignacion -> NUMBER
+Rule 54    asignacion -> boolean
+Rule 55    asignacion -> HASH
+Rule 56    asignacion -> ARREGLO
+Rule 57    asignacion -> FICHERO
+Rule 58    asignacion -> expresion
+Rule 59    asignacion -> STRING
+Rule 60    expresion -> NUMBER PLUS NUMBER
+Rule 61    expresion -> NUMBER MINUS NUMBER
+Rule 62    expresion -> termino
+Rule 63    termino -> termino TIMES factor
+Rule 64    termino -> termino DIVIDE factor
+Rule 65    termino -> factor
+Rule 66    factor -> NUMBER
+Rule 67    factor -> LPAREN expresion RPAREN
+Rule 68    primitivo -> NUMBER PUNTO NUMBER
+Rule 69    primitivo -> NUMBER
+Rule 70    primitivo -> boolean
+Rule 71    boolean -> TRUE
+Rule 72    boolean -> FALSE
 
 Terminals, with rules where they appear
 
 ALIAS                : 
 AND                  : 14
-ARREGLO              : 55
+ARREGLO              : 56
 ARROBA               : 
 BEGIN                : 
 BOOLEANO             : 
@@ -130,34 +131,34 @@ COMILLASIMPLE        :
 COMPARACION          : 20
 DARROBA              : 
 DEF                  : 44
-DIVIDE               : 63
+DIVIDE               : 64
 DO                   : 
 DOLAR                : 
 ELSE                 : 24 25
 ELSIF                : 
 END                  : 16 24 25 26 44 47
 ENSURE               : 
-FALSE                : 71
-FICHERO              : 56
+FALSE                : 72
+FICHERO              : 57
 FOR                  : 47
 GUIONBAJO            : 
-HASH                 : 54
+HASH                 : 55
 ID                   : 
 IF                   : 16 17
 IGUAL                : 10 38 39 40 41
 IN                   : 47
 LBRACKET             : 
 LLLAVE               : 
-LPAREN               : 44 47 66
-MINUS                : 12 60
+LPAREN               : 44 47 67
+MINUS                : 12 61
 MODULE               : 
 NEXT                 : 
 NIL                  : 
 NOT                  : 
-NUMBER               : 43 47 47 52 59 59 60 60 65 67 67 68
+NUMBER               : 43 47 47 52 53 60 60 61 61 66 68 68 69
 OR                   : 15
-PLUS                 : 11 59
-PUNTO                : 47 47 67
+PLUS                 : 11 60
+PUNTO                : 47 47 68
 PUTS                 : 48 49
 RBRACKET             : 
 REDO                 : 
@@ -165,13 +166,13 @@ RESCUE               :
 RETRY                : 
 RETURN               : 33
 RLLAVE               : 
-RPAREN               : 44 47 66
+RPAREN               : 44 47 67
 SELF                 : 
-STRING               : 48 58
+STRING               : 48 59
 SUPER                : 
 THEN                 : 
-TIMES                : 13 62
-TRUE                 : 70
+TIMES                : 13 63
+TRUE                 : 71
 UNDEF                : 
 UNLES                : 
 UNTIL                : 
@@ -184,7 +185,7 @@ error                :
 Nonterminals, with rules where they appear
 
 asignacion           : 37 38 39
-boolean              : 21 51 69
+boolean              : 21 51 54 70
 comparador           : 20 20
 condicion            : 18 19
 cuerpo               : 16 17 24 25 26 28 30 32 33 44 47
@@ -194,20 +195,20 @@ estrucElse           : 17
 estrucIf             : 7
 estrucWhile          : 8
 estructurasControl   : 1 3 31 32
-expresion            : 36 57 66
-factor               : 62 63 64
+expresion            : 36 58 67
+factor               : 63 64 65
 imprimir             : 29 30
 logica               : 16 17 19 25 26
 opcion               : 40 41
 operadorLog          : 19
 operadorMat          : 40 41
 params               : 44 46
-primitivo            : 23 35 53
+primitivo            : 23 35
 retornos             : 33
 rubyParams           : 45 46
 sentenciafor         : 9
 sentencias           : 3 4 6 0
-termino              : 61 62 63
+termino              : 62 63 64
 
 Parsing method: LALR
 
@@ -450,11 +451,11 @@ state 10
     (21) condicion -> . boolean
     (22) comparador -> . VARIABLE
     (23) comparador -> . primitivo
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
 
     VARIABLE        shift and go to state 26
     TRUE            shift and go to state 28
@@ -476,11 +477,11 @@ state 11
     (21) condicion -> . boolean
     (22) comparador -> . VARIABLE
     (23) comparador -> . primitivo
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
 
     VARIABLE        shift and go to state 26
     TRUE            shift and go to state 28
@@ -526,49 +527,46 @@ state 16
     (38) declaracion -> VARIABLE IGUAL . asignacion
     (39) declaracion -> VARIABLE IGUAL . asignacion declaracion
     (10) operadorMat -> IGUAL .
-    (53) asignacion -> . primitivo
-    (54) asignacion -> . HASH
-    (55) asignacion -> . ARREGLO
-    (56) asignacion -> . FICHERO
-    (57) asignacion -> . expresion
-    (58) asignacion -> . STRING
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
-    (59) expresion -> . NUMBER PLUS NUMBER
-    (60) expresion -> . NUMBER MINUS NUMBER
-    (61) expresion -> . termino
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (62) termino -> . termino TIMES factor
-    (63) termino -> . termino DIVIDE factor
-    (64) termino -> . factor
-    (65) factor -> . NUMBER
-    (66) factor -> . LPAREN expresion RPAREN
+    (53) asignacion -> . NUMBER
+    (54) asignacion -> . boolean
+    (55) asignacion -> . HASH
+    (56) asignacion -> . ARREGLO
+    (57) asignacion -> . FICHERO
+    (58) asignacion -> . expresion
+    (59) asignacion -> . STRING
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (60) expresion -> . NUMBER PLUS NUMBER
+    (61) expresion -> . NUMBER MINUS NUMBER
+    (62) expresion -> . termino
+    (63) termino -> . termino TIMES factor
+    (64) termino -> . termino DIVIDE factor
+    (65) termino -> . factor
+    (66) factor -> . NUMBER
+    (67) factor -> . LPAREN expresion RPAREN
 
     IGUAL           reduce using rule 10 (operadorMat -> IGUAL .)
-    HASH            shift and go to state 35
-    ARREGLO         shift and go to state 36
-    FICHERO         shift and go to state 37
-    STRING          shift and go to state 39
-    NUMBER          shift and go to state 40
+    NUMBER          shift and go to state 34
+    HASH            shift and go to state 36
+    ARREGLO         shift and go to state 37
+    FICHERO         shift and go to state 38
+    STRING          shift and go to state 40
     TRUE            shift and go to state 28
     FALSE           shift and go to state 29
-    LPAREN          shift and go to state 44
+    LPAREN          shift and go to state 43
 
     asignacion                     shift and go to state 33
-    primitivo                      shift and go to state 34
-    expresion                      shift and go to state 38
-    boolean                        shift and go to state 41
-    termino                        shift and go to state 42
-    factor                         shift and go to state 43
+    boolean                        shift and go to state 35
+    expresion                      shift and go to state 39
+    termino                        shift and go to state 41
+    factor                         shift and go to state 42
 
 state 17
 
     (40) declaracion -> VARIABLE operadorMat . IGUAL opcion
     (41) declaracion -> VARIABLE operadorMat . IGUAL opcion declaracion
 
-    IGUAL           shift and go to state 45
+    IGUAL           shift and go to state 44
 
 
 state 18
@@ -596,7 +594,7 @@ state 21
 
     (44) declaracion_funcion -> DEF VARIABLE . LPAREN params RPAREN cuerpo END
 
-    LPAREN          shift and go to state 46
+    LPAREN          shift and go to state 45
 
 
 state 22
@@ -625,15 +623,15 @@ state 22
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    cuerpo                         shift and go to state 47
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 46
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
@@ -650,22 +648,22 @@ state 23
     IF              reduce using rule 18 (logica -> condicion .)
     WHILE           reduce using rule 18 (logica -> condicion .)
     FOR             reduce using rule 18 (logica -> condicion .)
-    AND             shift and go to state 53
-    OR              shift and go to state 54
+    AND             shift and go to state 52
+    OR              shift and go to state 53
 
-    operadorLog                    shift and go to state 52
+    operadorLog                    shift and go to state 51
 
 state 24
 
     (20) condicion -> comparador . COMPARACION comparador
 
-    COMPARACION     shift and go to state 55
+    COMPARACION     shift and go to state 54
 
 
 state 25
 
     (21) condicion -> boolean .
-    (69) primitivo -> boolean .
+    (70) primitivo -> boolean .
 
     AND             reduce using rule 21 (condicion -> boolean .)
     OR              reduce using rule 21 (condicion -> boolean .)
@@ -674,7 +672,7 @@ state 25
     IF              reduce using rule 21 (condicion -> boolean .)
     WHILE           reduce using rule 21 (condicion -> boolean .)
     FOR             reduce using rule 21 (condicion -> boolean .)
-    COMPARACION     reduce using rule 69 (primitivo -> boolean .)
+    COMPARACION     reduce using rule 70 (primitivo -> boolean .)
 
 
 state 26
@@ -707,60 +705,60 @@ state 27
 
 state 28
 
-    (70) boolean -> TRUE .
+    (71) boolean -> TRUE .
 
-    AND             reduce using rule 70 (boolean -> TRUE .)
-    OR              reduce using rule 70 (boolean -> TRUE .)
-    VARIABLE        reduce using rule 70 (boolean -> TRUE .)
-    PUTS            reduce using rule 70 (boolean -> TRUE .)
-    IF              reduce using rule 70 (boolean -> TRUE .)
-    WHILE           reduce using rule 70 (boolean -> TRUE .)
-    FOR             reduce using rule 70 (boolean -> TRUE .)
-    COMPARACION     reduce using rule 70 (boolean -> TRUE .)
-    DEF             reduce using rule 70 (boolean -> TRUE .)
-    $end            reduce using rule 70 (boolean -> TRUE .)
-    END             reduce using rule 70 (boolean -> TRUE .)
-    RETURN          reduce using rule 70 (boolean -> TRUE .)
-    ELSE            reduce using rule 70 (boolean -> TRUE .)
-    COMA            reduce using rule 70 (boolean -> TRUE .)
-    RPAREN          reduce using rule 70 (boolean -> TRUE .)
+    AND             reduce using rule 71 (boolean -> TRUE .)
+    OR              reduce using rule 71 (boolean -> TRUE .)
+    VARIABLE        reduce using rule 71 (boolean -> TRUE .)
+    PUTS            reduce using rule 71 (boolean -> TRUE .)
+    IF              reduce using rule 71 (boolean -> TRUE .)
+    WHILE           reduce using rule 71 (boolean -> TRUE .)
+    FOR             reduce using rule 71 (boolean -> TRUE .)
+    COMPARACION     reduce using rule 71 (boolean -> TRUE .)
+    DEF             reduce using rule 71 (boolean -> TRUE .)
+    $end            reduce using rule 71 (boolean -> TRUE .)
+    END             reduce using rule 71 (boolean -> TRUE .)
+    RETURN          reduce using rule 71 (boolean -> TRUE .)
+    ELSE            reduce using rule 71 (boolean -> TRUE .)
+    COMA            reduce using rule 71 (boolean -> TRUE .)
+    RPAREN          reduce using rule 71 (boolean -> TRUE .)
 
 
 state 29
 
-    (71) boolean -> FALSE .
+    (72) boolean -> FALSE .
 
-    AND             reduce using rule 71 (boolean -> FALSE .)
-    OR              reduce using rule 71 (boolean -> FALSE .)
-    VARIABLE        reduce using rule 71 (boolean -> FALSE .)
-    PUTS            reduce using rule 71 (boolean -> FALSE .)
-    IF              reduce using rule 71 (boolean -> FALSE .)
-    WHILE           reduce using rule 71 (boolean -> FALSE .)
-    FOR             reduce using rule 71 (boolean -> FALSE .)
-    COMPARACION     reduce using rule 71 (boolean -> FALSE .)
-    DEF             reduce using rule 71 (boolean -> FALSE .)
-    $end            reduce using rule 71 (boolean -> FALSE .)
-    END             reduce using rule 71 (boolean -> FALSE .)
-    RETURN          reduce using rule 71 (boolean -> FALSE .)
-    ELSE            reduce using rule 71 (boolean -> FALSE .)
-    COMA            reduce using rule 71 (boolean -> FALSE .)
-    RPAREN          reduce using rule 71 (boolean -> FALSE .)
+    AND             reduce using rule 72 (boolean -> FALSE .)
+    OR              reduce using rule 72 (boolean -> FALSE .)
+    VARIABLE        reduce using rule 72 (boolean -> FALSE .)
+    PUTS            reduce using rule 72 (boolean -> FALSE .)
+    IF              reduce using rule 72 (boolean -> FALSE .)
+    WHILE           reduce using rule 72 (boolean -> FALSE .)
+    FOR             reduce using rule 72 (boolean -> FALSE .)
+    COMPARACION     reduce using rule 72 (boolean -> FALSE .)
+    DEF             reduce using rule 72 (boolean -> FALSE .)
+    $end            reduce using rule 72 (boolean -> FALSE .)
+    END             reduce using rule 72 (boolean -> FALSE .)
+    RETURN          reduce using rule 72 (boolean -> FALSE .)
+    ELSE            reduce using rule 72 (boolean -> FALSE .)
+    COMA            reduce using rule 72 (boolean -> FALSE .)
+    RPAREN          reduce using rule 72 (boolean -> FALSE .)
 
 
 state 30
 
-    (67) primitivo -> NUMBER . PUNTO NUMBER
-    (68) primitivo -> NUMBER .
+    (68) primitivo -> NUMBER . PUNTO NUMBER
+    (69) primitivo -> NUMBER .
 
-    PUNTO           shift and go to state 56
-    COMPARACION     reduce using rule 68 (primitivo -> NUMBER .)
-    AND             reduce using rule 68 (primitivo -> NUMBER .)
-    OR              reduce using rule 68 (primitivo -> NUMBER .)
-    VARIABLE        reduce using rule 68 (primitivo -> NUMBER .)
-    PUTS            reduce using rule 68 (primitivo -> NUMBER .)
-    IF              reduce using rule 68 (primitivo -> NUMBER .)
-    WHILE           reduce using rule 68 (primitivo -> NUMBER .)
-    FOR             reduce using rule 68 (primitivo -> NUMBER .)
+    PUNTO           shift and go to state 55
+    COMPARACION     reduce using rule 69 (primitivo -> NUMBER .)
+    AND             reduce using rule 69 (primitivo -> NUMBER .)
+    OR              reduce using rule 69 (primitivo -> NUMBER .)
+    VARIABLE        reduce using rule 69 (primitivo -> NUMBER .)
+    PUTS            reduce using rule 69 (primitivo -> NUMBER .)
+    IF              reduce using rule 69 (primitivo -> NUMBER .)
+    WHILE           reduce using rule 69 (primitivo -> NUMBER .)
+    FOR             reduce using rule 69 (primitivo -> NUMBER .)
 
 
 state 31
@@ -788,15 +786,15 @@ state 31
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    cuerpo                         shift and go to state 57
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 56
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
@@ -805,7 +803,7 @@ state 32
 
     (47) sentenciafor -> FOR VARIABLE . IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    IN              shift and go to state 58
+    IN              shift and go to state 57
 
 
 state 33
@@ -831,240 +829,220 @@ state 33
 
   ! VARIABLE        [ reduce using rule 38 (declaracion -> VARIABLE IGUAL asignacion .) ]
 
-    declaracion                    shift and go to state 59
+    declaracion                    shift and go to state 58
 
 state 34
 
-    (53) asignacion -> primitivo .
+    (53) asignacion -> NUMBER .
+    (60) expresion -> NUMBER . PLUS NUMBER
+    (61) expresion -> NUMBER . MINUS NUMBER
+    (66) factor -> NUMBER .
 
-    VARIABLE        reduce using rule 53 (asignacion -> primitivo .)
-    DEF             reduce using rule 53 (asignacion -> primitivo .)
-    IF              reduce using rule 53 (asignacion -> primitivo .)
-    WHILE           reduce using rule 53 (asignacion -> primitivo .)
-    FOR             reduce using rule 53 (asignacion -> primitivo .)
-    $end            reduce using rule 53 (asignacion -> primitivo .)
-    PUTS            reduce using rule 53 (asignacion -> primitivo .)
-    END             reduce using rule 53 (asignacion -> primitivo .)
-    RETURN          reduce using rule 53 (asignacion -> primitivo .)
-    ELSE            reduce using rule 53 (asignacion -> primitivo .)
+  ! reduce/reduce conflict for VARIABLE resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for DEF resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for IF resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for WHILE resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for FOR resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for $end resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for PUTS resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for END resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for ELSE resolved using rule 53 (asignacion -> NUMBER .)
+    VARIABLE        reduce using rule 53 (asignacion -> NUMBER .)
+    DEF             reduce using rule 53 (asignacion -> NUMBER .)
+    IF              reduce using rule 53 (asignacion -> NUMBER .)
+    WHILE           reduce using rule 53 (asignacion -> NUMBER .)
+    FOR             reduce using rule 53 (asignacion -> NUMBER .)
+    $end            reduce using rule 53 (asignacion -> NUMBER .)
+    PUTS            reduce using rule 53 (asignacion -> NUMBER .)
+    END             reduce using rule 53 (asignacion -> NUMBER .)
+    RETURN          reduce using rule 53 (asignacion -> NUMBER .)
+    ELSE            reduce using rule 53 (asignacion -> NUMBER .)
+    PLUS            shift and go to state 59
+    MINUS           shift and go to state 60
+    TIMES           reduce using rule 66 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 66 (factor -> NUMBER .)
+
+  ! VARIABLE        [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! DEF             [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! IF              [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! WHILE           [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! FOR             [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! $end            [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! PUTS            [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! END             [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! ELSE            [ reduce using rule 66 (factor -> NUMBER .) ]
 
 
 state 35
 
-    (54) asignacion -> HASH .
+    (54) asignacion -> boolean .
 
-    VARIABLE        reduce using rule 54 (asignacion -> HASH .)
-    DEF             reduce using rule 54 (asignacion -> HASH .)
-    IF              reduce using rule 54 (asignacion -> HASH .)
-    WHILE           reduce using rule 54 (asignacion -> HASH .)
-    FOR             reduce using rule 54 (asignacion -> HASH .)
-    $end            reduce using rule 54 (asignacion -> HASH .)
-    PUTS            reduce using rule 54 (asignacion -> HASH .)
-    END             reduce using rule 54 (asignacion -> HASH .)
-    RETURN          reduce using rule 54 (asignacion -> HASH .)
-    ELSE            reduce using rule 54 (asignacion -> HASH .)
+    VARIABLE        reduce using rule 54 (asignacion -> boolean .)
+    DEF             reduce using rule 54 (asignacion -> boolean .)
+    IF              reduce using rule 54 (asignacion -> boolean .)
+    WHILE           reduce using rule 54 (asignacion -> boolean .)
+    FOR             reduce using rule 54 (asignacion -> boolean .)
+    $end            reduce using rule 54 (asignacion -> boolean .)
+    PUTS            reduce using rule 54 (asignacion -> boolean .)
+    END             reduce using rule 54 (asignacion -> boolean .)
+    RETURN          reduce using rule 54 (asignacion -> boolean .)
+    ELSE            reduce using rule 54 (asignacion -> boolean .)
 
 
 state 36
 
-    (55) asignacion -> ARREGLO .
+    (55) asignacion -> HASH .
 
-    VARIABLE        reduce using rule 55 (asignacion -> ARREGLO .)
-    DEF             reduce using rule 55 (asignacion -> ARREGLO .)
-    IF              reduce using rule 55 (asignacion -> ARREGLO .)
-    WHILE           reduce using rule 55 (asignacion -> ARREGLO .)
-    FOR             reduce using rule 55 (asignacion -> ARREGLO .)
-    $end            reduce using rule 55 (asignacion -> ARREGLO .)
-    PUTS            reduce using rule 55 (asignacion -> ARREGLO .)
-    END             reduce using rule 55 (asignacion -> ARREGLO .)
-    RETURN          reduce using rule 55 (asignacion -> ARREGLO .)
-    ELSE            reduce using rule 55 (asignacion -> ARREGLO .)
+    VARIABLE        reduce using rule 55 (asignacion -> HASH .)
+    DEF             reduce using rule 55 (asignacion -> HASH .)
+    IF              reduce using rule 55 (asignacion -> HASH .)
+    WHILE           reduce using rule 55 (asignacion -> HASH .)
+    FOR             reduce using rule 55 (asignacion -> HASH .)
+    $end            reduce using rule 55 (asignacion -> HASH .)
+    PUTS            reduce using rule 55 (asignacion -> HASH .)
+    END             reduce using rule 55 (asignacion -> HASH .)
+    RETURN          reduce using rule 55 (asignacion -> HASH .)
+    ELSE            reduce using rule 55 (asignacion -> HASH .)
 
 
 state 37
 
-    (56) asignacion -> FICHERO .
+    (56) asignacion -> ARREGLO .
 
-    VARIABLE        reduce using rule 56 (asignacion -> FICHERO .)
-    DEF             reduce using rule 56 (asignacion -> FICHERO .)
-    IF              reduce using rule 56 (asignacion -> FICHERO .)
-    WHILE           reduce using rule 56 (asignacion -> FICHERO .)
-    FOR             reduce using rule 56 (asignacion -> FICHERO .)
-    $end            reduce using rule 56 (asignacion -> FICHERO .)
-    PUTS            reduce using rule 56 (asignacion -> FICHERO .)
-    END             reduce using rule 56 (asignacion -> FICHERO .)
-    RETURN          reduce using rule 56 (asignacion -> FICHERO .)
-    ELSE            reduce using rule 56 (asignacion -> FICHERO .)
+    VARIABLE        reduce using rule 56 (asignacion -> ARREGLO .)
+    DEF             reduce using rule 56 (asignacion -> ARREGLO .)
+    IF              reduce using rule 56 (asignacion -> ARREGLO .)
+    WHILE           reduce using rule 56 (asignacion -> ARREGLO .)
+    FOR             reduce using rule 56 (asignacion -> ARREGLO .)
+    $end            reduce using rule 56 (asignacion -> ARREGLO .)
+    PUTS            reduce using rule 56 (asignacion -> ARREGLO .)
+    END             reduce using rule 56 (asignacion -> ARREGLO .)
+    RETURN          reduce using rule 56 (asignacion -> ARREGLO .)
+    ELSE            reduce using rule 56 (asignacion -> ARREGLO .)
 
 
 state 38
 
-    (57) asignacion -> expresion .
+    (57) asignacion -> FICHERO .
 
-    VARIABLE        reduce using rule 57 (asignacion -> expresion .)
-    DEF             reduce using rule 57 (asignacion -> expresion .)
-    IF              reduce using rule 57 (asignacion -> expresion .)
-    WHILE           reduce using rule 57 (asignacion -> expresion .)
-    FOR             reduce using rule 57 (asignacion -> expresion .)
-    $end            reduce using rule 57 (asignacion -> expresion .)
-    PUTS            reduce using rule 57 (asignacion -> expresion .)
-    END             reduce using rule 57 (asignacion -> expresion .)
-    RETURN          reduce using rule 57 (asignacion -> expresion .)
-    ELSE            reduce using rule 57 (asignacion -> expresion .)
+    VARIABLE        reduce using rule 57 (asignacion -> FICHERO .)
+    DEF             reduce using rule 57 (asignacion -> FICHERO .)
+    IF              reduce using rule 57 (asignacion -> FICHERO .)
+    WHILE           reduce using rule 57 (asignacion -> FICHERO .)
+    FOR             reduce using rule 57 (asignacion -> FICHERO .)
+    $end            reduce using rule 57 (asignacion -> FICHERO .)
+    PUTS            reduce using rule 57 (asignacion -> FICHERO .)
+    END             reduce using rule 57 (asignacion -> FICHERO .)
+    RETURN          reduce using rule 57 (asignacion -> FICHERO .)
+    ELSE            reduce using rule 57 (asignacion -> FICHERO .)
 
 
 state 39
 
-    (58) asignacion -> STRING .
+    (58) asignacion -> expresion .
 
-    VARIABLE        reduce using rule 58 (asignacion -> STRING .)
-    DEF             reduce using rule 58 (asignacion -> STRING .)
-    IF              reduce using rule 58 (asignacion -> STRING .)
-    WHILE           reduce using rule 58 (asignacion -> STRING .)
-    FOR             reduce using rule 58 (asignacion -> STRING .)
-    $end            reduce using rule 58 (asignacion -> STRING .)
-    PUTS            reduce using rule 58 (asignacion -> STRING .)
-    END             reduce using rule 58 (asignacion -> STRING .)
-    RETURN          reduce using rule 58 (asignacion -> STRING .)
-    ELSE            reduce using rule 58 (asignacion -> STRING .)
+    VARIABLE        reduce using rule 58 (asignacion -> expresion .)
+    DEF             reduce using rule 58 (asignacion -> expresion .)
+    IF              reduce using rule 58 (asignacion -> expresion .)
+    WHILE           reduce using rule 58 (asignacion -> expresion .)
+    FOR             reduce using rule 58 (asignacion -> expresion .)
+    $end            reduce using rule 58 (asignacion -> expresion .)
+    PUTS            reduce using rule 58 (asignacion -> expresion .)
+    END             reduce using rule 58 (asignacion -> expresion .)
+    RETURN          reduce using rule 58 (asignacion -> expresion .)
+    ELSE            reduce using rule 58 (asignacion -> expresion .)
 
 
 state 40
 
-    (67) primitivo -> NUMBER . PUNTO NUMBER
-    (68) primitivo -> NUMBER .
-    (59) expresion -> NUMBER . PLUS NUMBER
-    (60) expresion -> NUMBER . MINUS NUMBER
-    (65) factor -> NUMBER .
+    (59) asignacion -> STRING .
 
-  ! reduce/reduce conflict for VARIABLE resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for DEF resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for IF resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for WHILE resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for FOR resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for $end resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for PUTS resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for END resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for RETURN resolved using rule 65 (factor -> NUMBER .)
-  ! reduce/reduce conflict for ELSE resolved using rule 65 (factor -> NUMBER .)
-    PUNTO           shift and go to state 56
-    PLUS            shift and go to state 60
-    MINUS           shift and go to state 61
-    TIMES           reduce using rule 65 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 65 (factor -> NUMBER .)
-    VARIABLE        reduce using rule 65 (factor -> NUMBER .)
-    DEF             reduce using rule 65 (factor -> NUMBER .)
-    IF              reduce using rule 65 (factor -> NUMBER .)
-    WHILE           reduce using rule 65 (factor -> NUMBER .)
-    FOR             reduce using rule 65 (factor -> NUMBER .)
-    $end            reduce using rule 65 (factor -> NUMBER .)
-    PUTS            reduce using rule 65 (factor -> NUMBER .)
-    END             reduce using rule 65 (factor -> NUMBER .)
-    RETURN          reduce using rule 65 (factor -> NUMBER .)
-    ELSE            reduce using rule 65 (factor -> NUMBER .)
-
-  ! VARIABLE        [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! DEF             [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! IF              [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! WHILE           [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! FOR             [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! $end            [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! PUTS            [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! END             [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! RETURN          [ reduce using rule 68 (primitivo -> NUMBER .) ]
-  ! ELSE            [ reduce using rule 68 (primitivo -> NUMBER .) ]
+    VARIABLE        reduce using rule 59 (asignacion -> STRING .)
+    DEF             reduce using rule 59 (asignacion -> STRING .)
+    IF              reduce using rule 59 (asignacion -> STRING .)
+    WHILE           reduce using rule 59 (asignacion -> STRING .)
+    FOR             reduce using rule 59 (asignacion -> STRING .)
+    $end            reduce using rule 59 (asignacion -> STRING .)
+    PUTS            reduce using rule 59 (asignacion -> STRING .)
+    END             reduce using rule 59 (asignacion -> STRING .)
+    RETURN          reduce using rule 59 (asignacion -> STRING .)
+    ELSE            reduce using rule 59 (asignacion -> STRING .)
 
 
 state 41
 
-    (69) primitivo -> boolean .
+    (62) expresion -> termino .
+    (63) termino -> termino . TIMES factor
+    (64) termino -> termino . DIVIDE factor
 
-    VARIABLE        reduce using rule 69 (primitivo -> boolean .)
-    DEF             reduce using rule 69 (primitivo -> boolean .)
-    IF              reduce using rule 69 (primitivo -> boolean .)
-    WHILE           reduce using rule 69 (primitivo -> boolean .)
-    FOR             reduce using rule 69 (primitivo -> boolean .)
-    $end            reduce using rule 69 (primitivo -> boolean .)
-    PUTS            reduce using rule 69 (primitivo -> boolean .)
-    END             reduce using rule 69 (primitivo -> boolean .)
-    RETURN          reduce using rule 69 (primitivo -> boolean .)
-    ELSE            reduce using rule 69 (primitivo -> boolean .)
-    AND             reduce using rule 69 (primitivo -> boolean .)
-    OR              reduce using rule 69 (primitivo -> boolean .)
+    VARIABLE        reduce using rule 62 (expresion -> termino .)
+    DEF             reduce using rule 62 (expresion -> termino .)
+    IF              reduce using rule 62 (expresion -> termino .)
+    WHILE           reduce using rule 62 (expresion -> termino .)
+    FOR             reduce using rule 62 (expresion -> termino .)
+    $end            reduce using rule 62 (expresion -> termino .)
+    PUTS            reduce using rule 62 (expresion -> termino .)
+    END             reduce using rule 62 (expresion -> termino .)
+    RETURN          reduce using rule 62 (expresion -> termino .)
+    ELSE            reduce using rule 62 (expresion -> termino .)
+    RPAREN          reduce using rule 62 (expresion -> termino .)
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 62
 
 
 state 42
 
-    (61) expresion -> termino .
-    (62) termino -> termino . TIMES factor
-    (63) termino -> termino . DIVIDE factor
+    (65) termino -> factor .
 
-    VARIABLE        reduce using rule 61 (expresion -> termino .)
-    DEF             reduce using rule 61 (expresion -> termino .)
-    IF              reduce using rule 61 (expresion -> termino .)
-    WHILE           reduce using rule 61 (expresion -> termino .)
-    FOR             reduce using rule 61 (expresion -> termino .)
-    $end            reduce using rule 61 (expresion -> termino .)
-    PUTS            reduce using rule 61 (expresion -> termino .)
-    END             reduce using rule 61 (expresion -> termino .)
-    RETURN          reduce using rule 61 (expresion -> termino .)
-    ELSE            reduce using rule 61 (expresion -> termino .)
-    RPAREN          reduce using rule 61 (expresion -> termino .)
-    TIMES           shift and go to state 62
-    DIVIDE          shift and go to state 63
+    TIMES           reduce using rule 65 (termino -> factor .)
+    DIVIDE          reduce using rule 65 (termino -> factor .)
+    VARIABLE        reduce using rule 65 (termino -> factor .)
+    DEF             reduce using rule 65 (termino -> factor .)
+    IF              reduce using rule 65 (termino -> factor .)
+    WHILE           reduce using rule 65 (termino -> factor .)
+    FOR             reduce using rule 65 (termino -> factor .)
+    $end            reduce using rule 65 (termino -> factor .)
+    PUTS            reduce using rule 65 (termino -> factor .)
+    END             reduce using rule 65 (termino -> factor .)
+    RETURN          reduce using rule 65 (termino -> factor .)
+    ELSE            reduce using rule 65 (termino -> factor .)
+    RPAREN          reduce using rule 65 (termino -> factor .)
 
 
 state 43
 
-    (64) termino -> factor .
+    (67) factor -> LPAREN . expresion RPAREN
+    (60) expresion -> . NUMBER PLUS NUMBER
+    (61) expresion -> . NUMBER MINUS NUMBER
+    (62) expresion -> . termino
+    (63) termino -> . termino TIMES factor
+    (64) termino -> . termino DIVIDE factor
+    (65) termino -> . factor
+    (66) factor -> . NUMBER
+    (67) factor -> . LPAREN expresion RPAREN
 
-    TIMES           reduce using rule 64 (termino -> factor .)
-    DIVIDE          reduce using rule 64 (termino -> factor .)
-    VARIABLE        reduce using rule 64 (termino -> factor .)
-    DEF             reduce using rule 64 (termino -> factor .)
-    IF              reduce using rule 64 (termino -> factor .)
-    WHILE           reduce using rule 64 (termino -> factor .)
-    FOR             reduce using rule 64 (termino -> factor .)
-    $end            reduce using rule 64 (termino -> factor .)
-    PUTS            reduce using rule 64 (termino -> factor .)
-    END             reduce using rule 64 (termino -> factor .)
-    RETURN          reduce using rule 64 (termino -> factor .)
-    ELSE            reduce using rule 64 (termino -> factor .)
-    RPAREN          reduce using rule 64 (termino -> factor .)
+    NUMBER          shift and go to state 64
+    LPAREN          shift and go to state 43
 
+    expresion                      shift and go to state 63
+    termino                        shift and go to state 41
+    factor                         shift and go to state 42
 
 state 44
-
-    (66) factor -> LPAREN . expresion RPAREN
-    (59) expresion -> . NUMBER PLUS NUMBER
-    (60) expresion -> . NUMBER MINUS NUMBER
-    (61) expresion -> . termino
-    (62) termino -> . termino TIMES factor
-    (63) termino -> . termino DIVIDE factor
-    (64) termino -> . factor
-    (65) factor -> . NUMBER
-    (66) factor -> . LPAREN expresion RPAREN
-
-    NUMBER          shift and go to state 65
-    LPAREN          shift and go to state 44
-
-    expresion                      shift and go to state 64
-    termino                        shift and go to state 42
-    factor                         shift and go to state 43
-
-state 45
 
     (40) declaracion -> VARIABLE operadorMat IGUAL . opcion
     (41) declaracion -> VARIABLE operadorMat IGUAL . opcion declaracion
     (42) opcion -> . VARIABLE
     (43) opcion -> . NUMBER
 
-    VARIABLE        shift and go to state 66
-    NUMBER          shift and go to state 68
+    VARIABLE        shift and go to state 65
+    NUMBER          shift and go to state 67
 
-    opcion                         shift and go to state 67
+    opcion                         shift and go to state 66
 
-state 46
+state 45
 
     (44) declaracion_funcion -> DEF VARIABLE LPAREN . params RPAREN cuerpo END
     (45) params -> . rubyParams
@@ -1072,19 +1050,19 @@ state 46
     (50) rubyParams -> . VARIABLE
     (51) rubyParams -> . boolean
     (52) rubyParams -> . NUMBER
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
 
-    VARIABLE        shift and go to state 69
-    NUMBER          shift and go to state 73
+    VARIABLE        shift and go to state 68
+    NUMBER          shift and go to state 72
     TRUE            shift and go to state 28
     FALSE           shift and go to state 29
 
-    params                         shift and go to state 70
-    rubyParams                     shift and go to state 71
-    boolean                        shift and go to state 72
+    params                         shift and go to state 69
+    rubyParams                     shift and go to state 70
+    boolean                        shift and go to state 71
 
-state 47
+state 46
 
     (16) estrucIf -> IF logica cuerpo . END
     (17) estrucIf -> IF logica cuerpo . estrucElse
@@ -1092,13 +1070,13 @@ state 47
     (24) estrucElse -> . ELSE cuerpo END
     (25) estrucElse -> . ELSE logica cuerpo END
 
-    END             shift and go to state 74
-    RETURN          shift and go to state 76
-    ELSE            shift and go to state 77
+    END             shift and go to state 73
+    RETURN          shift and go to state 75
+    ELSE            shift and go to state 76
 
-    estrucElse                     shift and go to state 75
+    estrucElse                     shift and go to state 74
 
-state 48
+state 47
 
     (27) cuerpo -> declaracion .
     (28) cuerpo -> declaracion . cuerpo
@@ -1127,20 +1105,20 @@ state 48
     RETURN          reduce using rule 27 (cuerpo -> declaracion .)
     ELSE            reduce using rule 27 (cuerpo -> declaracion .)
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    declaracion                    shift and go to state 48
-    cuerpo                         shift and go to state 78
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    declaracion                    shift and go to state 47
+    cuerpo                         shift and go to state 77
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
 
-state 49
+state 48
 
     (29) cuerpo -> imprimir .
     (30) cuerpo -> imprimir . cuerpo
@@ -1169,20 +1147,20 @@ state 49
     RETURN          reduce using rule 29 (cuerpo -> imprimir .)
     ELSE            reduce using rule 29 (cuerpo -> imprimir .)
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    imprimir                       shift and go to state 49
-    cuerpo                         shift and go to state 79
-    declaracion                    shift and go to state 48
-    estructurasControl             shift and go to state 50
+    imprimir                       shift and go to state 48
+    cuerpo                         shift and go to state 78
+    declaracion                    shift and go to state 47
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
 
-state 50
+state 49
 
     (31) cuerpo -> estructurasControl .
     (32) cuerpo -> estructurasControl . cuerpo
@@ -1211,29 +1189,29 @@ state 50
     RETURN          reduce using rule 31 (cuerpo -> estructurasControl .)
     ELSE            reduce using rule 31 (cuerpo -> estructurasControl .)
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    estructurasControl             shift and go to state 50
-    cuerpo                         shift and go to state 80
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
+    estructurasControl             shift and go to state 49
+    cuerpo                         shift and go to state 79
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
 
-state 51
+state 50
 
     (48) imprimir -> PUTS . STRING
     (49) imprimir -> PUTS . VARIABLE
 
-    STRING          shift and go to state 81
-    VARIABLE        shift and go to state 82
+    STRING          shift and go to state 80
+    VARIABLE        shift and go to state 81
 
 
-state 52
+state 51
 
     (19) logica -> condicion operadorLog . logica
     (18) logica -> . condicion
@@ -1242,11 +1220,11 @@ state 52
     (21) condicion -> . boolean
     (22) comparador -> . VARIABLE
     (23) comparador -> . primitivo
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
 
     VARIABLE        shift and go to state 26
     TRUE            shift and go to state 28
@@ -1254,12 +1232,12 @@ state 52
     NUMBER          shift and go to state 30
 
     condicion                      shift and go to state 23
-    logica                         shift and go to state 83
+    logica                         shift and go to state 82
     comparador                     shift and go to state 24
     boolean                        shift and go to state 25
     primitivo                      shift and go to state 27
 
-state 53
+state 52
 
     (14) operadorLog -> AND .
 
@@ -1269,7 +1247,7 @@ state 53
     NUMBER          reduce using rule 14 (operadorLog -> AND .)
 
 
-state 54
+state 53
 
     (15) operadorLog -> OR .
 
@@ -1279,50 +1257,50 @@ state 54
     NUMBER          reduce using rule 15 (operadorLog -> OR .)
 
 
-state 55
+state 54
 
     (20) condicion -> comparador COMPARACION . comparador
     (22) comparador -> . VARIABLE
     (23) comparador -> . primitivo
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
 
     VARIABLE        shift and go to state 26
     NUMBER          shift and go to state 30
     TRUE            shift and go to state 28
     FALSE           shift and go to state 29
 
-    comparador                     shift and go to state 84
+    comparador                     shift and go to state 83
     primitivo                      shift and go to state 27
-    boolean                        shift and go to state 41
+    boolean                        shift and go to state 84
 
-state 56
+state 55
 
-    (67) primitivo -> NUMBER PUNTO . NUMBER
+    (68) primitivo -> NUMBER PUNTO . NUMBER
 
     NUMBER          shift and go to state 85
 
 
-state 57
+state 56
 
     (26) estrucWhile -> WHILE logica cuerpo . END
     (33) cuerpo -> cuerpo . RETURN retornos
 
     END             shift and go to state 86
-    RETURN          shift and go to state 76
+    RETURN          shift and go to state 75
 
 
-state 58
+state 57
 
     (47) sentenciafor -> FOR VARIABLE IN . LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     LPAREN          shift and go to state 87
 
 
-state 59
+state 58
 
     (39) declaracion -> VARIABLE IGUAL asignacion declaracion .
 
@@ -1338,63 +1316,63 @@ state 59
     ELSE            reduce using rule 39 (declaracion -> VARIABLE IGUAL asignacion declaracion .)
 
 
-state 60
+state 59
 
-    (59) expresion -> NUMBER PLUS . NUMBER
+    (60) expresion -> NUMBER PLUS . NUMBER
 
     NUMBER          shift and go to state 88
 
 
-state 61
+state 60
 
-    (60) expresion -> NUMBER MINUS . NUMBER
+    (61) expresion -> NUMBER MINUS . NUMBER
 
     NUMBER          shift and go to state 89
 
 
-state 62
+state 61
 
-    (62) termino -> termino TIMES . factor
-    (65) factor -> . NUMBER
-    (66) factor -> . LPAREN expresion RPAREN
+    (63) termino -> termino TIMES . factor
+    (66) factor -> . NUMBER
+    (67) factor -> . LPAREN expresion RPAREN
 
     NUMBER          shift and go to state 91
-    LPAREN          shift and go to state 44
+    LPAREN          shift and go to state 43
 
     factor                         shift and go to state 90
 
-state 63
+state 62
 
-    (63) termino -> termino DIVIDE . factor
-    (65) factor -> . NUMBER
-    (66) factor -> . LPAREN expresion RPAREN
+    (64) termino -> termino DIVIDE . factor
+    (66) factor -> . NUMBER
+    (67) factor -> . LPAREN expresion RPAREN
 
     NUMBER          shift and go to state 91
-    LPAREN          shift and go to state 44
+    LPAREN          shift and go to state 43
 
     factor                         shift and go to state 92
 
-state 64
+state 63
 
-    (66) factor -> LPAREN expresion . RPAREN
+    (67) factor -> LPAREN expresion . RPAREN
 
     RPAREN          shift and go to state 93
 
 
+state 64
+
+    (60) expresion -> NUMBER . PLUS NUMBER
+    (61) expresion -> NUMBER . MINUS NUMBER
+    (66) factor -> NUMBER .
+
+    PLUS            shift and go to state 59
+    MINUS           shift and go to state 60
+    TIMES           reduce using rule 66 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 66 (factor -> NUMBER .)
+    RPAREN          reduce using rule 66 (factor -> NUMBER .)
+
+
 state 65
-
-    (59) expresion -> NUMBER . PLUS NUMBER
-    (60) expresion -> NUMBER . MINUS NUMBER
-    (65) factor -> NUMBER .
-
-    PLUS            shift and go to state 60
-    MINUS           shift and go to state 61
-    TIMES           reduce using rule 65 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 65 (factor -> NUMBER .)
-    RPAREN          reduce using rule 65 (factor -> NUMBER .)
-
-
-state 66
 
     (42) opcion -> VARIABLE .
 
@@ -1410,7 +1388,7 @@ state 66
     ELSE            reduce using rule 42 (opcion -> VARIABLE .)
 
 
-state 67
+state 66
 
     (40) declaracion -> VARIABLE operadorMat IGUAL opcion .
     (41) declaracion -> VARIABLE operadorMat IGUAL opcion . declaracion
@@ -1435,7 +1413,7 @@ state 67
 
     declaracion                    shift and go to state 94
 
-state 68
+state 67
 
     (43) opcion -> NUMBER .
 
@@ -1451,7 +1429,7 @@ state 68
     ELSE            reduce using rule 43 (opcion -> NUMBER .)
 
 
-state 69
+state 68
 
     (50) rubyParams -> VARIABLE .
 
@@ -1459,14 +1437,14 @@ state 69
     RPAREN          reduce using rule 50 (rubyParams -> VARIABLE .)
 
 
-state 70
+state 69
 
     (44) declaracion_funcion -> DEF VARIABLE LPAREN params . RPAREN cuerpo END
 
     RPAREN          shift and go to state 95
 
 
-state 71
+state 70
 
     (45) params -> rubyParams .
     (46) params -> rubyParams . COMA params
@@ -1475,7 +1453,7 @@ state 71
     COMA            shift and go to state 96
 
 
-state 72
+state 71
 
     (51) rubyParams -> boolean .
 
@@ -1483,7 +1461,7 @@ state 72
     RPAREN          reduce using rule 51 (rubyParams -> boolean .)
 
 
-state 73
+state 72
 
     (52) rubyParams -> NUMBER .
 
@@ -1491,7 +1469,7 @@ state 73
     RPAREN          reduce using rule 52 (rubyParams -> NUMBER .)
 
 
-state 74
+state 73
 
     (16) estrucIf -> IF logica cuerpo END .
 
@@ -1507,7 +1485,7 @@ state 74
     ELSE            reduce using rule 16 (estrucIf -> IF logica cuerpo END .)
 
 
-state 75
+state 74
 
     (17) estrucIf -> IF logica cuerpo estrucElse .
 
@@ -1523,52 +1501,53 @@ state 75
     ELSE            reduce using rule 17 (estrucIf -> IF logica cuerpo estrucElse .)
 
 
-state 76
+state 75
 
     (33) cuerpo -> cuerpo RETURN . retornos
     (34) retornos -> . VARIABLE
     (35) retornos -> . primitivo
     (36) retornos -> . expresion
     (37) retornos -> . asignacion
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
-    (59) expresion -> . NUMBER PLUS NUMBER
-    (60) expresion -> . NUMBER MINUS NUMBER
-    (61) expresion -> . termino
-    (53) asignacion -> . primitivo
-    (54) asignacion -> . HASH
-    (55) asignacion -> . ARREGLO
-    (56) asignacion -> . FICHERO
-    (57) asignacion -> . expresion
-    (58) asignacion -> . STRING
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (62) termino -> . termino TIMES factor
-    (63) termino -> . termino DIVIDE factor
-    (64) termino -> . factor
-    (65) factor -> . NUMBER
-    (66) factor -> . LPAREN expresion RPAREN
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
+    (60) expresion -> . NUMBER PLUS NUMBER
+    (61) expresion -> . NUMBER MINUS NUMBER
+    (62) expresion -> . termino
+    (53) asignacion -> . NUMBER
+    (54) asignacion -> . boolean
+    (55) asignacion -> . HASH
+    (56) asignacion -> . ARREGLO
+    (57) asignacion -> . FICHERO
+    (58) asignacion -> . expresion
+    (59) asignacion -> . STRING
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (63) termino -> . termino TIMES factor
+    (64) termino -> . termino DIVIDE factor
+    (65) termino -> . factor
+    (66) factor -> . NUMBER
+    (67) factor -> . LPAREN expresion RPAREN
 
     VARIABLE        shift and go to state 98
-    NUMBER          shift and go to state 40
-    HASH            shift and go to state 35
-    ARREGLO         shift and go to state 36
-    FICHERO         shift and go to state 37
-    STRING          shift and go to state 39
+    NUMBER          shift and go to state 102
+    HASH            shift and go to state 36
+    ARREGLO         shift and go to state 37
+    FICHERO         shift and go to state 38
+    STRING          shift and go to state 40
     TRUE            shift and go to state 28
     FALSE           shift and go to state 29
-    LPAREN          shift and go to state 44
+    LPAREN          shift and go to state 43
 
     retornos                       shift and go to state 97
     primitivo                      shift and go to state 99
     expresion                      shift and go to state 100
     asignacion                     shift and go to state 101
-    boolean                        shift and go to state 41
-    termino                        shift and go to state 42
-    factor                         shift and go to state 43
+    boolean                        shift and go to state 103
+    termino                        shift and go to state 41
+    factor                         shift and go to state 42
 
-state 77
+state 76
 
     (24) estrucElse -> ELSE . cuerpo END
     (25) estrucElse -> ELSE . logica cuerpo END
@@ -1598,14 +1577,14 @@ state 77
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
     (22) comparador -> . VARIABLE
     (23) comparador -> . primitivo
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
-    (67) primitivo -> . NUMBER PUNTO NUMBER
-    (68) primitivo -> . NUMBER
-    (69) primitivo -> . boolean
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
+    (68) primitivo -> . NUMBER PUNTO NUMBER
+    (69) primitivo -> . NUMBER
+    (70) primitivo -> . boolean
 
-    VARIABLE        shift and go to state 104
-    PUTS            shift and go to state 51
+    VARIABLE        shift and go to state 106
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -1613,11 +1592,11 @@ state 77
     FALSE           shift and go to state 29
     NUMBER          shift and go to state 30
 
-    cuerpo                         shift and go to state 102
-    logica                         shift and go to state 103
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 104
+    logica                         shift and go to state 105
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     condicion                      shift and go to state 23
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
@@ -1626,7 +1605,7 @@ state 77
     boolean                        shift and go to state 25
     primitivo                      shift and go to state 27
 
-state 78
+state 77
 
     (28) cuerpo -> declaracion cuerpo .
     (33) cuerpo -> cuerpo . RETURN retornos
@@ -1634,12 +1613,12 @@ state 78
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 28 (cuerpo -> declaracion cuerpo .)
     ELSE            reduce using rule 28 (cuerpo -> declaracion cuerpo .)
-    RETURN          shift and go to state 76
+    RETURN          shift and go to state 75
 
   ! RETURN          [ reduce using rule 28 (cuerpo -> declaracion cuerpo .) ]
 
 
-state 79
+state 78
 
     (30) cuerpo -> imprimir cuerpo .
     (33) cuerpo -> cuerpo . RETURN retornos
@@ -1647,12 +1626,12 @@ state 79
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 30 (cuerpo -> imprimir cuerpo .)
     ELSE            reduce using rule 30 (cuerpo -> imprimir cuerpo .)
-    RETURN          shift and go to state 76
+    RETURN          shift and go to state 75
 
   ! RETURN          [ reduce using rule 30 (cuerpo -> imprimir cuerpo .) ]
 
 
-state 80
+state 79
 
     (32) cuerpo -> estructurasControl cuerpo .
     (33) cuerpo -> cuerpo . RETURN retornos
@@ -1660,12 +1639,12 @@ state 80
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 32 (cuerpo -> estructurasControl cuerpo .)
     ELSE            reduce using rule 32 (cuerpo -> estructurasControl cuerpo .)
-    RETURN          shift and go to state 76
+    RETURN          shift and go to state 75
 
   ! RETURN          [ reduce using rule 32 (cuerpo -> estructurasControl cuerpo .) ]
 
 
-state 81
+state 80
 
     (48) imprimir -> PUTS STRING .
 
@@ -1679,7 +1658,7 @@ state 81
     ELSE            reduce using rule 48 (imprimir -> PUTS STRING .)
 
 
-state 82
+state 81
 
     (49) imprimir -> PUTS VARIABLE .
 
@@ -1693,7 +1672,7 @@ state 82
     ELSE            reduce using rule 49 (imprimir -> PUTS VARIABLE .)
 
 
-state 83
+state 82
 
     (19) logica -> condicion operadorLog logica .
 
@@ -1704,7 +1683,7 @@ state 83
     FOR             reduce using rule 19 (logica -> condicion operadorLog logica .)
 
 
-state 84
+state 83
 
     (20) condicion -> comparador COMPARACION comparador .
 
@@ -1717,23 +1696,34 @@ state 84
     FOR             reduce using rule 20 (condicion -> comparador COMPARACION comparador .)
 
 
+state 84
+
+    (70) primitivo -> boolean .
+
+    AND             reduce using rule 70 (primitivo -> boolean .)
+    OR              reduce using rule 70 (primitivo -> boolean .)
+    VARIABLE        reduce using rule 70 (primitivo -> boolean .)
+    PUTS            reduce using rule 70 (primitivo -> boolean .)
+    IF              reduce using rule 70 (primitivo -> boolean .)
+    WHILE           reduce using rule 70 (primitivo -> boolean .)
+    FOR             reduce using rule 70 (primitivo -> boolean .)
+
+
 state 85
 
-    (67) primitivo -> NUMBER PUNTO NUMBER .
+    (68) primitivo -> NUMBER PUNTO NUMBER .
 
-    COMPARACION     reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    VARIABLE        reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    DEF             reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    IF              reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    WHILE           reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    FOR             reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    $end            reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    PUTS            reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    END             reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    RETURN          reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    ELSE            reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    AND             reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
-    OR              reduce using rule 67 (primitivo -> NUMBER PUNTO NUMBER .)
+    COMPARACION     reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    AND             reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    OR              reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    VARIABLE        reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    PUTS            reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    IF              reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    WHILE           reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    FOR             reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    END             reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    RETURN          reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
+    ELSE            reduce using rule 68 (primitivo -> NUMBER PUNTO NUMBER .)
 
 
 state 86
@@ -1756,117 +1746,117 @@ state 87
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN . NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    NUMBER          shift and go to state 105
+    NUMBER          shift and go to state 107
 
 
 state 88
 
-    (59) expresion -> NUMBER PLUS NUMBER .
+    (60) expresion -> NUMBER PLUS NUMBER .
 
-    VARIABLE        reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    DEF             reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    IF              reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    WHILE           reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    FOR             reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    $end            reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    PUTS            reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    END             reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    RETURN          reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    ELSE            reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
-    RPAREN          reduce using rule 59 (expresion -> NUMBER PLUS NUMBER .)
+    VARIABLE        reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    DEF             reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    IF              reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    WHILE           reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    FOR             reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    $end            reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    PUTS            reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    END             reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    RETURN          reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    ELSE            reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
+    RPAREN          reduce using rule 60 (expresion -> NUMBER PLUS NUMBER .)
 
 
 state 89
 
-    (60) expresion -> NUMBER MINUS NUMBER .
+    (61) expresion -> NUMBER MINUS NUMBER .
 
-    VARIABLE        reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    DEF             reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    IF              reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    WHILE           reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    FOR             reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    $end            reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    PUTS            reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    END             reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    RETURN          reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    ELSE            reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
-    RPAREN          reduce using rule 60 (expresion -> NUMBER MINUS NUMBER .)
+    VARIABLE        reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    DEF             reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    IF              reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    WHILE           reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    FOR             reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    $end            reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    PUTS            reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    END             reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    RETURN          reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    ELSE            reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
+    RPAREN          reduce using rule 61 (expresion -> NUMBER MINUS NUMBER .)
 
 
 state 90
 
-    (62) termino -> termino TIMES factor .
+    (63) termino -> termino TIMES factor .
 
-    TIMES           reduce using rule 62 (termino -> termino TIMES factor .)
-    DIVIDE          reduce using rule 62 (termino -> termino TIMES factor .)
-    VARIABLE        reduce using rule 62 (termino -> termino TIMES factor .)
-    DEF             reduce using rule 62 (termino -> termino TIMES factor .)
-    IF              reduce using rule 62 (termino -> termino TIMES factor .)
-    WHILE           reduce using rule 62 (termino -> termino TIMES factor .)
-    FOR             reduce using rule 62 (termino -> termino TIMES factor .)
-    $end            reduce using rule 62 (termino -> termino TIMES factor .)
-    PUTS            reduce using rule 62 (termino -> termino TIMES factor .)
-    END             reduce using rule 62 (termino -> termino TIMES factor .)
-    RETURN          reduce using rule 62 (termino -> termino TIMES factor .)
-    ELSE            reduce using rule 62 (termino -> termino TIMES factor .)
-    RPAREN          reduce using rule 62 (termino -> termino TIMES factor .)
+    TIMES           reduce using rule 63 (termino -> termino TIMES factor .)
+    DIVIDE          reduce using rule 63 (termino -> termino TIMES factor .)
+    VARIABLE        reduce using rule 63 (termino -> termino TIMES factor .)
+    DEF             reduce using rule 63 (termino -> termino TIMES factor .)
+    IF              reduce using rule 63 (termino -> termino TIMES factor .)
+    WHILE           reduce using rule 63 (termino -> termino TIMES factor .)
+    FOR             reduce using rule 63 (termino -> termino TIMES factor .)
+    $end            reduce using rule 63 (termino -> termino TIMES factor .)
+    PUTS            reduce using rule 63 (termino -> termino TIMES factor .)
+    END             reduce using rule 63 (termino -> termino TIMES factor .)
+    RETURN          reduce using rule 63 (termino -> termino TIMES factor .)
+    ELSE            reduce using rule 63 (termino -> termino TIMES factor .)
+    RPAREN          reduce using rule 63 (termino -> termino TIMES factor .)
 
 
 state 91
 
-    (65) factor -> NUMBER .
+    (66) factor -> NUMBER .
 
-    TIMES           reduce using rule 65 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 65 (factor -> NUMBER .)
-    VARIABLE        reduce using rule 65 (factor -> NUMBER .)
-    DEF             reduce using rule 65 (factor -> NUMBER .)
-    IF              reduce using rule 65 (factor -> NUMBER .)
-    WHILE           reduce using rule 65 (factor -> NUMBER .)
-    FOR             reduce using rule 65 (factor -> NUMBER .)
-    $end            reduce using rule 65 (factor -> NUMBER .)
-    PUTS            reduce using rule 65 (factor -> NUMBER .)
-    END             reduce using rule 65 (factor -> NUMBER .)
-    RETURN          reduce using rule 65 (factor -> NUMBER .)
-    ELSE            reduce using rule 65 (factor -> NUMBER .)
-    RPAREN          reduce using rule 65 (factor -> NUMBER .)
+    TIMES           reduce using rule 66 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 66 (factor -> NUMBER .)
+    VARIABLE        reduce using rule 66 (factor -> NUMBER .)
+    DEF             reduce using rule 66 (factor -> NUMBER .)
+    IF              reduce using rule 66 (factor -> NUMBER .)
+    WHILE           reduce using rule 66 (factor -> NUMBER .)
+    FOR             reduce using rule 66 (factor -> NUMBER .)
+    $end            reduce using rule 66 (factor -> NUMBER .)
+    PUTS            reduce using rule 66 (factor -> NUMBER .)
+    END             reduce using rule 66 (factor -> NUMBER .)
+    RETURN          reduce using rule 66 (factor -> NUMBER .)
+    ELSE            reduce using rule 66 (factor -> NUMBER .)
+    RPAREN          reduce using rule 66 (factor -> NUMBER .)
 
 
 state 92
 
-    (63) termino -> termino DIVIDE factor .
+    (64) termino -> termino DIVIDE factor .
 
-    TIMES           reduce using rule 63 (termino -> termino DIVIDE factor .)
-    DIVIDE          reduce using rule 63 (termino -> termino DIVIDE factor .)
-    VARIABLE        reduce using rule 63 (termino -> termino DIVIDE factor .)
-    DEF             reduce using rule 63 (termino -> termino DIVIDE factor .)
-    IF              reduce using rule 63 (termino -> termino DIVIDE factor .)
-    WHILE           reduce using rule 63 (termino -> termino DIVIDE factor .)
-    FOR             reduce using rule 63 (termino -> termino DIVIDE factor .)
-    $end            reduce using rule 63 (termino -> termino DIVIDE factor .)
-    PUTS            reduce using rule 63 (termino -> termino DIVIDE factor .)
-    END             reduce using rule 63 (termino -> termino DIVIDE factor .)
-    RETURN          reduce using rule 63 (termino -> termino DIVIDE factor .)
-    ELSE            reduce using rule 63 (termino -> termino DIVIDE factor .)
-    RPAREN          reduce using rule 63 (termino -> termino DIVIDE factor .)
+    TIMES           reduce using rule 64 (termino -> termino DIVIDE factor .)
+    DIVIDE          reduce using rule 64 (termino -> termino DIVIDE factor .)
+    VARIABLE        reduce using rule 64 (termino -> termino DIVIDE factor .)
+    DEF             reduce using rule 64 (termino -> termino DIVIDE factor .)
+    IF              reduce using rule 64 (termino -> termino DIVIDE factor .)
+    WHILE           reduce using rule 64 (termino -> termino DIVIDE factor .)
+    FOR             reduce using rule 64 (termino -> termino DIVIDE factor .)
+    $end            reduce using rule 64 (termino -> termino DIVIDE factor .)
+    PUTS            reduce using rule 64 (termino -> termino DIVIDE factor .)
+    END             reduce using rule 64 (termino -> termino DIVIDE factor .)
+    RETURN          reduce using rule 64 (termino -> termino DIVIDE factor .)
+    ELSE            reduce using rule 64 (termino -> termino DIVIDE factor .)
+    RPAREN          reduce using rule 64 (termino -> termino DIVIDE factor .)
 
 
 state 93
 
-    (66) factor -> LPAREN expresion RPAREN .
+    (67) factor -> LPAREN expresion RPAREN .
 
-    TIMES           reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    DIVIDE          reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    VARIABLE        reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    DEF             reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    IF              reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    WHILE           reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    FOR             reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    $end            reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    PUTS            reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    END             reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    RETURN          reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    ELSE            reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
-    RPAREN          reduce using rule 66 (factor -> LPAREN expresion RPAREN .)
+    TIMES           reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    DIVIDE          reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    VARIABLE        reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    DEF             reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    IF              reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    WHILE           reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    FOR             reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    $end            reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    PUTS            reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    END             reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    RETURN          reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    ELSE            reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 67 (factor -> LPAREN expresion RPAREN .)
 
 
 state 94
@@ -1910,15 +1900,15 @@ state 95
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    cuerpo                         shift and go to state 106
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 108
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
@@ -1931,17 +1921,17 @@ state 96
     (50) rubyParams -> . VARIABLE
     (51) rubyParams -> . boolean
     (52) rubyParams -> . NUMBER
-    (70) boolean -> . TRUE
-    (71) boolean -> . FALSE
+    (71) boolean -> . TRUE
+    (72) boolean -> . FALSE
 
-    VARIABLE        shift and go to state 69
-    NUMBER          shift and go to state 73
+    VARIABLE        shift and go to state 68
+    NUMBER          shift and go to state 72
     TRUE            shift and go to state 28
     FALSE           shift and go to state 29
 
-    rubyParams                     shift and go to state 71
-    params                         shift and go to state 107
-    boolean                        shift and go to state 72
+    rubyParams                     shift and go to state 70
+    params                         shift and go to state 109
+    boolean                        shift and go to state 71
 
 state 97
 
@@ -1964,24 +1954,16 @@ state 98
 state 99
 
     (35) retornos -> primitivo .
-    (53) asignacion -> primitivo .
 
-  ! reduce/reduce conflict for END resolved using rule 35 (retornos -> primitivo .)
-  ! reduce/reduce conflict for RETURN resolved using rule 35 (retornos -> primitivo .)
-  ! reduce/reduce conflict for ELSE resolved using rule 35 (retornos -> primitivo .)
     END             reduce using rule 35 (retornos -> primitivo .)
     RETURN          reduce using rule 35 (retornos -> primitivo .)
     ELSE            reduce using rule 35 (retornos -> primitivo .)
-
-  ! END             [ reduce using rule 53 (asignacion -> primitivo .) ]
-  ! RETURN          [ reduce using rule 53 (asignacion -> primitivo .) ]
-  ! ELSE            [ reduce using rule 53 (asignacion -> primitivo .) ]
 
 
 state 100
 
     (36) retornos -> expresion .
-    (57) asignacion -> expresion .
+    (58) asignacion -> expresion .
 
   ! reduce/reduce conflict for END resolved using rule 36 (retornos -> expresion .)
   ! reduce/reduce conflict for RETURN resolved using rule 36 (retornos -> expresion .)
@@ -1990,9 +1972,9 @@ state 100
     RETURN          reduce using rule 36 (retornos -> expresion .)
     ELSE            reduce using rule 36 (retornos -> expresion .)
 
-  ! END             [ reduce using rule 57 (asignacion -> expresion .) ]
-  ! RETURN          [ reduce using rule 57 (asignacion -> expresion .) ]
-  ! ELSE            [ reduce using rule 57 (asignacion -> expresion .) ]
+  ! END             [ reduce using rule 58 (asignacion -> expresion .) ]
+  ! RETURN          [ reduce using rule 58 (asignacion -> expresion .) ]
+  ! ELSE            [ reduce using rule 58 (asignacion -> expresion .) ]
 
 
 state 101
@@ -2006,14 +1988,63 @@ state 101
 
 state 102
 
-    (24) estrucElse -> ELSE cuerpo . END
-    (33) cuerpo -> cuerpo . RETURN retornos
+    (68) primitivo -> NUMBER . PUNTO NUMBER
+    (69) primitivo -> NUMBER .
+    (60) expresion -> NUMBER . PLUS NUMBER
+    (61) expresion -> NUMBER . MINUS NUMBER
+    (53) asignacion -> NUMBER .
+    (66) factor -> NUMBER .
 
-    END             shift and go to state 108
-    RETURN          shift and go to state 76
+  ! reduce/reduce conflict for END resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for ELSE resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for END resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 53 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for ELSE resolved using rule 53 (asignacion -> NUMBER .)
+    PUNTO           shift and go to state 55
+    PLUS            shift and go to state 59
+    MINUS           shift and go to state 60
+    END             reduce using rule 53 (asignacion -> NUMBER .)
+    RETURN          reduce using rule 53 (asignacion -> NUMBER .)
+    ELSE            reduce using rule 53 (asignacion -> NUMBER .)
+    TIMES           reduce using rule 66 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 66 (factor -> NUMBER .)
+
+  ! END             [ reduce using rule 69 (primitivo -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 69 (primitivo -> NUMBER .) ]
+  ! ELSE            [ reduce using rule 69 (primitivo -> NUMBER .) ]
+  ! END             [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 66 (factor -> NUMBER .) ]
+  ! ELSE            [ reduce using rule 66 (factor -> NUMBER .) ]
 
 
 state 103
+
+    (70) primitivo -> boolean .
+    (54) asignacion -> boolean .
+
+  ! reduce/reduce conflict for END resolved using rule 54 (asignacion -> boolean .)
+  ! reduce/reduce conflict for RETURN resolved using rule 54 (asignacion -> boolean .)
+  ! reduce/reduce conflict for ELSE resolved using rule 54 (asignacion -> boolean .)
+    END             reduce using rule 54 (asignacion -> boolean .)
+    RETURN          reduce using rule 54 (asignacion -> boolean .)
+    ELSE            reduce using rule 54 (asignacion -> boolean .)
+
+  ! END             [ reduce using rule 70 (primitivo -> boolean .) ]
+  ! RETURN          [ reduce using rule 70 (primitivo -> boolean .) ]
+  ! ELSE            [ reduce using rule 70 (primitivo -> boolean .) ]
+
+
+state 104
+
+    (24) estrucElse -> ELSE cuerpo . END
+    (33) cuerpo -> cuerpo . RETURN retornos
+
+    END             shift and go to state 110
+    RETURN          shift and go to state 75
+
+
+state 105
 
     (25) estrucElse -> ELSE logica . cuerpo END
     (27) cuerpo -> . declaracion
@@ -2038,20 +2069,20 @@ state 103
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    cuerpo                         shift and go to state 109
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 111
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
 
-state 104
+state 106
 
     (38) declaracion -> VARIABLE . IGUAL asignacion
     (39) declaracion -> VARIABLE . IGUAL asignacion declaracion
@@ -2071,30 +2102,30 @@ state 104
 
     operadorMat                    shift and go to state 17
 
-state 105
+state 107
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER . PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    PUNTO           shift and go to state 110
+    PUNTO           shift and go to state 112
 
 
-state 106
+state 108
 
     (44) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo . END
     (33) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 111
-    RETURN          shift and go to state 76
+    END             shift and go to state 113
+    RETURN          shift and go to state 75
 
 
-state 107
+state 109
 
     (46) params -> rubyParams COMA params .
 
     RPAREN          reduce using rule 46 (params -> rubyParams COMA params .)
 
 
-state 108
+state 110
 
     (24) estrucElse -> ELSE cuerpo END .
 
@@ -2110,23 +2141,23 @@ state 108
     ELSE            reduce using rule 24 (estrucElse -> ELSE cuerpo END .)
 
 
-state 109
+state 111
 
     (25) estrucElse -> ELSE logica cuerpo . END
     (33) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 112
-    RETURN          shift and go to state 76
+    END             shift and go to state 114
+    RETURN          shift and go to state 75
 
 
-state 110
+state 112
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO . PUNTO NUMBER RPAREN cuerpo END
 
-    PUNTO           shift and go to state 113
+    PUNTO           shift and go to state 115
 
 
-state 111
+state 113
 
     (44) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo END .
 
@@ -2138,7 +2169,7 @@ state 111
     $end            reduce using rule 44 (declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo END .)
 
 
-state 112
+state 114
 
     (25) estrucElse -> ELSE logica cuerpo END .
 
@@ -2154,21 +2185,21 @@ state 112
     ELSE            reduce using rule 25 (estrucElse -> ELSE logica cuerpo END .)
 
 
-state 113
+state 115
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO . NUMBER RPAREN cuerpo END
 
-    NUMBER          shift and go to state 114
+    NUMBER          shift and go to state 116
 
 
-state 114
+state 116
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER . RPAREN cuerpo END
 
-    RPAREN          shift and go to state 115
+    RPAREN          shift and go to state 117
 
 
-state 115
+state 117
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN . cuerpo END
     (27) cuerpo -> . declaracion
@@ -2193,29 +2224,29 @@ state 115
     (47) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
     VARIABLE        shift and go to state 8
-    PUTS            shift and go to state 51
+    PUTS            shift and go to state 50
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
 
-    cuerpo                         shift and go to state 116
-    declaracion                    shift and go to state 48
-    imprimir                       shift and go to state 49
-    estructurasControl             shift and go to state 50
+    cuerpo                         shift and go to state 118
+    declaracion                    shift and go to state 47
+    imprimir                       shift and go to state 48
+    estructurasControl             shift and go to state 49
     estrucIf                       shift and go to state 5
     estrucWhile                    shift and go to state 6
     sentenciafor                   shift and go to state 7
 
-state 116
+state 118
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo . END
     (33) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 117
-    RETURN          shift and go to state 76
+    END             shift and go to state 119
+    RETURN          shift and go to state 75
 
 
-state 117
+state 119
 
     (47) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END .
 
@@ -2234,13 +2265,17 @@ WARNING:
 WARNING: Conflicts:
 WARNING: 
 WARNING: shift/reduce conflict for VARIABLE in state 33 resolved as shift
-WARNING: shift/reduce conflict for VARIABLE in state 67 resolved as shift
+WARNING: shift/reduce conflict for VARIABLE in state 66 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 77 resolved as shift
 WARNING: shift/reduce conflict for RETURN in state 78 resolved as shift
 WARNING: shift/reduce conflict for RETURN in state 79 resolved as shift
-WARNING: shift/reduce conflict for RETURN in state 80 resolved as shift
-WARNING: reduce/reduce conflict in state 40 resolved using rule (factor -> NUMBER)
-WARNING: rejected rule (primitivo -> NUMBER) in state 40
-WARNING: reduce/reduce conflict in state 99 resolved using rule (retornos -> primitivo)
-WARNING: rejected rule (asignacion -> primitivo) in state 99
+WARNING: reduce/reduce conflict in state 34 resolved using rule (asignacion -> NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 34
 WARNING: reduce/reduce conflict in state 100 resolved using rule (retornos -> expresion)
 WARNING: rejected rule (asignacion -> expresion) in state 100
+WARNING: reduce/reduce conflict in state 102 resolved using rule (asignacion -> NUMBER)
+WARNING: rejected rule (primitivo -> NUMBER) in state 102
+WARNING: reduce/reduce conflict in state 102 resolved using rule (asignacion -> NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 102
+WARNING: reduce/reduce conflict in state 103 resolved using rule (asignacion -> boolean)
+WARNING: rejected rule (primitivo -> boolean) in state 103

@@ -1,7 +1,9 @@
 import ply.yacc as yacc
 from lexer import tokens
 
-resultado= ""
+resultado = ""
+
+
 # aporte de Josue Montoya Ortiz
 def p_sentecias(p):
     '''sentencias : estructurasControl
@@ -107,7 +109,8 @@ def p_declaracion(p):
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
     global resultado
-    resultado+= f'\n Variable definida con nombre : {p[1]}'
+    resultado += f'\n Variable definida con nombre:{p[1]} y con valor {p[3]}'
+
 
 def p_opcion(p):
     '''opcion : VARIABLE
@@ -127,14 +130,17 @@ def p_params(p):
                   '''
     pass
 
-#aporte sentencia for
+
+# aporte sentencia for
 def p_sentenciafor(p):
     'sentenciafor : FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END'
+
 
 def p_imprimir(p):
     '''imprimir : PUTS STRING
                     | PUTS VARIABLE
     '''
+
 
 # aporte Hatus Pellegrini
 def p_rubyParams(p):
@@ -145,8 +151,10 @@ def p_rubyParams(p):
 
 # aporte Hatus Pellegrini
 def p_asignacion_primitivo(p):
-    'asignacion : primitivo'
-    p[0]=p[1]
+    '''asignacion : NUMBER
+                    | boolean
+                    '''
+    p[0] = p[1]
 
 
 # aporte de Moisés Atupaña
@@ -171,7 +179,6 @@ def p_asignacion_fichero(p):
 def p_asignacion_expresion(p):
     'asignacion : expresion'
     p[0] = p[1]
-    print(p[0])
 
 
 # aporte de Moisés Atupaña
@@ -184,6 +191,7 @@ def p_asignacion_string(p):
 def p_expresion_suma(p):
     'expresion : NUMBER PLUS NUMBER'
     p[0] = p[1] + p[3]
+
 
 # aporte Hatus Pellegrini
 def p_expresion_resta(p):
@@ -201,6 +209,7 @@ def p_expresion_term(p):
 def p_termino_multi(p):
     'termino : termino TIMES factor'
     p[0] = p[1] * p[3]
+
 
 # aporte Hatus Pellegrini
 def p_termino_div(p):
@@ -233,8 +242,7 @@ def p_primitivo_flotante(p):
 # aporte Hatus Pellegrini
 def p_primitivo_number(p):
     'primitivo : NUMBER'
-    p[0]=p[1]
-
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
@@ -259,7 +267,6 @@ def p_error(p):
         resultado += f'\n Error Sintactico de tipo {str(p.type)}'
     else:
         resultado += '\n Error Sintactico!'
-
 
 
 # Aporte de Moisés Atupaña
@@ -291,6 +298,8 @@ data = '''
      
      '''
 parser = yacc.yacc()
+
+
 def getSintactico(data):
     global resultado
     resultado += ""
@@ -299,9 +308,8 @@ def getSintactico(data):
             st = data
         except EOFError:
             break
-        if not st : continue
+        if not st: continue
         res = parser.parse(st)
         break
     print(len(resultado))
     return resultado
-
