@@ -12,6 +12,7 @@ def p_sentecias(p):
                 | declaracion sentencias
                 | declaracion_funcion
                 | declaracion_funcion sentencias
+                | funcioneshash
                 '''
 
 
@@ -109,6 +110,8 @@ def p_retornos(p):
 def p_declaracion(p):
     '''declaracion : VARIABLE IGUAL asignacion
                     | VARIABLE IGUAL asignacion declaracion
+                    | VARIABLE IGUAL hashf
+                    | VARIABLE IGUAL hashf declaracion
                     | VARIABLE operadorMat IGUAL opcion
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
@@ -169,9 +172,8 @@ def p_contenidohash(p):
                     | elemento COMA contenidohash'''
 
 # aporte de Moisés Atupaña
-def p_asignacion_hash(p):
-    'asignacion : LLLAVE contenidohash RLLAVE'
-    p[0] = p[2]
+def p_hashf(p):
+    'hashf : LLLAVE contenidohash RLLAVE'
     global resultado
     resultado += "\n HASH definido"
 
@@ -285,10 +287,12 @@ def p_funcioneshash(p):
                     | hkeys
                     | hvalues
                     '''
+    global resultado
     resultado += "\n Función de Hash"
 
 def p_hlength(p):
-    'hlength : asignacion PUNTO LENGTH LPAREN  RPAREN'
+    'hlength : hashf PUNTO LENGTH LPAREN  RPAREN'
+
 
 # falta interpoalcion
 
@@ -301,21 +305,23 @@ def p_error(p):
 
 
 def p_haskey(p):
-    'haskey : asignacion HASKEY INTERROGACION LPAREN clave RPAREN'
+    'haskey : hashf HASKEY INTERROGACION LPAREN clave RPAREN'
 
 def p_hkeys(p):
-    'hkeys : asignacion PUNTO KEY LPAREN value RPAREN'
+    'hkeys : hashf PUNTO KEY LPAREN value RPAREN'
 
 def p_hvalues(p):
-    'hvalues : asignacion PUNTO VALUES'
+    'hvalues : hashf PUNTO VALUES'
 
 def p_clave(p):
     '''clave : STRING
+            | VARIABLE
             | NUMBER
             | NUMBER PUNTO NUMBER'''
 
 def p_value(p):
     '''value : NUMBER
+            | VARIABLE
              | STRING
              | boolean
              | NUMBER PUNTO NUMBER'''
@@ -325,7 +331,7 @@ data = '''
      var2=30
      var3=40
      var+=var2
-     hash2= {name => "Joe",age=>35} 
+     hash2= {name => "Joe",age=>35}.length() 
      arreglo1=[8,'nose',4]
      def suma(var1,var2)
         var=5

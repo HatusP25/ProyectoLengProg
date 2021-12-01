@@ -62,7 +62,6 @@ tokens = (
              'DARROBA',
              'GUIONBAJO',
              'VARIABLE',
-             'HASH',
              'ARREGLO',
              'FICHERO',
              'COMPARACION',
