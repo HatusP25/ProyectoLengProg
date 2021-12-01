@@ -14,6 +14,7 @@ def p_sentecias(p):
                 | declaracion_funcion
                 | declaracion_funcion sentencias
                 | funcioneshash
+                | funcioneshash sentencias
                 '''
 
 
@@ -297,7 +298,7 @@ def p_hlength(p):
     'hlength : hashf PUNTO LENGTH LPAREN  RPAREN'
     global resultado
     resultado += f"\n {len(arreglo_claves)}"
-    resultado += " \n length "
+    resultado += " \n length -"
 
 
 # falta interpoalcion
@@ -312,18 +313,31 @@ def p_error(p):
 
 def p_haskey(p):
     'haskey : hashf HASKEY INTERROGACION LPAREN clave RPAREN'
+    global resultado
+    if p[5] in arreglo_claves:
+        resultado += f"\n True"
+    else:
+        resultado += f"\n False"
+    resultado += " \n has_key?- "
 
 def p_hkeys(p):
-    'hkeys : hashf PUNTO KEY LPAREN value RPAREN'
+    'hkeys : hashf PUNTO KEY'
+    global resultado
+    resultado += f"\n {arreglo_claves}"
+    resultado += " \n keys-"
 
 def p_hvalues(p):
     'hvalues : hashf PUNTO VALUES'
+    global resultado
+    resultado += f"\n {arreglo_valores}"
+    resultado += " \n values - "
 
 def p_clave(p):
     '''clave : STRING
             | VARIABLE
             | NUMBER
             | NUMBER PUNTO NUMBER'''
+    p[0] = p[1]
 
 def p_value(p):
     '''value : NUMBER
@@ -331,6 +345,7 @@ def p_value(p):
              | STRING
              | boolean
              | NUMBER PUNTO NUMBER'''
+    p[0]=p[1]
 # Aporte de Moisés Atupaña
 data = '''
      var1=20
@@ -339,6 +354,8 @@ data = '''
      var+=var2
      hash2= {name => "Joe",age=>35}
      {name => "Joe",age=>35}.length()
+     {name => "Joe",age=>35}.keys
+     {name => "Joe",age=>35}.values
 
      arreglo1=[8,'nose',4]
      def suma(var1,var2)
