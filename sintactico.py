@@ -2,7 +2,8 @@ import ply.yacc as yacc
 from lexer import tokens
 
 resultado = ""
-
+arreglo_claves=[]
+arreglo_valores=[]
 
 # aporte de Josue Montoya Ortiz
 def p_sentecias(p):
@@ -180,6 +181,8 @@ def p_hashf(p):
 
 def p_elemento(p):
     'elemento : clave FHASH value'
+    arreglo_claves.append(p[1])
+    arreglo_valores.append(p[3])
 
 # aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
@@ -288,10 +291,13 @@ def p_funcioneshash(p):
                     | hvalues
                     '''
     global resultado
-    resultado += "\n Función de Hash"
+    resultado += "-Función de Hash"
 
 def p_hlength(p):
     'hlength : hashf PUNTO LENGTH LPAREN  RPAREN'
+    global resultado
+    resultado += f"\n {len(arreglo_claves)}"
+    resultado += " \n length "
 
 
 # falta interpoalcion

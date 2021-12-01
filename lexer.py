@@ -19,7 +19,7 @@ reserved = {
     'ensure': 'ENSURE',
     'false': 'FALSE',
     'has_key': 'HASKEY',
-    'key': 'KEY',
+    'keys': 'KEY',
     'module': 'MODULE',
     'length': 'LENGTH',
     'next': 'NEXT',
