@@ -238,6 +238,7 @@ def p_termino_div(p):
 # aporte Hatus Pellegrini
 def p_termino_factor(p):
     'termino : factor'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
@@ -249,6 +250,7 @@ def p_factor_number(p):
 # aporte Hatus Pellegrini
 def p_factor_expresion(p):
     'factor : LPAREN expresion RPAREN'
+    p[0] = p[2]
 
 
 # aporte Hatus Pellegrini
