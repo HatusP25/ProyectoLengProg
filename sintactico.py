@@ -295,7 +295,7 @@ def p_hlength(p):
 def p_error(p):
     global resultado
     if p:
-        resultado += f'\n Error Sintactico de tipo {str(p.type)}'
+        resultado += f'\n Error Sintactico de tipo {str(p.type)} con valor: {str(p.value)}'
     else:
         resultado += '\n Error Sintactico!'
 

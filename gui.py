@@ -14,7 +14,10 @@ class Window(QWidget):
     def inicializar(self):
 
         self.setWindowTitle("Analizador de Ruby")
+        self.setWindowIcon(QtGui.QIcon('ruby.png'))
+        self.setFixedSize(900,600)
         self.setGeometry(100, 100, 900, 600)
+        self.setStyleSheet("background:rgb(245, 245, 245)")
 
         # Contenedor Vbox para todos los elementos
         self.contenedor = QVBoxLayout(self)
@@ -24,10 +27,10 @@ class Window(QWidget):
         self.titulo.setAlignment(QtCore.Qt.AlignCenter)
         # Contenedor Editor de Texto
         self.cont_Texto = QHBoxLayout(self)
-
         # Editor de Texto
         self.editor = QPlainTextEdit(self)
         self.editor.setPlaceholderText("Escriba aqui...")
+        self.editor.setStyleSheet("border-color:black")
         self.editor.setMaximumWidth(600)
         self.editor.setMaximumHeight(300)
 
