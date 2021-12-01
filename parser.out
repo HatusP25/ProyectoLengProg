@@ -17,7 +17,6 @@ Unused terminals:
     ELSIF
     ENSURE
     GUIONBAJO
-    HASH
     ID
     LBRACKET
     MODULE
@@ -165,7 +164,6 @@ FHASH                : 61
 FICHERO              : 63
 FOR                  : 50
 GUIONBAJO            : 
-HASH                 : 
 HASKEY               : 84
 ID                   : 
 IF                   : 17 18
