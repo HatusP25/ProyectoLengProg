@@ -156,13 +156,20 @@ def p_asignacion_primitivo(p):
                     '''
     p[0] = p[1]
 
+def p_contenidohash(p):
+    '''contenidohash : elemento
+                    | elemento COMA contenidohash'''
 
 # aporte de Moisés Atupaña
 def p_asignacion_hash(p):
-    'asignacion : HASH'
-    p[0] = p[1]
+    'asignacion : LLLAVE contenidohash RLLAVE'
+    p[0] = p[2]
+    global resultado
+    resultado += "\n HASH definido"
 
 
+def p_elemento(p):
+    'elemento : clave FHASH value'
 # aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
     'asignacion : ARREGLO'
@@ -258,6 +265,17 @@ def p_boolean(p):
         '''
     p[0] = p[1]
 
+#funciones hash-semantica Moisés Atupaña
+def p_funcioneshash(p):
+    '''funcioneshash : hlength
+                    | haskey
+                    | hkeys
+                    | hvalues
+                    '''
+    resultado += "\n Función de Hash"
+
+def p_hlength(p):
+    'hlength : asignacion PUNTO LENGTH LPAREN  RPAREN'
 
 # falta interpoalcion
 
@@ -269,13 +287,32 @@ def p_error(p):
         resultado += '\n Error Sintactico!'
 
 
+def p_haskey(p):
+    'haskey : asignacion HASKEY INTERROGACION LPAREN clave RPAREN'
+
+def p_hkeys(p):
+    'hkeys : asignacion PUNTO KEY LPAREN value RPAREN'
+
+def p_hvalues(p):
+    'hvalues : asignacion PUNTO VALUES'
+
+def p_clave(p):
+    '''clave : STRING
+            | NUMBER
+            | NUMBER PUNTO NUMBER'''
+
+def p_value(p):
+    '''value : NUMBER
+             | STRING
+             | boolean
+             | NUMBER PUNTO NUMBER'''
 # Aporte de Moisés Atupaña
 data = '''
      var1=20
      var2=30
      var3=40
      var+=var2
-     hash2= {:name => "Joe",:age=>35} 
+     hash2= {name => "Joe",age=>35} 
      arreglo1=[8,'nose',4]
      def suma(var1,var2)
         var=5

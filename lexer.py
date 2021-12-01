@@ -18,7 +18,10 @@ reserved = {
     'end': 'END',
     'ensure': 'ENSURE',
     'false': 'FALSE',
+    'has_key': 'HASKEY',
+    'key': 'KEY',
     'module': 'MODULE',
+    'length': 'LENGTH',
     'next': 'NEXT',
     'nil': 'NIL',
     'not': 'NOT',
@@ -35,6 +38,7 @@ reserved = {
     'undef': 'UNDEF',
     'unles': 'UNLES',
     'until': 'UNTIL',
+    'values': 'VALUES',
     'when': 'WHEN',
     'while': 'WHILE',
     'yield': 'YIELD'
@@ -68,9 +72,11 @@ tokens = (
              'STRING',
              'IGUAL',
              'ID',
-             'BOOLEANO'
+             'BOOLEANO',
+             'INTERROGACION',
+             'FHASH'
          ) + tuple(reserved.values())
-
+t_FHASH= r'=>'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -91,6 +97,7 @@ t_LLLAVE = r'{'
 t_RLLAVE = r'}'
 t_IGUAL = r'='
 t_BOOLEANO = r'TRUE|FALSE'
+t_INTERROGACION =r'\?'
 
 
 # A regular expression rule with some action code
@@ -119,14 +126,6 @@ def t_ARREGLO(t):
 
 def t_FICHERO(t):
     r"File\.(open|new)\('[\w]+\.txt','(r|w|a)'\)"
-    return t
-
-
-# Aporte Moises Atupaña
-# Define una regla para inicializar Hashes
-def t_HASH(t):
-    r'HASH\.new|{((:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+),)*(:[a-z]+(\s)*=>(\s)*("[0-9a-zA-Z]+"|[0-9]+)))*}'
-
     return t
 
 
