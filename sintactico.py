@@ -337,7 +337,9 @@ data = '''
      var2=30
      var3=40
      var+=var2
-     hash2= {name => "Joe",age=>35}.length() 
+     hash2= {name => "Joe",age=>35}
+     {name => "Joe",age=>35}.length()
+
      arreglo1=[8,'nose',4]
      def suma(var1,var2)
         var=5
