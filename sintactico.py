@@ -134,12 +134,16 @@ def p_params(p):
 # aporte sentencia for
 def p_sentenciafor(p):
     'sentenciafor : FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END'
+    global resultado
+    resultado += " \n Se ha defenido un ciclo for "
 
 
 def p_imprimir(p):
     '''imprimir : PUTS STRING
-                    | PUTS VARIABLE
+                | PUTS VARIABLE
     '''
+    global resultado
+    resultado+= f"\n Se imprimio = {p[2]}"
 
 
 # aporte Hatus Pellegrini
@@ -170,6 +174,7 @@ def p_asignacion_hash(p):
 
 def p_elemento(p):
     'elemento : clave FHASH value'
+
 # aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
     'asignacion : ARREGLO'
@@ -181,6 +186,8 @@ def p_asignacion_fichero(p):
     'asignacion : FICHERO'
     p[0] = p[1]
 
+    global resultado
+    resultado+= " \n Se ha  definido un fichero"
 
 # aporte Hatus Pellegrini
 def p_asignacion_expresion(p):
