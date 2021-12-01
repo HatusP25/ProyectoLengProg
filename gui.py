@@ -87,6 +87,7 @@ class Window(QWidget):
         print("se aplasto sintactico")
         self.textSint.clear()
         res = getSintactico(self.editor.toPlainText())
+        print(res)
         if  len(res) > 0:
             print("Entro al if del res")
             self.textSint.insertPlainText(res)

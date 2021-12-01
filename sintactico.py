@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 from lexer import tokens
 
-
+resultado= ""
 # aporte de Josue Montoya Ortiz
 def p_sentecias(p):
     '''sentencias : estructurasControl
@@ -106,7 +106,8 @@ def p_declaracion(p):
                     | VARIABLE operadorMat IGUAL opcion
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
-
+    global resultado
+    resultado+= "\n variable"
 
 def p_opcion(p):
     '''opcion : VARIABLE
@@ -262,21 +263,27 @@ data = '''
      end
      for i in(1..9)
         puts "hola mundo"
+        for j in(1..9)
+            puts "Adios mundo"
+        end
      end
+     while 12>10 and 2<3
+        puts "hola mundo"
+    end
      
      '''
-
+parser = yacc.yacc()
 def getSintactico(data):
-    parser = yacc.yacc()
-    resultado = ''
+    global resultado
+    resultado += ""
     while True:
         try:
             st = data
         except EOFError:
             break
         if not st : continue
-        res = parser.parse()
+        res = parser.parse(st)
         break
-    print(resultado)
+    print(len(resultado))
     return resultado
 
