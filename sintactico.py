@@ -107,7 +107,7 @@ def p_declaracion(p):
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
     global resultado
-    resultado+= "\n variable"
+    resultado+= "\n variable definida : " + p[1]
 
 def p_opcion(p):
     '''opcion : VARIABLE
@@ -146,31 +146,37 @@ def p_rubyParams(p):
 # aporte Hatus Pellegrini
 def p_asignacion_primitivo(p):
     'asignacion : primitivo'
+    p[0]=p[1]
 
 
 # aporte de Moisés Atupaña
 def p_asignacion_hash(p):
     'asignacion : HASH'
+    p[0] = p[1]
 
 
 # aporte de Moisés Atupaña
 def p_asignacion_arreglo(p):
     'asignacion : ARREGLO'
+    p[0] = p[1]
 
 
 # aporte de Moisés Atupaña
 def p_asignacion_fichero(p):
     'asignacion : FICHERO'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
 def p_asignacion_expresion(p):
     'asignacion : expresion'
+    p[0] = p[1]
 
 
 # aporte de Moisés Atupaña
 def p_asignacion_string(p):
     'asignacion : STRING'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
@@ -206,6 +212,7 @@ def p_termino_factor(p):
 # aporte Hatus Pellegrini
 def p_factor_number(p):
     'factor : NUMBER'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
@@ -216,17 +223,20 @@ def p_factor_expresion(p):
 # aporte Hatus Pellegrini
 def p_primitivo_flotante(p):
     'primitivo : NUMBER PUNTO NUMBER'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
 def p_primitivo_number(p):
     'primitivo : NUMBER'
+    p[0]=p[1]
 
 
 
 # aporte Hatus Pellegrini
 def p_primitivo_booleano(p):
     'primitivo : boolean'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
