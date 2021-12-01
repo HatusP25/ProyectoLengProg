@@ -14,6 +14,7 @@ def p_sentecias(p):
                 | declaracion_funcion
                 | declaracion_funcion sentencias
                 | funcioneshash
+                | funcioneshash sentencias
                 '''
 
 
