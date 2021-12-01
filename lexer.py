@@ -19,7 +19,7 @@ reserved = {
     'ensure': 'ENSURE',
     'false': 'FALSE',
     'has_key': 'HASKEY',
-    'key': 'KEY',
+    'keys': 'KEY',
     'module': 'MODULE',
     'length': 'LENGTH',
     'next': 'NEXT',
@@ -147,7 +147,9 @@ def t_VARIABLE(t):
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
 
-
+def t_COMMENT(t):
+    r'\#.*'
+    pass
 
 
 def getTokenizado(data):
