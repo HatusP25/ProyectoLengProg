@@ -337,6 +337,7 @@ def p_clave(p):
             | VARIABLE
             | NUMBER
             | NUMBER PUNTO NUMBER'''
+    p[0] = p[1]
 
 def p_value(p):
     '''value : NUMBER
@@ -344,6 +345,7 @@ def p_value(p):
              | STRING
              | boolean
              | NUMBER PUNTO NUMBER'''
+    p[0]=p[1]
 # Aporte de Moisés Atupaña
 data = '''
      var1=20
