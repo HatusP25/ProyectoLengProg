@@ -107,7 +107,7 @@ def p_declaracion(p):
                     | VARIABLE operadorMat IGUAL opcion declaracion
                     '''
     global resultado
-    resultado+= "\n variable definida : " + p[1]
+    resultado+= f'\n Variable definida con nombre : {p[1]}'
 
 def p_opcion(p):
     '''opcion : VARIABLE
@@ -171,6 +171,7 @@ def p_asignacion_fichero(p):
 def p_asignacion_expresion(p):
     'asignacion : expresion'
     p[0] = p[1]
+    print(p[0])
 
 
 # aporte de Moisés Atupaña
@@ -182,26 +183,29 @@ def p_asignacion_string(p):
 # aporte Hatus Pellegrini
 def p_expresion_suma(p):
     'expresion : NUMBER PLUS NUMBER'
-
+    p[0] = p[1] + p[3]
 
 # aporte Hatus Pellegrini
 def p_expresion_resta(p):
     'expresion : NUMBER MINUS NUMBER'
+    p[0] = p[1] - p[3]
 
 
 # aporte Hatus Pellegrini
 def p_expresion_term(p):
     'expresion : termino'
+    p[0] = p[1]
 
 
 # aporte Hatus Pellegrini
 def p_termino_multi(p):
     'termino : termino TIMES factor'
-
+    p[0] = p[1] * p[3]
 
 # aporte Hatus Pellegrini
 def p_termino_div(p):
     'termino : termino DIVIDE factor'
+    p[0] = p[1] / p[3]
 
 
 # aporte Hatus Pellegrini
@@ -244,13 +248,17 @@ def p_boolean(p):
     '''boolean : TRUE
              | FALSE
         '''
+    p[0] = p[1]
 
 
 # falta interpoalcion
 
 def p_error(p):
-    print("Error sintactico")
-    print(p)
+    global resultado
+    if p:
+        resultado += f'\n Error Sintactico de tipo {str(p.type)}'
+    else:
+        resultado += '\n Error Sintactico!'
 
 
 

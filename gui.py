@@ -79,20 +79,15 @@ class Window(QWidget):
         self.textSint.clear()
 
     def lexico(self):
-        print("se aplasto lexico")
         self.textLex.clear()
         self.textLex.insertPlainText(getTokenizado(self.editor.toPlainText()))
 
     def sintactico(self):
-        print("se aplasto sintactico")
         self.textSint.clear()
         res = getSintactico(self.editor.toPlainText())
-        print(res)
         if  len(res) > 0:
-            print("Entro al if del res")
             self.textSint.insertPlainText(res)
         else:
-            print("no entro al if del res")
             self.textSint.insertPlainText("Todo Semanticamente Correcto!")
         pass
 
