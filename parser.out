@@ -123,7 +123,7 @@ Rule 81    funcioneshash -> hkeys
 Rule 82    funcioneshash -> hvalues
 Rule 83    hlength -> hashf PUNTO LENGTH LPAREN RPAREN
 Rule 84    haskey -> hashf HASKEY INTERROGACION LPAREN clave RPAREN
-Rule 85    hkeys -> hashf PUNTO KEY LPAREN value RPAREN
+Rule 85    hkeys -> hashf PUNTO KEY
 Rule 86    hvalues -> hashf PUNTO VALUES
 Rule 87    clave -> STRING
 Rule 88    clave -> VARIABLE
@@ -174,7 +174,7 @@ KEY                  : 85
 LBRACKET             : 
 LENGTH               : 83
 LLLAVE               : 60
-LPAREN               : 47 50 73 83 84 85
+LPAREN               : 47 50 73 83 84
 MINUS                : 13 67
 MODULE               : 
 NEXT                 : 
@@ -191,7 +191,7 @@ RESCUE               :
 RETRY                : 
 RETURN               : 34
 RLLAVE               : 60
-RPAREN               : 47 50 73 83 84 85
+RPAREN               : 47 50 73 83 84
 SELF                 : 
 STRING               : 51 65 87 93
 SUPER                : 
@@ -244,7 +244,7 @@ rubyParams           : 48 49
 sentenciafor         : 10
 sentencias           : 3 4 6 0
 termino              : 68 69 70
-value                : 61 85
+value                : 61
 
 Parsing method: LALR
 
@@ -278,7 +278,7 @@ state 0
     (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
     (83) hlength -> . hashf PUNTO LENGTH LPAREN RPAREN
     (84) haskey -> . hashf HASKEY INTERROGACION LPAREN clave RPAREN
-    (85) hkeys -> . hashf PUNTO KEY LPAREN value RPAREN
+    (85) hkeys -> . hashf PUNTO KEY
     (86) hvalues -> . hashf PUNTO VALUES
     (60) hashf -> . LLLAVE contenidohash RLLAVE
 
@@ -340,7 +340,7 @@ state 2
     (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
     (83) hlength -> . hashf PUNTO LENGTH LPAREN RPAREN
     (84) haskey -> . hashf HASKEY INTERROGACION LPAREN clave RPAREN
-    (85) hkeys -> . hashf PUNTO KEY LPAREN value RPAREN
+    (85) hkeys -> . hashf PUNTO KEY
     (86) hvalues -> . hashf PUNTO VALUES
     (60) hashf -> . LLLAVE contenidohash RLLAVE
 
@@ -397,7 +397,7 @@ state 3
     (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
     (83) hlength -> . hashf PUNTO LENGTH LPAREN RPAREN
     (84) haskey -> . hashf HASKEY INTERROGACION LPAREN clave RPAREN
-    (85) hkeys -> . hashf PUNTO KEY LPAREN value RPAREN
+    (85) hkeys -> . hashf PUNTO KEY
     (86) hvalues -> . hashf PUNTO VALUES
     (60) hashf -> . LLLAVE contenidohash RLLAVE
 
@@ -454,7 +454,7 @@ state 4
     (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
     (83) hlength -> . hashf PUNTO LENGTH LPAREN RPAREN
     (84) haskey -> . hashf HASKEY INTERROGACION LPAREN clave RPAREN
-    (85) hkeys -> . hashf PUNTO KEY LPAREN value RPAREN
+    (85) hkeys -> . hashf PUNTO KEY
     (86) hvalues -> . hashf PUNTO VALUES
     (60) hashf -> . LLLAVE contenidohash RLLAVE
 
@@ -562,7 +562,7 @@ state 10
 
     (83) hlength -> hashf . PUNTO LENGTH LPAREN RPAREN
     (84) haskey -> hashf . HASKEY INTERROGACION LPAREN clave RPAREN
-    (85) hkeys -> hashf . PUNTO KEY LPAREN value RPAREN
+    (85) hkeys -> hashf . PUNTO KEY
     (86) hvalues -> hashf . PUNTO VALUES
 
     PUNTO           shift and go to state 28
@@ -778,7 +778,7 @@ state 27
 state 28
 
     (83) hlength -> hashf PUNTO . LENGTH LPAREN RPAREN
-    (85) hkeys -> hashf PUNTO . KEY LPAREN value RPAREN
+    (85) hkeys -> hashf PUNTO . KEY
     (86) hvalues -> hashf PUNTO . VALUES
 
     LENGTH          shift and go to state 60
@@ -1336,9 +1336,9 @@ state 60
 
 state 61
 
-    (85) hkeys -> hashf PUNTO KEY . LPAREN value RPAREN
+    (85) hkeys -> hashf PUNTO KEY .
 
-    LPAREN          shift and go to state 93
+    $end            reduce using rule 85 (hkeys -> hashf PUNTO KEY .)
 
 
 state 62
@@ -1352,7 +1352,7 @@ state 63
 
     (84) haskey -> hashf HASKEY INTERROGACION . LPAREN clave RPAREN
 
-    LPAREN          shift and go to state 94
+    LPAREN          shift and go to state 93
 
 
 state 64
@@ -1366,14 +1366,14 @@ state 64
     (77) boolean -> . TRUE
     (78) boolean -> . FALSE
 
-    VARIABLE        shift and go to state 95
-    NUMBER          shift and go to state 99
+    VARIABLE        shift and go to state 94
+    NUMBER          shift and go to state 98
     TRUE            shift and go to state 37
     FALSE           shift and go to state 38
 
-    params                         shift and go to state 96
-    rubyParams                     shift and go to state 97
-    boolean                        shift and go to state 98
+    params                         shift and go to state 95
+    rubyParams                     shift and go to state 96
+    boolean                        shift and go to state 97
 
 state 65
 
@@ -1383,11 +1383,11 @@ state 65
     (25) estrucElse -> . ELSE cuerpo END
     (26) estrucElse -> . ELSE logica cuerpo END
 
-    END             shift and go to state 100
-    RETURN          shift and go to state 102
-    ELSE            shift and go to state 103
+    END             shift and go to state 99
+    RETURN          shift and go to state 101
+    ELSE            shift and go to state 102
 
-    estrucElse                     shift and go to state 101
+    estrucElse                     shift and go to state 100
 
 state 66
 
@@ -1426,7 +1426,7 @@ state 66
     FOR             shift and go to state 18
 
     declaracion                    shift and go to state 66
-    cuerpo                         shift and go to state 104
+    cuerpo                         shift and go to state 103
     imprimir                       shift and go to state 67
     estructurasControl             shift and go to state 68
     estrucIf                       shift and go to state 6
@@ -1470,7 +1470,7 @@ state 67
     FOR             shift and go to state 18
 
     imprimir                       shift and go to state 67
-    cuerpo                         shift and go to state 105
+    cuerpo                         shift and go to state 104
     declaracion                    shift and go to state 66
     estructurasControl             shift and go to state 68
     estrucIf                       shift and go to state 6
@@ -1514,7 +1514,7 @@ state 68
     FOR             shift and go to state 18
 
     estructurasControl             shift and go to state 68
-    cuerpo                         shift and go to state 106
+    cuerpo                         shift and go to state 105
     declaracion                    shift and go to state 66
     imprimir                       shift and go to state 67
     estrucIf                       shift and go to state 6
@@ -1526,8 +1526,8 @@ state 69
     (51) imprimir -> PUTS . STRING
     (52) imprimir -> PUTS . VARIABLE
 
-    STRING          shift and go to state 107
-    VARIABLE        shift and go to state 108
+    STRING          shift and go to state 106
+    VARIABLE        shift and go to state 107
 
 
 state 70
@@ -1551,7 +1551,7 @@ state 70
     NUMBER          shift and go to state 39
 
     condicion                      shift and go to state 32
-    logica                         shift and go to state 109
+    logica                         shift and go to state 108
     comparador                     shift and go to state 33
     boolean                        shift and go to state 34
     primitivo                      shift and go to state 36
@@ -1592,15 +1592,15 @@ state 73
     TRUE            shift and go to state 37
     FALSE           shift and go to state 38
 
-    comparador                     shift and go to state 110
+    comparador                     shift and go to state 109
     primitivo                      shift and go to state 36
-    boolean                        shift and go to state 111
+    boolean                        shift and go to state 110
 
 state 74
 
     (74) primitivo -> NUMBER PUNTO . NUMBER
 
-    NUMBER          shift and go to state 112
+    NUMBER          shift and go to state 111
 
 
 state 75
@@ -1608,15 +1608,15 @@ state 75
     (27) estrucWhile -> WHILE logica cuerpo . END
     (34) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 113
-    RETURN          shift and go to state 102
+    END             shift and go to state 112
+    RETURN          shift and go to state 101
 
 
 state 76
 
     (50) sentenciafor -> FOR VARIABLE IN . LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    LPAREN          shift and go to state 114
+    LPAREN          shift and go to state 113
 
 
 state 77
@@ -1654,7 +1654,7 @@ state 78
     NUMBER          shift and go to state 47
 
     elemento                       shift and go to state 43
-    contenidohash                  shift and go to state 115
+    contenidohash                  shift and go to state 114
     clave                          shift and go to state 44
 
 state 79
@@ -1668,20 +1668,20 @@ state 79
     (77) boolean -> . TRUE
     (78) boolean -> . FALSE
 
-    NUMBER          shift and go to state 117
-    VARIABLE        shift and go to state 118
-    STRING          shift and go to state 119
+    NUMBER          shift and go to state 116
+    VARIABLE        shift and go to state 117
+    STRING          shift and go to state 118
     TRUE            shift and go to state 37
     FALSE           shift and go to state 38
 
-    value                          shift and go to state 116
-    boolean                        shift and go to state 120
+    value                          shift and go to state 115
+    boolean                        shift and go to state 119
 
 state 80
 
     (90) clave -> NUMBER PUNTO . NUMBER
 
-    NUMBER          shift and go to state 121
+    NUMBER          shift and go to state 120
 
 
 state 81
@@ -1722,14 +1722,14 @@ state 83
 
     (66) expresion -> NUMBER PLUS . NUMBER
 
-    NUMBER          shift and go to state 122
+    NUMBER          shift and go to state 121
 
 
 state 84
 
     (67) expresion -> NUMBER MINUS . NUMBER
 
-    NUMBER          shift and go to state 123
+    NUMBER          shift and go to state 122
 
 
 state 85
@@ -1738,10 +1738,10 @@ state 85
     (72) factor -> . NUMBER
     (73) factor -> . LPAREN expresion RPAREN
 
-    NUMBER          shift and go to state 125
+    NUMBER          shift and go to state 124
     LPAREN          shift and go to state 58
 
-    factor                         shift and go to state 124
+    factor                         shift and go to state 123
 
 state 86
 
@@ -1749,16 +1749,16 @@ state 86
     (72) factor -> . NUMBER
     (73) factor -> . LPAREN expresion RPAREN
 
-    NUMBER          shift and go to state 125
+    NUMBER          shift and go to state 124
     LPAREN          shift and go to state 58
 
-    factor                         shift and go to state 126
+    factor                         shift and go to state 125
 
 state 87
 
     (73) factor -> LPAREN expresion . RPAREN
 
-    RPAREN          shift and go to state 127
+    RPAREN          shift and go to state 126
 
 
 state 88
@@ -1817,7 +1817,7 @@ state 90
 
   ! VARIABLE        [ reduce using rule 43 (declaracion -> VARIABLE operadorMat IGUAL opcion .) ]
 
-    declaracion                    shift and go to state 128
+    declaracion                    shift and go to state 127
 
 state 91
 
@@ -1840,30 +1840,10 @@ state 92
 
     (83) hlength -> hashf PUNTO LENGTH LPAREN . RPAREN
 
-    RPAREN          shift and go to state 129
+    RPAREN          shift and go to state 128
 
 
 state 93
-
-    (85) hkeys -> hashf PUNTO KEY LPAREN . value RPAREN
-    (91) value -> . NUMBER
-    (92) value -> . VARIABLE
-    (93) value -> . STRING
-    (94) value -> . boolean
-    (95) value -> . NUMBER PUNTO NUMBER
-    (77) boolean -> . TRUE
-    (78) boolean -> . FALSE
-
-    NUMBER          shift and go to state 117
-    VARIABLE        shift and go to state 118
-    STRING          shift and go to state 119
-    TRUE            shift and go to state 37
-    FALSE           shift and go to state 38
-
-    value                          shift and go to state 130
-    boolean                        shift and go to state 120
-
-state 94
 
     (84) haskey -> hashf HASKEY INTERROGACION LPAREN . clave RPAREN
     (87) clave -> . STRING
@@ -1875,9 +1855,9 @@ state 94
     VARIABLE        shift and go to state 46
     NUMBER          shift and go to state 47
 
-    clave                          shift and go to state 131
+    clave                          shift and go to state 129
 
-state 95
+state 94
 
     (53) rubyParams -> VARIABLE .
 
@@ -1885,23 +1865,23 @@ state 95
     RPAREN          reduce using rule 53 (rubyParams -> VARIABLE .)
 
 
-state 96
+state 95
 
     (47) declaracion_funcion -> DEF VARIABLE LPAREN params . RPAREN cuerpo END
 
-    RPAREN          shift and go to state 132
+    RPAREN          shift and go to state 130
 
 
-state 97
+state 96
 
     (48) params -> rubyParams .
     (49) params -> rubyParams . COMA params
 
     RPAREN          reduce using rule 48 (params -> rubyParams .)
-    COMA            shift and go to state 133
+    COMA            shift and go to state 131
 
 
-state 98
+state 97
 
     (54) rubyParams -> boolean .
 
@@ -1909,7 +1889,7 @@ state 98
     RPAREN          reduce using rule 54 (rubyParams -> boolean .)
 
 
-state 99
+state 98
 
     (55) rubyParams -> NUMBER .
 
@@ -1917,7 +1897,7 @@ state 99
     RPAREN          reduce using rule 55 (rubyParams -> NUMBER .)
 
 
-state 100
+state 99
 
     (17) estrucIf -> IF logica cuerpo END .
 
@@ -1934,7 +1914,7 @@ state 100
     ELSE            reduce using rule 17 (estrucIf -> IF logica cuerpo END .)
 
 
-state 101
+state 100
 
     (18) estrucIf -> IF logica cuerpo estrucElse .
 
@@ -1951,7 +1931,7 @@ state 101
     ELSE            reduce using rule 18 (estrucIf -> IF logica cuerpo estrucElse .)
 
 
-state 102
+state 101
 
     (34) cuerpo -> cuerpo RETURN . retornos
     (35) retornos -> . VARIABLE
@@ -1978,8 +1958,8 @@ state 102
     (72) factor -> . NUMBER
     (73) factor -> . LPAREN expresion RPAREN
 
-    VARIABLE        shift and go to state 135
-    NUMBER          shift and go to state 139
+    VARIABLE        shift and go to state 133
+    NUMBER          shift and go to state 137
     ARREGLO         shift and go to state 52
     FICHERO         shift and go to state 53
     STRING          shift and go to state 55
@@ -1987,15 +1967,15 @@ state 102
     FALSE           shift and go to state 38
     LPAREN          shift and go to state 58
 
-    retornos                       shift and go to state 134
-    primitivo                      shift and go to state 136
-    expresion                      shift and go to state 137
-    asignacion                     shift and go to state 138
-    boolean                        shift and go to state 140
+    retornos                       shift and go to state 132
+    primitivo                      shift and go to state 134
+    expresion                      shift and go to state 135
+    asignacion                     shift and go to state 136
+    boolean                        shift and go to state 138
     termino                        shift and go to state 56
     factor                         shift and go to state 57
 
-state 103
+state 102
 
     (25) estrucElse -> ELSE . cuerpo END
     (26) estrucElse -> ELSE . logica cuerpo END
@@ -2033,7 +2013,7 @@ state 103
     (75) primitivo -> . NUMBER
     (76) primitivo -> . boolean
 
-    VARIABLE        shift and go to state 143
+    VARIABLE        shift and go to state 141
     PUTS            shift and go to state 69
     IF              shift and go to state 16
     WHILE           shift and go to state 17
@@ -2042,8 +2022,8 @@ state 103
     FALSE           shift and go to state 38
     NUMBER          shift and go to state 39
 
-    cuerpo                         shift and go to state 141
-    logica                         shift and go to state 142
+    cuerpo                         shift and go to state 139
+    logica                         shift and go to state 140
     declaracion                    shift and go to state 66
     imprimir                       shift and go to state 67
     estructurasControl             shift and go to state 68
@@ -2055,7 +2035,7 @@ state 103
     boolean                        shift and go to state 34
     primitivo                      shift and go to state 36
 
-state 104
+state 103
 
     (29) cuerpo -> declaracion cuerpo .
     (34) cuerpo -> cuerpo . RETURN retornos
@@ -2063,12 +2043,12 @@ state 104
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 29 (cuerpo -> declaracion cuerpo .)
     ELSE            reduce using rule 29 (cuerpo -> declaracion cuerpo .)
-    RETURN          shift and go to state 102
+    RETURN          shift and go to state 101
 
   ! RETURN          [ reduce using rule 29 (cuerpo -> declaracion cuerpo .) ]
 
 
-state 105
+state 104
 
     (31) cuerpo -> imprimir cuerpo .
     (34) cuerpo -> cuerpo . RETURN retornos
@@ -2076,12 +2056,12 @@ state 105
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 31 (cuerpo -> imprimir cuerpo .)
     ELSE            reduce using rule 31 (cuerpo -> imprimir cuerpo .)
-    RETURN          shift and go to state 102
+    RETURN          shift and go to state 101
 
   ! RETURN          [ reduce using rule 31 (cuerpo -> imprimir cuerpo .) ]
 
 
-state 106
+state 105
 
     (33) cuerpo -> estructurasControl cuerpo .
     (34) cuerpo -> cuerpo . RETURN retornos
@@ -2089,12 +2069,12 @@ state 106
   ! shift/reduce conflict for RETURN resolved as shift
     END             reduce using rule 33 (cuerpo -> estructurasControl cuerpo .)
     ELSE            reduce using rule 33 (cuerpo -> estructurasControl cuerpo .)
-    RETURN          shift and go to state 102
+    RETURN          shift and go to state 101
 
   ! RETURN          [ reduce using rule 33 (cuerpo -> estructurasControl cuerpo .) ]
 
 
-state 107
+state 106
 
     (51) imprimir -> PUTS STRING .
 
@@ -2108,7 +2088,7 @@ state 107
     ELSE            reduce using rule 51 (imprimir -> PUTS STRING .)
 
 
-state 108
+state 107
 
     (52) imprimir -> PUTS VARIABLE .
 
@@ -2122,7 +2102,7 @@ state 108
     ELSE            reduce using rule 52 (imprimir -> PUTS VARIABLE .)
 
 
-state 109
+state 108
 
     (20) logica -> condicion operadorLog logica .
 
@@ -2133,7 +2113,7 @@ state 109
     FOR             reduce using rule 20 (logica -> condicion operadorLog logica .)
 
 
-state 110
+state 109
 
     (21) condicion -> comparador COMPARACION comparador .
 
@@ -2146,7 +2126,7 @@ state 110
     FOR             reduce using rule 21 (condicion -> comparador COMPARACION comparador .)
 
 
-state 111
+state 110
 
     (76) primitivo -> boolean .
 
@@ -2159,7 +2139,7 @@ state 111
     FOR             reduce using rule 76 (primitivo -> boolean .)
 
 
-state 112
+state 111
 
     (74) primitivo -> NUMBER PUNTO NUMBER .
 
@@ -2176,7 +2156,7 @@ state 112
     ELSE            reduce using rule 74 (primitivo -> NUMBER PUNTO NUMBER .)
 
 
-state 113
+state 112
 
     (27) estrucWhile -> WHILE logica cuerpo END .
 
@@ -2193,21 +2173,21 @@ state 113
     ELSE            reduce using rule 27 (estrucWhile -> WHILE logica cuerpo END .)
 
 
-state 114
+state 113
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN . NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    NUMBER          shift and go to state 144
+    NUMBER          shift and go to state 142
 
 
-state 115
+state 114
 
     (59) contenidohash -> elemento COMA contenidohash .
 
     RLLAVE          reduce using rule 59 (contenidohash -> elemento COMA contenidohash .)
 
 
-state 116
+state 115
 
     (61) elemento -> clave FHASH value .
 
@@ -2215,45 +2195,41 @@ state 116
     RLLAVE          reduce using rule 61 (elemento -> clave FHASH value .)
 
 
-state 117
+state 116
 
     (91) value -> NUMBER .
     (95) value -> NUMBER . PUNTO NUMBER
 
     COMA            reduce using rule 91 (value -> NUMBER .)
     RLLAVE          reduce using rule 91 (value -> NUMBER .)
-    RPAREN          reduce using rule 91 (value -> NUMBER .)
-    PUNTO           shift and go to state 145
+    PUNTO           shift and go to state 143
 
 
-state 118
+state 117
 
     (92) value -> VARIABLE .
 
     COMA            reduce using rule 92 (value -> VARIABLE .)
     RLLAVE          reduce using rule 92 (value -> VARIABLE .)
-    RPAREN          reduce using rule 92 (value -> VARIABLE .)
 
 
-state 119
+state 118
 
     (93) value -> STRING .
 
     COMA            reduce using rule 93 (value -> STRING .)
     RLLAVE          reduce using rule 93 (value -> STRING .)
-    RPAREN          reduce using rule 93 (value -> STRING .)
 
 
-state 120
+state 119
 
     (94) value -> boolean .
 
     COMA            reduce using rule 94 (value -> boolean .)
     RLLAVE          reduce using rule 94 (value -> boolean .)
-    RPAREN          reduce using rule 94 (value -> boolean .)
 
 
-state 121
+state 120
 
     (90) clave -> NUMBER PUNTO NUMBER .
 
@@ -2261,7 +2237,7 @@ state 121
     RPAREN          reduce using rule 90 (clave -> NUMBER PUNTO NUMBER .)
 
 
-state 122
+state 121
 
     (66) expresion -> NUMBER PLUS NUMBER .
 
@@ -2279,7 +2255,7 @@ state 122
     RPAREN          reduce using rule 66 (expresion -> NUMBER PLUS NUMBER .)
 
 
-state 123
+state 122
 
     (67) expresion -> NUMBER MINUS NUMBER .
 
@@ -2297,7 +2273,7 @@ state 123
     RPAREN          reduce using rule 67 (expresion -> NUMBER MINUS NUMBER .)
 
 
-state 124
+state 123
 
     (69) termino -> termino TIMES factor .
 
@@ -2317,7 +2293,7 @@ state 124
     RPAREN          reduce using rule 69 (termino -> termino TIMES factor .)
 
 
-state 125
+state 124
 
     (72) factor -> NUMBER .
 
@@ -2337,7 +2313,7 @@ state 125
     RPAREN          reduce using rule 72 (factor -> NUMBER .)
 
 
-state 126
+state 125
 
     (70) termino -> termino DIVIDE factor .
 
@@ -2357,7 +2333,7 @@ state 126
     RPAREN          reduce using rule 70 (termino -> termino DIVIDE factor .)
 
 
-state 127
+state 126
 
     (73) factor -> LPAREN expresion RPAREN .
 
@@ -2377,7 +2353,7 @@ state 127
     RPAREN          reduce using rule 73 (factor -> LPAREN expresion RPAREN .)
 
 
-state 128
+state 127
 
     (44) declaracion -> VARIABLE operadorMat IGUAL opcion declaracion .
 
@@ -2394,30 +2370,194 @@ state 128
     ELSE            reduce using rule 44 (declaracion -> VARIABLE operadorMat IGUAL opcion declaracion .)
 
 
-state 129
+state 128
 
     (83) hlength -> hashf PUNTO LENGTH LPAREN RPAREN .
 
     $end            reduce using rule 83 (hlength -> hashf PUNTO LENGTH LPAREN RPAREN .)
 
 
-state 130
-
-    (85) hkeys -> hashf PUNTO KEY LPAREN value . RPAREN
-
-    RPAREN          shift and go to state 146
-
-
-state 131
+state 129
 
     (84) haskey -> hashf HASKEY INTERROGACION LPAREN clave . RPAREN
 
-    RPAREN          shift and go to state 147
+    RPAREN          shift and go to state 144
 
+
+state 130
+
+    (47) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN . cuerpo END
+    (28) cuerpo -> . declaracion
+    (29) cuerpo -> . declaracion cuerpo
+    (30) cuerpo -> . imprimir
+    (31) cuerpo -> . imprimir cuerpo
+    (32) cuerpo -> . estructurasControl
+    (33) cuerpo -> . estructurasControl cuerpo
+    (34) cuerpo -> . cuerpo RETURN retornos
+    (39) declaracion -> . VARIABLE IGUAL asignacion
+    (40) declaracion -> . VARIABLE IGUAL asignacion declaracion
+    (41) declaracion -> . VARIABLE IGUAL hashf
+    (42) declaracion -> . VARIABLE IGUAL hashf declaracion
+    (43) declaracion -> . VARIABLE operadorMat IGUAL opcion
+    (44) declaracion -> . VARIABLE operadorMat IGUAL opcion declaracion
+    (51) imprimir -> . PUTS STRING
+    (52) imprimir -> . PUTS VARIABLE
+    (8) estructurasControl -> . estrucIf
+    (9) estructurasControl -> . estrucWhile
+    (10) estructurasControl -> . sentenciafor
+    (17) estrucIf -> . IF logica cuerpo END
+    (18) estrucIf -> . IF logica cuerpo estrucElse
+    (27) estrucWhile -> . WHILE logica cuerpo END
+    (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
+
+    VARIABLE        shift and go to state 9
+    PUTS            shift and go to state 69
+    IF              shift and go to state 16
+    WHILE           shift and go to state 17
+    FOR             shift and go to state 18
+
+    cuerpo                         shift and go to state 145
+    declaracion                    shift and go to state 66
+    imprimir                       shift and go to state 67
+    estructurasControl             shift and go to state 68
+    estrucIf                       shift and go to state 6
+    estrucWhile                    shift and go to state 7
+    sentenciafor                   shift and go to state 8
+
+state 131
+
+    (49) params -> rubyParams COMA . params
+    (48) params -> . rubyParams
+    (49) params -> . rubyParams COMA params
+    (53) rubyParams -> . VARIABLE
+    (54) rubyParams -> . boolean
+    (55) rubyParams -> . NUMBER
+    (77) boolean -> . TRUE
+    (78) boolean -> . FALSE
+
+    VARIABLE        shift and go to state 94
+    NUMBER          shift and go to state 98
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    rubyParams                     shift and go to state 96
+    params                         shift and go to state 146
+    boolean                        shift and go to state 97
 
 state 132
 
-    (47) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN . cuerpo END
+    (34) cuerpo -> cuerpo RETURN retornos .
+
+    END             reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
+    RETURN          reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
+    ELSE            reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
+
+
+state 133
+
+    (35) retornos -> VARIABLE .
+
+    END             reduce using rule 35 (retornos -> VARIABLE .)
+    RETURN          reduce using rule 35 (retornos -> VARIABLE .)
+    ELSE            reduce using rule 35 (retornos -> VARIABLE .)
+
+
+state 134
+
+    (36) retornos -> primitivo .
+
+    END             reduce using rule 36 (retornos -> primitivo .)
+    RETURN          reduce using rule 36 (retornos -> primitivo .)
+    ELSE            reduce using rule 36 (retornos -> primitivo .)
+
+
+state 135
+
+    (37) retornos -> expresion .
+    (64) asignacion -> expresion .
+
+  ! reduce/reduce conflict for END resolved using rule 37 (retornos -> expresion .)
+  ! reduce/reduce conflict for RETURN resolved using rule 37 (retornos -> expresion .)
+  ! reduce/reduce conflict for ELSE resolved using rule 37 (retornos -> expresion .)
+    END             reduce using rule 37 (retornos -> expresion .)
+    RETURN          reduce using rule 37 (retornos -> expresion .)
+    ELSE            reduce using rule 37 (retornos -> expresion .)
+
+  ! END             [ reduce using rule 64 (asignacion -> expresion .) ]
+  ! RETURN          [ reduce using rule 64 (asignacion -> expresion .) ]
+  ! ELSE            [ reduce using rule 64 (asignacion -> expresion .) ]
+
+
+state 136
+
+    (38) retornos -> asignacion .
+
+    END             reduce using rule 38 (retornos -> asignacion .)
+    RETURN          reduce using rule 38 (retornos -> asignacion .)
+    ELSE            reduce using rule 38 (retornos -> asignacion .)
+
+
+state 137
+
+    (74) primitivo -> NUMBER . PUNTO NUMBER
+    (75) primitivo -> NUMBER .
+    (66) expresion -> NUMBER . PLUS NUMBER
+    (67) expresion -> NUMBER . MINUS NUMBER
+    (56) asignacion -> NUMBER .
+    (72) factor -> NUMBER .
+
+  ! reduce/reduce conflict for END resolved using rule 56 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 56 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for ELSE resolved using rule 56 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for END resolved using rule 56 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 56 (asignacion -> NUMBER .)
+  ! reduce/reduce conflict for ELSE resolved using rule 56 (asignacion -> NUMBER .)
+    PUNTO           shift and go to state 74
+    PLUS            shift and go to state 83
+    MINUS           shift and go to state 84
+    END             reduce using rule 56 (asignacion -> NUMBER .)
+    RETURN          reduce using rule 56 (asignacion -> NUMBER .)
+    ELSE            reduce using rule 56 (asignacion -> NUMBER .)
+    TIMES           reduce using rule 72 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 72 (factor -> NUMBER .)
+
+  ! END             [ reduce using rule 75 (primitivo -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 75 (primitivo -> NUMBER .) ]
+  ! ELSE            [ reduce using rule 75 (primitivo -> NUMBER .) ]
+  ! END             [ reduce using rule 72 (factor -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 72 (factor -> NUMBER .) ]
+  ! ELSE            [ reduce using rule 72 (factor -> NUMBER .) ]
+
+
+state 138
+
+    (76) primitivo -> boolean .
+    (57) asignacion -> boolean .
+
+  ! reduce/reduce conflict for END resolved using rule 57 (asignacion -> boolean .)
+  ! reduce/reduce conflict for RETURN resolved using rule 57 (asignacion -> boolean .)
+  ! reduce/reduce conflict for ELSE resolved using rule 57 (asignacion -> boolean .)
+    END             reduce using rule 57 (asignacion -> boolean .)
+    RETURN          reduce using rule 57 (asignacion -> boolean .)
+    ELSE            reduce using rule 57 (asignacion -> boolean .)
+
+  ! END             [ reduce using rule 76 (primitivo -> boolean .) ]
+  ! RETURN          [ reduce using rule 76 (primitivo -> boolean .) ]
+  ! ELSE            [ reduce using rule 76 (primitivo -> boolean .) ]
+
+
+state 139
+
+    (25) estrucElse -> ELSE cuerpo . END
+    (34) cuerpo -> cuerpo . RETURN retornos
+
+    END             shift and go to state 147
+    RETURN          shift and go to state 101
+
+
+state 140
+
+    (26) estrucElse -> ELSE logica . cuerpo END
     (28) cuerpo -> . declaracion
     (29) cuerpo -> . declaracion cuerpo
     (30) cuerpo -> . imprimir
@@ -2455,178 +2595,7 @@ state 132
     estrucWhile                    shift and go to state 7
     sentenciafor                   shift and go to state 8
 
-state 133
-
-    (49) params -> rubyParams COMA . params
-    (48) params -> . rubyParams
-    (49) params -> . rubyParams COMA params
-    (53) rubyParams -> . VARIABLE
-    (54) rubyParams -> . boolean
-    (55) rubyParams -> . NUMBER
-    (77) boolean -> . TRUE
-    (78) boolean -> . FALSE
-
-    VARIABLE        shift and go to state 95
-    NUMBER          shift and go to state 99
-    TRUE            shift and go to state 37
-    FALSE           shift and go to state 38
-
-    rubyParams                     shift and go to state 97
-    params                         shift and go to state 149
-    boolean                        shift and go to state 98
-
-state 134
-
-    (34) cuerpo -> cuerpo RETURN retornos .
-
-    END             reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
-    RETURN          reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
-    ELSE            reduce using rule 34 (cuerpo -> cuerpo RETURN retornos .)
-
-
-state 135
-
-    (35) retornos -> VARIABLE .
-
-    END             reduce using rule 35 (retornos -> VARIABLE .)
-    RETURN          reduce using rule 35 (retornos -> VARIABLE .)
-    ELSE            reduce using rule 35 (retornos -> VARIABLE .)
-
-
-state 136
-
-    (36) retornos -> primitivo .
-
-    END             reduce using rule 36 (retornos -> primitivo .)
-    RETURN          reduce using rule 36 (retornos -> primitivo .)
-    ELSE            reduce using rule 36 (retornos -> primitivo .)
-
-
-state 137
-
-    (37) retornos -> expresion .
-    (64) asignacion -> expresion .
-
-  ! reduce/reduce conflict for END resolved using rule 37 (retornos -> expresion .)
-  ! reduce/reduce conflict for RETURN resolved using rule 37 (retornos -> expresion .)
-  ! reduce/reduce conflict for ELSE resolved using rule 37 (retornos -> expresion .)
-    END             reduce using rule 37 (retornos -> expresion .)
-    RETURN          reduce using rule 37 (retornos -> expresion .)
-    ELSE            reduce using rule 37 (retornos -> expresion .)
-
-  ! END             [ reduce using rule 64 (asignacion -> expresion .) ]
-  ! RETURN          [ reduce using rule 64 (asignacion -> expresion .) ]
-  ! ELSE            [ reduce using rule 64 (asignacion -> expresion .) ]
-
-
-state 138
-
-    (38) retornos -> asignacion .
-
-    END             reduce using rule 38 (retornos -> asignacion .)
-    RETURN          reduce using rule 38 (retornos -> asignacion .)
-    ELSE            reduce using rule 38 (retornos -> asignacion .)
-
-
-state 139
-
-    (74) primitivo -> NUMBER . PUNTO NUMBER
-    (75) primitivo -> NUMBER .
-    (66) expresion -> NUMBER . PLUS NUMBER
-    (67) expresion -> NUMBER . MINUS NUMBER
-    (56) asignacion -> NUMBER .
-    (72) factor -> NUMBER .
-
-  ! reduce/reduce conflict for END resolved using rule 56 (asignacion -> NUMBER .)
-  ! reduce/reduce conflict for RETURN resolved using rule 56 (asignacion -> NUMBER .)
-  ! reduce/reduce conflict for ELSE resolved using rule 56 (asignacion -> NUMBER .)
-  ! reduce/reduce conflict for END resolved using rule 56 (asignacion -> NUMBER .)
-  ! reduce/reduce conflict for RETURN resolved using rule 56 (asignacion -> NUMBER .)
-  ! reduce/reduce conflict for ELSE resolved using rule 56 (asignacion -> NUMBER .)
-    PUNTO           shift and go to state 74
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
-    END             reduce using rule 56 (asignacion -> NUMBER .)
-    RETURN          reduce using rule 56 (asignacion -> NUMBER .)
-    ELSE            reduce using rule 56 (asignacion -> NUMBER .)
-    TIMES           reduce using rule 72 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 72 (factor -> NUMBER .)
-
-  ! END             [ reduce using rule 75 (primitivo -> NUMBER .) ]
-  ! RETURN          [ reduce using rule 75 (primitivo -> NUMBER .) ]
-  ! ELSE            [ reduce using rule 75 (primitivo -> NUMBER .) ]
-  ! END             [ reduce using rule 72 (factor -> NUMBER .) ]
-  ! RETURN          [ reduce using rule 72 (factor -> NUMBER .) ]
-  ! ELSE            [ reduce using rule 72 (factor -> NUMBER .) ]
-
-
-state 140
-
-    (76) primitivo -> boolean .
-    (57) asignacion -> boolean .
-
-  ! reduce/reduce conflict for END resolved using rule 57 (asignacion -> boolean .)
-  ! reduce/reduce conflict for RETURN resolved using rule 57 (asignacion -> boolean .)
-  ! reduce/reduce conflict for ELSE resolved using rule 57 (asignacion -> boolean .)
-    END             reduce using rule 57 (asignacion -> boolean .)
-    RETURN          reduce using rule 57 (asignacion -> boolean .)
-    ELSE            reduce using rule 57 (asignacion -> boolean .)
-
-  ! END             [ reduce using rule 76 (primitivo -> boolean .) ]
-  ! RETURN          [ reduce using rule 76 (primitivo -> boolean .) ]
-  ! ELSE            [ reduce using rule 76 (primitivo -> boolean .) ]
-
-
 state 141
-
-    (25) estrucElse -> ELSE cuerpo . END
-    (34) cuerpo -> cuerpo . RETURN retornos
-
-    END             shift and go to state 150
-    RETURN          shift and go to state 102
-
-
-state 142
-
-    (26) estrucElse -> ELSE logica . cuerpo END
-    (28) cuerpo -> . declaracion
-    (29) cuerpo -> . declaracion cuerpo
-    (30) cuerpo -> . imprimir
-    (31) cuerpo -> . imprimir cuerpo
-    (32) cuerpo -> . estructurasControl
-    (33) cuerpo -> . estructurasControl cuerpo
-    (34) cuerpo -> . cuerpo RETURN retornos
-    (39) declaracion -> . VARIABLE IGUAL asignacion
-    (40) declaracion -> . VARIABLE IGUAL asignacion declaracion
-    (41) declaracion -> . VARIABLE IGUAL hashf
-    (42) declaracion -> . VARIABLE IGUAL hashf declaracion
-    (43) declaracion -> . VARIABLE operadorMat IGUAL opcion
-    (44) declaracion -> . VARIABLE operadorMat IGUAL opcion declaracion
-    (51) imprimir -> . PUTS STRING
-    (52) imprimir -> . PUTS VARIABLE
-    (8) estructurasControl -> . estrucIf
-    (9) estructurasControl -> . estrucWhile
-    (10) estructurasControl -> . sentenciafor
-    (17) estrucIf -> . IF logica cuerpo END
-    (18) estrucIf -> . IF logica cuerpo estrucElse
-    (27) estrucWhile -> . WHILE logica cuerpo END
-    (50) sentenciafor -> . FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END
-
-    VARIABLE        shift and go to state 9
-    PUTS            shift and go to state 69
-    IF              shift and go to state 16
-    WHILE           shift and go to state 17
-    FOR             shift and go to state 18
-
-    cuerpo                         shift and go to state 151
-    declaracion                    shift and go to state 66
-    imprimir                       shift and go to state 67
-    estructurasControl             shift and go to state 68
-    estrucIf                       shift and go to state 6
-    estrucWhile                    shift and go to state 7
-    sentenciafor                   shift and go to state 8
-
-state 143
 
     (39) declaracion -> VARIABLE . IGUAL asignacion
     (40) declaracion -> VARIABLE . IGUAL asignacion declaracion
@@ -2648,51 +2617,44 @@ state 143
 
     operadorMat                    shift and go to state 24
 
-state 144
+state 142
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER . PUNTO PUNTO NUMBER RPAREN cuerpo END
 
-    PUNTO           shift and go to state 152
+    PUNTO           shift and go to state 149
 
 
-state 145
+state 143
 
     (95) value -> NUMBER PUNTO . NUMBER
 
-    NUMBER          shift and go to state 153
+    NUMBER          shift and go to state 150
 
 
-state 146
-
-    (85) hkeys -> hashf PUNTO KEY LPAREN value RPAREN .
-
-    $end            reduce using rule 85 (hkeys -> hashf PUNTO KEY LPAREN value RPAREN .)
-
-
-state 147
+state 144
 
     (84) haskey -> hashf HASKEY INTERROGACION LPAREN clave RPAREN .
 
     $end            reduce using rule 84 (haskey -> hashf HASKEY INTERROGACION LPAREN clave RPAREN .)
 
 
-state 148
+state 145
 
     (47) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo . END
     (34) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 154
-    RETURN          shift and go to state 102
+    END             shift and go to state 151
+    RETURN          shift and go to state 101
 
 
-state 149
+state 146
 
     (49) params -> rubyParams COMA params .
 
     RPAREN          reduce using rule 49 (params -> rubyParams COMA params .)
 
 
-state 150
+state 147
 
     (25) estrucElse -> ELSE cuerpo END .
 
@@ -2709,32 +2671,31 @@ state 150
     ELSE            reduce using rule 25 (estrucElse -> ELSE cuerpo END .)
 
 
-state 151
+state 148
 
     (26) estrucElse -> ELSE logica cuerpo . END
     (34) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 155
-    RETURN          shift and go to state 102
+    END             shift and go to state 152
+    RETURN          shift and go to state 101
 
 
-state 152
+state 149
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO . PUNTO NUMBER RPAREN cuerpo END
 
-    PUNTO           shift and go to state 156
+    PUNTO           shift and go to state 153
 
 
-state 153
+state 150
 
     (95) value -> NUMBER PUNTO NUMBER .
 
     COMA            reduce using rule 95 (value -> NUMBER PUNTO NUMBER .)
     RLLAVE          reduce using rule 95 (value -> NUMBER PUNTO NUMBER .)
-    RPAREN          reduce using rule 95 (value -> NUMBER PUNTO NUMBER .)
 
 
-state 154
+state 151
 
     (47) declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo END .
 
@@ -2747,7 +2708,7 @@ state 154
     $end            reduce using rule 47 (declaracion_funcion -> DEF VARIABLE LPAREN params RPAREN cuerpo END .)
 
 
-state 155
+state 152
 
     (26) estrucElse -> ELSE logica cuerpo END .
 
@@ -2764,21 +2725,21 @@ state 155
     ELSE            reduce using rule 26 (estrucElse -> ELSE logica cuerpo END .)
 
 
-state 156
+state 153
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO . NUMBER RPAREN cuerpo END
 
-    NUMBER          shift and go to state 157
+    NUMBER          shift and go to state 154
 
 
-state 157
+state 154
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER . RPAREN cuerpo END
 
-    RPAREN          shift and go to state 158
+    RPAREN          shift and go to state 155
 
 
-state 158
+state 155
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN . cuerpo END
     (28) cuerpo -> . declaracion
@@ -2810,7 +2771,7 @@ state 158
     WHILE           shift and go to state 17
     FOR             shift and go to state 18
 
-    cuerpo                         shift and go to state 159
+    cuerpo                         shift and go to state 156
     declaracion                    shift and go to state 66
     imprimir                       shift and go to state 67
     estructurasControl             shift and go to state 68
@@ -2818,16 +2779,16 @@ state 158
     estrucWhile                    shift and go to state 7
     sentenciafor                   shift and go to state 8
 
-state 159
+state 156
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo . END
     (34) cuerpo -> cuerpo . RETURN retornos
 
-    END             shift and go to state 160
-    RETURN          shift and go to state 102
+    END             shift and go to state 157
+    RETURN          shift and go to state 101
 
 
-state 160
+state 157
 
     (50) sentenciafor -> FOR VARIABLE IN LPAREN NUMBER PUNTO PUNTO NUMBER RPAREN cuerpo END .
 
@@ -2849,16 +2810,16 @@ WARNING:
 WARNING: shift/reduce conflict for VARIABLE in state 48 resolved as shift
 WARNING: shift/reduce conflict for VARIABLE in state 49 resolved as shift
 WARNING: shift/reduce conflict for VARIABLE in state 90 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 103 resolved as shift
 WARNING: shift/reduce conflict for RETURN in state 104 resolved as shift
 WARNING: shift/reduce conflict for RETURN in state 105 resolved as shift
-WARNING: shift/reduce conflict for RETURN in state 106 resolved as shift
 WARNING: reduce/reduce conflict in state 50 resolved using rule (asignacion -> NUMBER)
 WARNING: rejected rule (factor -> NUMBER) in state 50
-WARNING: reduce/reduce conflict in state 137 resolved using rule (retornos -> expresion)
-WARNING: rejected rule (asignacion -> expresion) in state 137
-WARNING: reduce/reduce conflict in state 139 resolved using rule (asignacion -> NUMBER)
-WARNING: rejected rule (primitivo -> NUMBER) in state 139
-WARNING: reduce/reduce conflict in state 139 resolved using rule (asignacion -> NUMBER)
-WARNING: rejected rule (factor -> NUMBER) in state 139
-WARNING: reduce/reduce conflict in state 140 resolved using rule (asignacion -> boolean)
-WARNING: rejected rule (primitivo -> boolean) in state 140
+WARNING: reduce/reduce conflict in state 135 resolved using rule (retornos -> expresion)
+WARNING: rejected rule (asignacion -> expresion) in state 135
+WARNING: reduce/reduce conflict in state 137 resolved using rule (asignacion -> NUMBER)
+WARNING: rejected rule (primitivo -> NUMBER) in state 137
+WARNING: reduce/reduce conflict in state 137 resolved using rule (asignacion -> NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 137
+WARNING: reduce/reduce conflict in state 138 resolved using rule (asignacion -> boolean)
+WARNING: rejected rule (primitivo -> boolean) in state 138
