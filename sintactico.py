@@ -44,7 +44,8 @@ def p_estrucIf(p):
     '''estrucIf : IF logica cuerpo END
                 | IF logica cuerpo estrucElse
                 '''
-
+    global resultado
+    resultado += "\n Se declaro la sentencia if"
 
 # aporte de Moisés Atupaña
 def p_logica(p):
@@ -72,13 +73,16 @@ def p_estrucElse(p):
     '''estrucElse : ELSE cuerpo END
                     | ELSE logica cuerpo END
                     '''
+    global resultado
+    resultado += "\n Se declaro la sentencia Else"
 
 
 # aporte de Josue Montoya Ortiz
 def p_estrucWhile(p):
     ''' estrucWhile : WHILE logica cuerpo END
                     '''
-
+    global resultado
+    resultado += "\n Se declaro la sentencia While"
 
 # aporte de Josue Montoya Ortiz
 def p_cuerpo(p):
